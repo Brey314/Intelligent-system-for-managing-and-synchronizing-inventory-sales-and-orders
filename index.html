@@ -6,39 +6,37 @@
     <title>Ktronix - Tecnología de Vanguardia</title>
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-
-  </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href='index.html'>
-                    <img src="images/logo.svg.png" alt="Ktronix" >
-                </a>
-            </div>
-            
-            <nav class="navbar">
-                <ul>
-                    <li><a href="#inicio" >Inicio</a></li>
-                    <li><a href="#productos">Productos</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                    <li>
-                        <a id="login-btn" href='login.html'>
-                            <i class="fas fa-user"></i> Iniciar Sesión
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            
+<header>
+    <div class="container">
+        <div class="logo">
+            <a href='index.html'>
+                <img src="images/logo.svg.png" alt="Ktronix" >
+            </a>
         </div>
-    </header>
-
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html#inicio" >Inicio</a></li>
+                <li><a href="search.html">Productos</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li>
+                    <a id="login-btn" href='login.html'>
+                        <i class="fas fa-user"></i> Iniciar Sesión
+                    </a>
+                </li>
+                <li>
+                    <a href='buycar.html'>
+                        <img src="images/carrito.png" alt="Crrito de compras">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<body>
     <!-- Hero Section -->
     <section id="inicio" class="hero">
-        <div class="container">
+        <div class="container1">
             <div class="hero-text">
                 <h1>Bienvenido a Ktronix</h1>
                 <p>Los mejores productos tecnológicos al mejor precio</p>
@@ -53,35 +51,28 @@
     </section>
     <!-- Contacto -->
     <section id="contacto" class="contact">
-        <div class="container">
+        <div class="container2">
             <h1>Contacto</h1>
             <div class="form-group">
                 <h2 for="name">Nombre:</h2>
                 <input type="nombre" id="name" required>
-            </div>
-            <div class="form-group">
                 <h2 for="email">Email:</h2>
                 <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
                 <h2 for="message">Mensaje:</h2>
                 <textarea id="message" required></textarea>
             </div>
             <div class="submitbtn">
-                   
+        
                 <button type="submit" class="btn">
                     <h2>ENVIAR</h2>
                 </button>
             </div>
-            
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
     
-        </div>
-    </footer>
 </body>
+<footer class="footer">
+</footer>
 </html>
