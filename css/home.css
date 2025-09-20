@@ -1,10 +1,10 @@
 :root { 
-    --primary: #0066cc; 
-    --primary-dark: #0052a3; 
+    --primary: #004995;; 
+    --primary-dark: #680000; 
     --secondary: #ff6600; 
     --secondary-dark: #e65c00; 
     --dark: #2d3748; 
-    --light: #f7fafc; 
+    --light: #f5f5f5; 
     --gray: #718096; 
     --light-gray: #e2e8f0; 
     --success: #38a169; 
@@ -24,7 +24,7 @@ html{
 }
 
 header {
-    background-color: #004995;
+    background-color: var(--primary);
     box-shadow: var(--box-shadow);
     position: sticky;
     top: 0;
@@ -65,7 +65,7 @@ header .container {
 
 .navbar a {
     text-decoration: none;
-    color: white;
+    color: var(--light);
     font-weight: 500;
     transition: color 0.3s;
     
@@ -113,11 +113,11 @@ header .container {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--dark);
-    background-color: #004995;
+    background-color: var(--primary);
 }
 
 .hero {
-    background: #004995;
+    background: var(--primary);
     box-shadow: var(--box-shadow);
 }
 
@@ -159,18 +159,17 @@ body {
 .contact .container2{
     max-width: 500px;
     margin: auto;
-    color: #ffff;
+    color: var(--light);
 }
 
 .contact {
     padding: 3rem 0;
-    background-color: #004995;
 }
 
 .contact h1 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #ffff;
+    color: var(--light);
     font-size: 60px;
 }
 .contact .container{
@@ -181,7 +180,7 @@ body {
 
 .form-group {
     margin-bottom: 1.5rem;
-    color: #ffff;
+    color: var(--light);
 
 }
 .form-group h2 {
@@ -206,12 +205,14 @@ body {
 }
 
 .btn{
-    width: 30%;
-    padding: 0.75rem;
-    background-color: white;
-    color: #680000;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
+  background-color: var(--light);
+  color: var(--primary-dark);
+  border: none;
+  padding: 12px 30px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 20px 0;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
 }

@@ -1,4 +1,4 @@
-const apiURL = 'https://api.escuelajs.co/api/v1/products/';
+  const apiURL = 'https://api.escuelajs.co/api/v1/products/';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('Ktronix-form');
@@ -26,10 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-          <img src="${prod.images[0]}" alt="${prod.title}" loading="lazy" crossorigin="anonymous">
+          <img src="${prod.images[0]}" alt="${prod.title}" loading="lazy">
           <h3>${prod.title}</h3>
           <h4>$${prod.price}</h4>
           <small>Categoría: ${prod.category.name}</small>
+          <button type="tocart" class="btnP">Envíar al Carrito</button>
         `;
         contenedor.appendChild(card);
       });

@@ -1,10 +1,10 @@
 :root { 
     --primary: #004995; 
     --primary-dark: #680000; 
-    --secondary: #ff6600; 
+    --secondary: #1e0a3f; 
     --secondary-dark: #e65c00; 
     --dark: #2d3748; 
-    --light: #f7fafc; 
+    --light: #f5f5f5; 
     --gray: #718096; 
     --light-gray: #e2e8f0; 
     --success: #38a169; 
@@ -12,7 +12,7 @@
     --danger: #e53e3e; 
     --border-radius: 8px; 
     --box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-}
+} 
 
 html{
     overflow-y: scroll;
@@ -113,7 +113,8 @@ header .container {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--dark);
+    color: var(--secondary);
+    background-color: var(--primary);
 
 }
 
@@ -146,12 +147,27 @@ body {
 }
 
 .product .btn{
-    width: 30%;
-    padding: 0.75rem;
-    background-color: white;
-    color: #680000;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
+  background-color: var(--light);
+  color: var(--primary-dark);
+  border: none;
+  padding: 12px 30px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 20px 0;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+}
+
+.product .btnP{
+  background-color: var(--light-gray);
+  color: var(--primary-dark);
+  border: none;
+  padding: 12px 20px;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 20px 0;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
 }
