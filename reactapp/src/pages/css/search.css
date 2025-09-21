@@ -1,0 +1,71 @@
+.product{
+    display: grid;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    width: 90%;
+}
+.card { 
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    border-radius: 6px; 
+    text-align: center; 
+    background-color: #f7fafc;
+}
+.product img { 
+    max-width: 90%; 
+    height: auto; 
+}
+.product label { 
+    font-size: 1em; 
+    margin: 10px 0 0; 
+}
+
+.btn{
+    background-color: var(--light);
+    color: var(--primary-dark);
+    border: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 20px 0;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.btnP{
+    background-color: var(--light-gray);
+    color: var(--primary-dark);
+    border: none;
+    padding: 12px 20px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 20px 0;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.searchbar{
+    width: 80%;
+    padding: 12px;
+    border: none;
+    background-color: var(--light);
+    font-size: 14px;
+    outline: none;
+}
+
+.search{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    width: 90%;
+    
+}
