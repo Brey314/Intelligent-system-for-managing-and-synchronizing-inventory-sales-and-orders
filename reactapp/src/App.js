@@ -9,21 +9,21 @@ import ShoppingCart from "./pages/shoppingCart";
 
 function App() {
   return (
-    
+
     <Router>
-      
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/shoppingCart" element={<ShoppingCart />} />
+
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/search" element={<Search />} />
+      <Route path="/shoppingCart" element={<ShoppingCart />} />
 
 
-      </Routes>
+    </Routes>
     </Router>
 
-    
+
   );
 }
 

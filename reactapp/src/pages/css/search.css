@@ -4,13 +4,13 @@
     margin: auto;
 }
 
-.grid { 
+.product .grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     width: 90%;
 }
-.card { 
+.product .card { 
     border: 1px solid #ccc; 
     padding: 10px; 
     border-radius: 6px; 
@@ -26,7 +26,7 @@
     margin: 10px 0 0; 
 }
 
-.btn{
+.product .btn{
     background-color: var(--light);
     color: var(--primary-dark);
     border: none;
@@ -36,10 +36,10 @@
     cursor: pointer;
     margin: 20px 0;
     letter-spacing: 1px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.product .3s ease;
 }
 
-.btnP{
+.product .btnP{
     background-color: var(--light-gray);
     color: var(--primary-dark);
     border: none;
@@ -49,10 +49,10 @@
     cursor: pointer;
     margin: 20px 0;
     letter-spacing: 1px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.product .3s ease;
 }
 
-.searchbar{
+.product .searchbar{
     width: 80%;
     padding: 12px;
     border: none;
@@ -61,7 +61,7 @@
     outline: none;
 }
 
-.search{
+.product .search{
     display: flex;
     justify-content: space-between;
     margin: auto;
