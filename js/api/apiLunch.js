@@ -27,9 +27,34 @@ document.addEventListener('DOMContentLoaded', () => {
           <h3>${prod.title}</h3>
           <h4>$${prod.price}</h4>
           <small>Categoría: ${prod.category.name}</small>
-          <button type="tocart" class="btnP"><h2>Envíar al Carrito<h2></button>
+          <button type="tocart" class="btnP">Envíar al Carrito</button>
         `;
         contenedor.appendChild(card);
+        card.querySelector(".btnP").addEventListener("click", async () => {
+          try {
+            const producto = {
+              id: prod.id,
+              title: prod.title,
+              slug: prod.slug,
+              price: prod.price,
+              description: prod.description,
+              category: prod.category,
+              image: prod.images
+            };
+
+            const resp = await fetch("http://localhost:3000/api/cart", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(producto)
+            });
+
+            const data = await resp.json();
+            alert(`${producto.title} agregado al carrito`);
+            console.log(data);
+          } catch (err) {
+            console.error("Error al enviar producto:", err);
+          }
+        });
       });
 
     } catch (err) {

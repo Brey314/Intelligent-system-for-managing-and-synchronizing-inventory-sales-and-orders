@@ -1,4 +1,4 @@
-  const apiURL = 'https://api.escuelajs.co/api/v1/products/';
+const apiURL = 'https://api.escuelajs.co/api/v1/products/';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('Ktronix-form');
@@ -33,6 +33,32 @@ document.addEventListener('DOMContentLoaded', () => {
           <button type="tocart" class="btnP">Envíar al Carrito</button>
         `;
         contenedor.appendChild(card);
+
+        card.querySelector(".btnP").addEventListener("click", async () => {
+          try {
+            const producto = {
+              id: prod.id,
+              title: prod.title,
+              slug: prod.slug,
+              price: prod.price,
+              description: prod.description,
+              category: prod.category,
+              image: prod.images
+            };
+
+            const resp = await fetch("http://localhost:3000/api/cart", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(producto)
+            });
+
+            const data = await resp.json();
+            alert(`${producto.title} agregado al carrito`);
+            console.log(data);
+          } catch (err) {
+            console.error("Error al enviar producto:", err);
+          }
+        });
       });
 
     } catch (err) {
@@ -41,3 +67,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
