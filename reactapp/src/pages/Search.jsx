@@ -39,25 +39,41 @@ function Search() {
             const producto = {
                 _id: prod._id,
                 title: prod.title,
-                descripcion: prod.descripcion,
-                precio: prod.precio,
+                description: prod.description,
+                price: prod.price,
                 image: prod.image,
                 category: prod.category,
                 stock: prod.stock,
+                cuantity: 1,
                 creation_date: prod.creation_date,
             };
 
-            const resp = await fetch("http://localhost:1000/api/cart", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(producto),
-            });
-
+            const resp = await fetch("http://localhost:1000/api/cart");
             const data = await resp.json();
+            const exist = data.find((item) => item._id === producto._id);
+
+            
+            if (exist) {
+                // Si existe, aumentar la cantidad
+                const nuevaCantidad = exist.cuantity + 1;
+
+                await fetch(`http://localhost:1000/api/cart/${producto._id}`, {
+                    method: "PUT", // o PATCH si lo configuraste así
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ cuantity: nuevaCantidad }),
+                });
+            } else {
+                // Si no existe, agregarlo al carrito
+                await fetch("http://localhost:1000/api/cart", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(producto),
+                });
+            }
             alert(`${producto.title} agregado al carrito`);
             console.log(data);
-            } catch (err) {
-                console.error("Error al enviar producto:", err);
+        } catch (err) {
+            console.error("Error al enviar producto:", err);
         }
     };
 
@@ -119,7 +135,7 @@ function Search() {
                     <div key={prod._id} className="card">
                         <img src={prod.image} alt={prod.title} loading="lazy" />
                         <h3>{prod.title}</h3>
-                        <h4>COP {prod.precio} $</h4>
+                        <h4>COP {prod.price.toLocaleString()} $</h4>
                         <small>Categoría: {prod.category}</small>
                         <button
                             type="button"

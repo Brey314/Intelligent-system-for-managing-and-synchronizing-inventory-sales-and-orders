@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/tienda-electronicos', {
   useUnifiedTopology: true,
 })
 .then(() => {
-  console.log('✅ Conectado a MongoDB');
-  app.listen(5000, () => console.log('🚀 Servidor corriendo en http://localhost:5000'));
+  console.log(' Conectado a MongoDB');
+  app.listen(5000, () => console.log(' Servidor corriendo en http://localhost:5000'));
 })
-.catch(err => console.error('❌ Error en MongoDB:', err));
+.catch(err => console.error(' Error en MongoDB:', err));

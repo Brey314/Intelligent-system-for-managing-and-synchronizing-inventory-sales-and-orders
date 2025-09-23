@@ -18,8 +18,8 @@ app.get("/api/cart", (req, res) => {
 
 // Agregar producto al carrito
 app.post("/api/cart", (req, res) => {
-  const { _id, title, descripcion,precio, image, category,stock,creation_date } = req.body;
-  const producto = { _id, title, descripcion,precio, image, category,stock,creation_date };
+  const { _id, title, description,price, image, category,stock,cuantity,creation_date } = req.body;
+  const producto = { _id, title, description,price, image, category,stock,cuantity,creation_date };
   carrito.push(producto);
   res.json({ message: "Producto agregado", producto });
 });
@@ -27,10 +27,27 @@ app.post("/api/cart", (req, res) => {
 // Eliminar producto por id
 app.delete("/api/cart/:id", (req, res) => {
   const { id } = req.params;
-  carrito = carrito.filter(p => p.id != id);
+  carrito = carrito.filter(p => p._id != id);
   res.json({ message: `Producto con id ${id} eliminado` });
 });
 
 app.listen(PORT, () => {
   console.log(`Servidor backend en http://localhost:${PORT}`);
+});
+// Actualizar cantidad de un producto en el carrito
+app.put("/api/cart/:id", (req, res) => {
+  const { id } = req.params;
+  const { cuantity } = req.body;
+
+  // Buscar el producto por _id
+  const producto = carrito.find(p => p._id == id);
+
+  if (!producto) {
+    return res.status(404).json({ message: `Producto con id ${id} no encontrado en el carrito` });
+  }
+
+  // Actualizar cantidad
+  producto.cuantity = cuantity;
+
+  res.json({ message: "Cantidad actualizada", producto });
 });

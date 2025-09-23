@@ -33,6 +33,53 @@ function ShoppingCart() {
     }
   };
 
+  const cambiarCantidad = async(_id,cuantity,op)=>{
+    try {
+      let newcuantity=cuantity
+      if(op==="+"){
+        newcuantity=cuantity+1;
+      }else{
+        if(cuantity>1){
+          newcuantity=cuantity-1;
+        }else{
+          eliminarDelCarrito(_id);
+        }
+      }
+      await fetch(`http://localhost:1000/api/cart/${_id}`, {
+        method: "PUT", 
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cuantity: newcuantity }),
+      });
+
+      setCart((prevCart) =>
+      prevCart.map((prod) =>
+        prod._id === _id ? { ...prod, cuantity: newcuantity } : prod
+      )
+    );
+    } catch (err) {
+      console.error("Error aumentando cantidad",err)
+    }
+  }
+  const [subtotal, setSubtotal] = useState(0);
+  const obtenerPrecio = async () => {
+    try {
+      const answ = await fetch("http://localhost:1000/api/cart/");
+      const data = await answ.json();
+      let suma = 0;
+      data.forEach(produ => {
+        suma += (produ.price*produ.cuantity);
+      });
+      setSubtotal(suma);
+    } catch (err) {
+      console.error("Error calculando subtotal", err);
+    }
+  };
+
+    // Llamamos la función cuando cargue el componente
+  useEffect(() => {
+    obtenerPrecio();
+  }, []);
+
   return (
     <>
       <header className="header">
@@ -60,14 +107,15 @@ function ShoppingCart() {
               </ul>
               </nav>
           </div>
-      </header>    
+      </header>  
+ 
     <main className="shopcart">
 
-      <div _id="productoss">
-        {loading && <p>Cargando carrito...</p>}
-
-        {!loading && cart.length === 0 && <p>No hay productos en el carrito</p>}
-
+      <div id="productoss">
+        
+          {loading && <p className="infoCart">Cargando carrito...</p>}
+          {!loading && cart.length === 0 && <p className="infoCart">No hay productos en el carrito</p>}
+        
         {cart.map((prod) => (
           <div key={prod._id} className="cart-item">
             {/* Imagen del producto */}
@@ -78,14 +126,18 @@ function ShoppingCart() {
             {/* Información */}
             <div className="cart-item-info">
               <h3>{prod.title}</h3>
-              <p className="price">COP {prod.precio.toLocaleString()} $</p>
+              <p className="price">COP {prod.price.toLocaleString()} $</p>
               <p className="available">Disponible</p>
 
               <div className="cart-item-actions">
                 <div className="quantity">
-                  <button>-</button>
-                  <span>1</span>
-                  <button>+</button>
+                  <button
+                    onClick={()=> cambiarCantidad(prod._id, prod.cuantity, "-")}
+                  >-</button>
+                  <span>{prod.cuantity}</span>
+                  <button
+                    onClick={()=> cambiarCantidad(prod._id, prod.cuantity, "+")}
+                  >+</button>
                 </div>
                 <button
                   onClick={() => eliminarDelCarrito(prod._id)}
@@ -96,9 +148,23 @@ function ShoppingCart() {
                 <button className="save-btn">Guardar para más tarde</button>
               </div>
             </div>
+            
           </div>
         ))}
       </div>
+      <div className="subtotal">
+          <div className="text">
+            <h2>
+              Subtotal( productos):
+            </h2>
+            <h1>
+              COP {subtotal.toLocaleString()} $
+            </h1>
+          </div>
+          <button>
+            Proceder al pago
+          </button>
+        </div>
     </main>
     </>
   );
