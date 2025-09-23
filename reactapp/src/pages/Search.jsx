@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import "./css/search.css"; // Importas tu CSS
 
-const apiURL = "https://api.escuelajs.co/api/v1/products/";
+const apiURL = "http://localhost:5000/api/productos";
 
 function Search() {
     const [productos, setProductos] = useState([]);
@@ -37,13 +37,14 @@ function Search() {
     const addToCart = async (prod) => {
         try {
             const producto = {
-                id: prod.id,
+                id: prod._id,
                 title: prod.title,
-                slug: prod.slug,
-                price: prod.price,
                 description: prod.description,
-                category: prod.category,
+                price: prod.price,
                 image: prod.images,
+                category: prod.category,
+                stock: prod.stock,
+                creation_date: prod.creation_date,
             };
 
             const resp = await fetch("http://localhost:1000/api/cart", {
@@ -116,10 +117,10 @@ function Search() {
 
                 {productos.map((prod) => (
                     <div key={prod.id} className="card">
-                        <img src={prod.images[0]} alt={prod.title} loading="lazy" />
+                        <img src={prod.image} alt={prod.title} loading="lazy" />
                         <h3>{prod.title}</h3>
-                        <h4>${prod.price}</h4>
-                        <small>Categoría: {prod.category?.name}</small>
+                        <h4>COP {prod.precio} $</h4>
+                        <small>Categoría: {prod.category}</small>
                         <button
                             type="button"
                             className="btnP"

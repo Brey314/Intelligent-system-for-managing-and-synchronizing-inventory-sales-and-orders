@@ -16,6 +16,7 @@
     border-radius: 6px; 
     text-align: center; 
     background-color: #f7fafc;
+    box-shadow: 0 2px 5px #000;
 }
 .product img { 
     max-width: 90%; 
