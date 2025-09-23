@@ -37,11 +37,11 @@ function Search() {
     const addToCart = async (prod) => {
         try {
             const producto = {
-                id: prod._id,
+                _id: prod._id,
                 title: prod.title,
-                description: prod.description,
-                price: prod.price,
-                image: prod.images,
+                descripcion: prod.descripcion,
+                precio: prod.precio,
+                image: prod.image,
                 category: prod.category,
                 stock: prod.stock,
                 creation_date: prod.creation_date,
@@ -116,7 +116,7 @@ function Search() {
                 {!loading && productos.length === 0 }
 
                 {productos.map((prod) => (
-                    <div key={prod.id} className="card">
+                    <div key={prod._id} className="card">
                         <img src={prod.image} alt={prod.title} loading="lazy" />
                         <h3>{prod.title}</h3>
                         <h4>COP {prod.precio} $</h4>

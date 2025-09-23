@@ -3,7 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express();
-const PORT = 3000;
+const PORT = 1000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -18,8 +18,8 @@ app.get("/api/cart", (req, res) => {
 
 // Agregar producto al carrito
 app.post("/api/cart", (req, res) => {
-  const { id, title, price, image, category } = req.body;
-  const producto = { id, title, price, image, category };
+  const { _id, title, descripcion,precio, image, category,stock,creation_date } = req.body;
+  const producto = { _id, title, descripcion,precio, image, category,stock,creation_date };
   carrito.push(producto);
   res.json({ message: "Producto agregado", producto });
 });

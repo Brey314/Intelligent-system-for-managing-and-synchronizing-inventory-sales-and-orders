@@ -24,10 +24,10 @@ function ShoppingCart() {
   }, []);
 
   // Eliminar producto
-  const eliminarDelCarrito = async (id) => {
+  const eliminarDelCarrito = async (_id) => {
     try {
-      await fetch(`http://localhost:1000/api/cart/${id}`, { method: "DELETE" });
-      setCart(cart.filter((prod) => prod.id !== id));
+      await fetch(`http://localhost:1000/api/cart/${_id}`, { method: "DELETE" });
+      setCart(cart.filter((prod) => prod._id !== _id));
     } catch (err) {
       console.error("Error eliminando producto:", err);
     }
@@ -63,22 +63,22 @@ function ShoppingCart() {
       </header>    
     <main className="shopcart">
 
-      <div id="productoss">
+      <div _id="productoss">
         {loading && <p>Cargando carrito...</p>}
 
         {!loading && cart.length === 0 && <p>No hay productos en el carrito</p>}
 
         {cart.map((prod) => (
-          <div key={prod.id} className="cart-item">
+          <div key={prod._id} className="cart-item">
             {/* Imagen del producto */}
             <div className="cart-item-image">
-              <img src={prod.image[0]} alt={prod.title} loading="lazy" />
+              <img src={prod.image} alt={prod.title} loading="lazy" />
             </div>
 
             {/* Información */}
             <div className="cart-item-info">
               <h3>{prod.title}</h3>
-              <p className="price">COP {prod.price.toLocaleString()} $</p>
+              <p className="price">COP {prod.precio.toLocaleString()} $</p>
               <p className="available">Disponible</p>
 
               <div className="cart-item-actions">
@@ -88,7 +88,7 @@ function ShoppingCart() {
                   <button>+</button>
                 </div>
                 <button
-                  onClick={() => eliminarDelCarrito(prod.id)}
+                  onClick={() => eliminarDelCarrito(prod._id)}
                   className="delete-btn"
                 >
                   Eliminar
