@@ -1,4 +1,4 @@
-# Intelligent System for Managing and Synchronizing Inventory, Sales, and Orders
+ # Intelligent System for Managing and Synchronizing Inventory, Sales, and Orders
 
 ## Descripción
 Este proyecto implementa un sistema inteligente para la **gestión y sincronización de inventario, ventas y pedidos**.  
@@ -35,16 +35,7 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 │
 ├── html/                  # Vistas HTML estáticas
 │   ├── css/...
-│       ├── form.css
-│       ├── home.css
-│       ├── search.css
-│       └── shoppingcart.css
 │   ├── js/...
-│       ├── api/...
-│           ├── apiListener.js
-│           └── apiLunch.js
-│       ├── server.js
-│       └── shopcart.js
 │   ├── index.html
 │   ├── login.html
 │   ├── register.html
