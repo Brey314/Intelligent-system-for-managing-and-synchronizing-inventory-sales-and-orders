@@ -72,18 +72,28 @@ Dependencias principales:
 ---
 
 ### 3. Frontend (React)
+
+La aplicación React ubicada en la carpeta `reactapp/` es la **interfaz principal del usuario**.  
+Está desarrollada con **React** y utiliza librerías adicionales para la navegación y los íconos.
+
+#### Archivos y carpetas principales:
+- `src/` → Contiene todo el código fuente de la aplicación.  
+  - `components/` → Componentes reutilizables de la interfaz (formularios, menús, etc.).  
+  - `pages/` → Vistas principales de la aplicación (Login, Registro, Dashboard, etc.).  
+  - `App.js` → Punto de entrada de la aplicación React.  
+  - `index.js` → Renderiza la aplicación dentro del DOM.  
+
+#### Dependencias principales:
+- `react` → Librería principal para construir interfaces de usuario.  
+- `react-router-dom` → Manejo de rutas y navegación entre páginas.  
+- `react-icons/fa` → Conjunto de íconos para enriquecer la interfaz.  
+
+#### Ejecución:
 ```bash
 cd reactapp
 npm install
 npm start
-```
-- La aplicación React se ejecutará en `http://localhost:5173` (o el puerto configurado por Vite/CRA).  
-- Aquí se encuentra la interfaz principal de usuario.  
 
-Dependencias principales:
-- react  
-- react-router-dom  
-- react-icons/fa  
 
 ---
 
