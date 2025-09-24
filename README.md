@@ -69,7 +69,17 @@ También utiliza **Mongoose** para la comunicación con la base de datos.
 - `express` → Framework para crear rutas y middlewares HTTP.  
 - `mongoose` → Modelado y conexión con la base de datos MongoDB.  
 - `body-parser` → Procesa las solicitudes entrantes en formato JSON.  
-- `cors` → Permite solicitudes desde otros orígenes (frontend en React).  
+- `cors` → Permite solicitudes desde otros orígenes (frontend en React).
+
+El servidor se ejecutará en `http://localhost:3000` (según la configuración definida en `server.js`).  
+
+#### Funcionalidades principales:
+- **Gestión de inventario:** creación, lectura, actualización y eliminación de productos.  
+- **Gestión de ventas:** registro y consulta de ventas realizadas.  
+- **Gestión de pedidos:** sincronización de pedidos con inventario y ventas.  
+- **CORS habilitado:** conexión segura con la aplicación React u otros clientes.  
+- **Middleware JSON:** permite enviar y recibir datos en formato JSON.  
+
 
 #### Ejecución:
 ```bash
@@ -95,7 +105,15 @@ Está desarrollada con **React** y utiliza librerías adicionales para la navega
 #### Dependencias principales:
 - `react` → Librería principal para construir interfaces de usuario.  
 - `react-router-dom` → Manejo de rutas y navegación entre páginas.  
-- `react-icons/fa` → Conjunto de íconos para enriquecer la interfaz.  
+- `react-icons/fa` → Conjunto de íconos para enriquecer la interfaz.
+
+La aplicación se abrirá en el navegador en `http://localhost:5173` (o el puerto configurado por Vite/CRA).  
+
+#### Funcionalidades principales:
+- **Login/Register:** autenticación de usuarios.  
+- **Gestión de productos:** visualización y administración del inventario.  
+- **Carrito de compras:** permite simular pedidos y sincronización con ventas.  
+- **Navegación dinámica:** cambio de vistas sin recargar la página gracias a `react-router-dom`.  
 
 #### Ejecución:
 ```bash
