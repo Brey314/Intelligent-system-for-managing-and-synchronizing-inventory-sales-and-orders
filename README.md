@@ -10,15 +10,34 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ```
 ├── Backend/               # Servidor Node.js (API REST)
 │   ├── server.js
-│   ├── package.json
-│   └── package-lock.json
-│
+│   ├── cart/...
+│       ├── server.js
+│   ├── models/...
+│       ├── Producto.js
+│   ├── routes/...
+│       ├── productos.js
 ├── reactapp/              # Aplicación React (frontend principal)
 │   ├── src/...
-│   ├── package.json
+│       ├── App.css
+│       ├── App.js
+│       ├── index.css
+│       ├── index.js
+│       ├── reportWebVitals.js
+│       ├── setupTests.js
 │   └── README.md (Introducción a Create React App)
 │
 ├── html/                  # Vistas HTML estáticas
+│   ├── css/...
+│       ├── form.css
+│       ├── home.css
+│       ├── search.css
+│       ├── shoppingcart.css
+│   ├── js/...
+│       ├── api/...
+│           ├── apiListener.js
+│           ├── apiLunch.js
+│       ├── server.js
+│       ├── shopcart.js
 │   ├── index.html
 │   ├── login.html
 │   ├── register.html
@@ -75,8 +94,6 @@ El servidor se ejecutará en `http://localhost:3000` (según la configuración d
 
 #### Funcionalidades principales:
 - **Gestión de inventario:** creación, lectura, actualización y eliminación de productos.  
-- **Gestión de ventas:** registro y consulta de ventas realizadas.  
-- **Gestión de pedidos:** sincronización de pedidos con inventario y ventas.  
 - **CORS habilitado:** conexión segura con la aplicación React u otros clientes.  
 - **Middleware JSON:** permite enviar y recibir datos en formato JSON.  
 
@@ -112,8 +129,7 @@ El servidor expone una serie de endpoints REST para la gestión de inventario, v
 ## Archivos principales del Backend
 
 - **server.js** → Configura y levanta el servidor Express, define middlewares globales (`cors`, `body-parser`) y conecta con MongoDB.  
-- **search.js** → Contiene la lógica de búsqueda de productos en el inventario (filtrado por nombre, categoría u otros criterios).  
-- **shoppingcart.js** → Implementa las operaciones relacionadas con el carrito de compras (agregar, actualizar, eliminar productos del carrito).  
+- **search.js** → Contiene la lógica de búsqueda de productos en el inventario (filtrado por nombre, categoría u otros criterios).
 - **controllers/** → Incluye la lógica de negocio de cada módulo (productos, ventas, pedidos, carrito).  
 - **models/** → Define los esquemas de Mongoose para la persistencia en MongoDB.  
 - **routes/** → Declara las rutas de la API que enlazan los controladores con Express.  
@@ -171,15 +187,6 @@ Dentro de la carpeta `Documentation/` se incluye material de soporte:
 - **Requeriments_IEEE830.pdf:** especificación formal de requerimientos.  
 - **User Stories.xlsx:** historias de usuario del sistema.  
 - **Document.pdf:** documentación general del proyecto.  
-
----
-
-## Contribución
-1. Haz un fork del repositorio.  
-2. Crea una rama para tu cambio (`git checkout -b feature/nueva-funcionalidad`).  
-3. Realiza tus cambios y haz commit (`git commit -m "Agrega nueva funcionalidad"`).  
-4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).  
-5. Abre un Pull Request.  
 
 ---
 
