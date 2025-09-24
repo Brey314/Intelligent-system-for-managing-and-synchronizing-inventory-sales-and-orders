@@ -101,14 +101,6 @@ El servidor expone una serie de endpoints REST para la gestión de inventario, v
 - `PUT /api/products/:id` → Actualiza un producto existente.  
 - `DELETE /api/products/:id` → Elimina un producto.  
 
-#### Ventas (`/api/sales`)
-- `GET /api/sales` → Lista todas las ventas.  
-- `POST /api/sales` → Registra una nueva venta.  
-
-#### Pedidos (`/api/orders`)
-- `GET /api/orders` → Lista todos los pedidos.  
-- `POST /api/orders` → Crea un nuevo pedido.  
-
 #### Carrito (`/api/cart`)
 - `GET /api/cart` → Obtiene el contenido actual del carrito.  
 - `POST /api/cart` → Agrega un producto al carrito.  
