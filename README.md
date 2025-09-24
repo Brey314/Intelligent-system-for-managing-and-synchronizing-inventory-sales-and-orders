@@ -16,7 +16,7 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ├── reactapp/              # Aplicación React (frontend principal)
 │   ├── src/...
 │   ├── package.json
-│   └── README.md (redundante, ya está en este archivo)
+│   └── README.md (Introducción a Create React App)
 │
 ├── html/                  # Vistas HTML estáticas
 │   ├── index.html
