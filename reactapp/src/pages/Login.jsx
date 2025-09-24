@@ -1,4 +1,3 @@
-import React from "react";
 import "./css/form.css"; // copia aquí tu CSS
 import { FaUser } from "react-icons/fa";
 

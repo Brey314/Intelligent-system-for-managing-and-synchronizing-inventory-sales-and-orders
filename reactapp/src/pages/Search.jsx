@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import "./css/search.css"; // Importas tu CSS
 
@@ -58,7 +57,7 @@ function Search() {
                 const nuevaCantidad = exist.cuantity + 1;
 
                 await fetch(`http://localhost:1000/api/cart/${producto._id}`, {
-                    method: "PUT", // o PATCH si lo configuraste así
+                    method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ cuantity: nuevaCantidad }),
                 });

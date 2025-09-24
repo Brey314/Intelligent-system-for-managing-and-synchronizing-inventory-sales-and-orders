@@ -28,6 +28,24 @@ function ShoppingCart() {
     try {
       await fetch(`http://localhost:1000/api/cart/${_id}`, { method: "DELETE" });
       setCart(cart.filter((prod) => prod._id !== _id));
+          setCart((prevCart) => {
+      const nuevoCarrito = prevCart.map((prod) =>
+        prod._id === _id ? { ...prod, cuantity: prod.cuantity } : prod
+      );
+
+      // recalcular subtotal y cantidad aquí mismo
+      let sumaPrecio = 0;
+      let sumaCantidad = 0;
+      nuevoCarrito.forEach((prod) => {
+        sumaPrecio += prod.price * prod.cuantity;
+        sumaCantidad += prod.cuantity;
+      });
+
+      setSubtotal(sumaPrecio);
+      setCantidad(sumaCantidad);
+
+      return nuevoCarrito;
+    });
     } catch (err) {
       console.error("Error eliminando producto:", err);
     }
