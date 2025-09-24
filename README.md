@@ -55,19 +55,28 @@ cd Intelligent-system-for-managing-and-synchronizing-inventory-sales-and-orders
 ---
 
 ### 2. Backend (Node.js + Express)
+
+El backend ubicado en la carpeta `Backend/` implementa la **API REST** que gestiona inventario, ventas y pedidos.  
+Está desarrollado con **Node.js** y el framework **Express** para la creación de endpoints.  
+También utiliza **Mongoose** para la comunicación con la base de datos.
+
+#### Archivos principales:
+- `server.js` → Punto de entrada del servidor, configuración de Express, middlewares y conexión con la base de datos.  
+- `package.json` → Definición de dependencias y scripts de ejecución.  
+- `package-lock.json` → Registro exacto de versiones instaladas.  
+
+#### Dependencias principales:
+- `express` → Framework para crear rutas y middlewares HTTP.  
+- `mongoose` → Modelado y conexión con la base de datos MongoDB.  
+- `body-parser` → Procesa las solicitudes entrantes en formato JSON.  
+- `cors` → Permite solicitudes desde otros orígenes (frontend en React).  
+
+#### Ejecución:
 ```bash
 cd Backend
 npm install
 npm start
 ```
-- El servidor se iniciará en `http://localhost:3000` (según configuración en `server.js`).  
-- Desde aquí se exponen los endpoints para inventario, ventas y pedidos.  
-
-Dependencias principales:
-- express  
-- mongoose  
-- body-parser  
-- cors  
 
 ---
 
