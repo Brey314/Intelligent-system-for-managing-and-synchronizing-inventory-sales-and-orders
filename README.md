@@ -93,7 +93,7 @@ Está desarrollada con **React** y utiliza librerías adicionales para la navega
 cd reactapp
 npm install
 npm start
-
+```
 
 ---
 
