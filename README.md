@@ -11,11 +11,11 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ├── Backend/               # Servidor Node.js (API REST)
 │   ├── server.js
 │   ├── cart/...
-│       ├── server.js
+│       └── server.js
 │   ├── models/...
-│       ├── Producto.js
+│       └── Producto.js
 │   ├── routes/...
-│       ├── productos.js
+│       └── productos.js
 ├── reactapp/              # Aplicación React (frontend principal)
 │   ├── src/...
 │       ├── App.css
@@ -23,7 +23,7 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 │       ├── index.css
 │       ├── index.js
 │       ├── reportWebVitals.js
-│       ├── setupTests.js
+│       └── setupTests.js
 │   └── README.md (Introducción a Create React App)
 │
 ├── html/                  # Vistas HTML estáticas
@@ -31,13 +31,13 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 │       ├── form.css
 │       ├── home.css
 │       ├── search.css
-│       ├── shoppingcart.css
+│       └── shoppingcart.css
 │   ├── js/...
 │       ├── api/...
 │           ├── apiListener.js
-│           ├── apiLunch.js
+│           └── apiLunch.js
 │       ├── server.js
-│       ├── shopcart.js
+│       └── shopcart.js
 │   ├── index.html
 │   ├── login.html
 │   ├── register.html
