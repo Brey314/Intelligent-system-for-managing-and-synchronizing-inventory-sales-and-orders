@@ -88,6 +88,44 @@ npm install
 npm start
 ```
 
+## API del Backend
+
+El servidor expone una serie de endpoints REST para la gestión de inventario, ventas, pedidos y carrito de compras.  
+
+### Endpoints principales
+
+#### Inventario (`/api/products`)
+- `GET /api/products` → Obtiene todos los productos.  
+- `GET /api/products/:id` → Obtiene un producto por ID.  
+- `POST /api/products` → Crea un nuevo producto.  
+- `PUT /api/products/:id` → Actualiza un producto existente.  
+- `DELETE /api/products/:id` → Elimina un producto.  
+
+#### Ventas (`/api/sales`)
+- `GET /api/sales` → Lista todas las ventas.  
+- `POST /api/sales` → Registra una nueva venta.  
+
+#### Pedidos (`/api/orders`)
+- `GET /api/orders` → Lista todos los pedidos.  
+- `POST /api/orders` → Crea un nuevo pedido.  
+
+#### Carrito (`/api/cart`)
+- `GET /api/cart` → Obtiene el contenido actual del carrito.  
+- `POST /api/cart` → Agrega un producto al carrito.  
+- `PUT /api/cart/:id` → Actualiza la cantidad de un producto en el carrito.  
+- `DELETE /api/cart/:id` → Elimina un producto del carrito.  
+
+---
+
+## Archivos principales del Backend
+
+- **server.js** → Configura y levanta el servidor Express, define middlewares globales (`cors`, `body-parser`) y conecta con MongoDB.  
+- **search.js** → Contiene la lógica de búsqueda de productos en el inventario (filtrado por nombre, categoría u otros criterios).  
+- **shoppingcart.js** → Implementa las operaciones relacionadas con el carrito de compras (agregar, actualizar, eliminar productos del carrito).  
+- **controllers/** → Incluye la lógica de negocio de cada módulo (productos, ventas, pedidos, carrito).  
+- **models/** → Define los esquemas de Mongoose para la persistencia en MongoDB.  
+- **routes/** → Declara las rutas de la API que enlazan los controladores con Express.  
+
 ---
 
 ### 3. Frontend (React)
