@@ -20,7 +20,7 @@ function Search() {
             const url = searchTerm
             ? `${apiURL}?title=${encodeURIComponent(searchTerm)}`
             : apiURL;
-
+            console.log(url)
             const respuesta = await fetch(url);
             if (!respuesta.ok) throw new Error(`Error HTTP: ${respuesta.status}`);
             const data = await respuesta.json();

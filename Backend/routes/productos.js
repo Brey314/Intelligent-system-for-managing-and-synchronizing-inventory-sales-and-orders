@@ -5,7 +5,15 @@ const Producto = require('../models/Producto');
 // Obtener todos los productos
 router.get('/', async (req, res) => {
   try {
-    const productos = await Producto.find();
+    const { title } = req.query;
+    let query = {};
+
+    if (title) {
+      // Buscar por coincidencia parcial en el título (case-insensitive)
+      query.title = { $regex: title, $options: "i" };
+    }
+
+    const productos = await Producto.find(query);
     res.json(productos);
   } catch (err) {
     res.status(500).json({ mensaje: 'Error al obtener productos' });
