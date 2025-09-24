@@ -7,5 +7,6 @@ Requeriments to launch:
 - react-router-dom
 - react-icons/fa
 - mongoose
+- mongoDB
 - body-parser
 - cors
