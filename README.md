@@ -18,13 +18,17 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 │       └── productos.js
 ├── reactapp/              # Aplicación React (frontend principal)
 │   ├── src/...
+│       ├── pages/...
+│           ├── css/...
+│           ├── Home.jsx
+│           ├── Login.jsx
+│           ├── Register.jsx
+│           ├── Search.jsx
+│           ├── shoppingCart.jsx
 │       ├── App.css
 │       ├── App.js
 │       ├── index.css
 │       ├── index.js
-│       ├── reportWebVitals.js
-│       └── setupTests.js
-│   └── README.md (Introducción a Create React App)
 │
 ├── html/                  # Vistas HTML estáticas
 │   ├── css/...
