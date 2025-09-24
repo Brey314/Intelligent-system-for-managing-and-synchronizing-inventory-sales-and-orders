@@ -133,7 +133,7 @@ El servidor expone una serie de endpoints REST para la gestión de inventario, v
 ## Archivos principales del Backend
 
 - **server.js** → Configura y levanta el servidor Express, define middlewares globales (`cors`, `body-parser`) y conecta con MongoDB.  
-- **search.js** → Contiene la lógica de búsqueda de productos en el inventario (filtrado por nombre, categoría u otros criterios).
+- **cart/server.js** → Contiene la lógica del carrito de compras, añade, elimina y edita productos.
 - **controllers/** → Incluye la lógica de negocio de cada módulo (productos, ventas, pedidos, carrito).  
 - **models/** → Define los esquemas de Mongoose para la persistencia en MongoDB.  
 - **routes/** → Declara las rutas de la API que enlazan los controladores con Express.  
