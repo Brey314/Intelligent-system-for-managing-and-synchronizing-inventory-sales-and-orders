@@ -97,7 +97,6 @@ Está desarrollada con **React** y utiliza librerías adicionales para la navega
 
 #### Archivos y carpetas principales:
 - `src/` → Contiene todo el código fuente de la aplicación.  
-  - `components/` → Componentes reutilizables de la interfaz (formularios, menús, etc.).  
   - `pages/` → Vistas principales de la aplicación (Login, Registro, Dashboard, etc.).  
   - `App.js` → Punto de entrada de la aplicación React.  
   - `index.js` → Renderiza la aplicación dentro del DOM.  
