@@ -1,0 +1,352 @@
+[{
+  "_id": {
+    "$oid": "68d2b378e9b3c00e0904f97f"
+  },
+  "title": "Portátil HP Pavilion 15,6\" Pulgadas Eg2502la",
+  "description": "Intel Core i5 - RAM 8GB - Disco SSD 512GB - Azul",
+  "price": 2399000,
+  "image": "https://www.ktronix.com/medias/197498728797-003-750Wx750H?context=bWFzdGVyfGltYWdlc3w0NDc4MHxpbWFnZS93ZWJwfGFEQXlMMmhoTnk4eE5EazROekF5TkRrNU1ESXpPQzh4T1RjME9UZzNNamczT1RkZk1EQXpYemMxTUZkNE56VXdTQXxkZDE4N2I3N2ZlMzk0OWUxMzhlM2UwN2M5NzljMGQ4Yzk4MjZkY2M3NjM3NjczMDFlZDkyNjdiNDA4YTMyZDA4",
+  "category": "Portatil",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d2b7ff72136ab44b382591"
+  },
+  "title": "Mouse LOGITECH Alámbrico Hero G502 Negro",
+  "description": "Diseñado para un desempeño avanzado en los juegos. G502 HERO cuenta con un sensor de juegos HERO 25K con seguimiento de precisión submicrométrica, LIGHTSYNC RGB personalizable, perfiles integrados",
+  "price": 229900,
+  "image": "https://exitocol.vtexassets.com/arquivos/ids/20210822/mouse-gamer-logitech-g502-hero-rgb-programable-1028394920.jpg?v=638350055107900000",
+  "category": "Mouse",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab988"
+  },
+  "title": "Portátil MacBook Air 13,3 Pulgadas MGN63LA/A - Chip M1",
+  "description": "Apple M1 - 8 Núcleos - RAM 8GB - Disco SSD 256GB - Pantalla Retina - macOS Big Sur - Gris Espacial - Batería hasta 18 horas - Teclado Retroiluminado",
+  "price": 2489005,
+  "image": "https://www.ktronix.com/medias/194252425824-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w2NTA2fGltYWdlL3dlYnB8YURNNEwyZzVNaTh4TkRJNU9USTVNVEk0TnpVNE1pOHhPVFF5TlRJME1qVTRNalJmTURBeFh6YzFNRmQ0TnpVd1NBfGRjZTIyY2EwZDI1YmQ1NGM0NmUyN2JlMzc5OTExNWNkMTY2YzJiZTE3MWU1NDQzMDdlNDQ3YjA2NTcwYWQ1YTg",
+  "category": "Portatil",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab989"
+  },
+  "title": "Computador Portátil HP 15 Pulgadas Fc0276la - AMD Ryzen 7",
+  "description": "AMD Ryzen 7 - RAM 16GB - Disco SSD 1TB - Gráficos integrados AMD Radeon - Pantalla 15 - Plateado - Cámara y micrófono avanzados - Diseño sustentable con Registro EPEAT Gold - Certificación ENERGY STAR",
+  "price": 2299035,
+  "image": "https://www.ktronix.com/medias/198990787145-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wxOTc3NnxpbWFnZS93ZWJwfGFEVmpMMmhsTXk4eE5URTFOekk1T0RreU1UVXdNaTh4T1RnNU9UQTNPRGN4TkRWZk1EQXhYemMxTUZkNE56VXdTQXxlNDE0YzMxZDJiYTA1MjFkMzcyMTg2MDY5MTA3ZTExNTcxZTE1ZGMwNWM3MWZmMzUwOTMzYmI2Y2FiNDA4ZjE1",
+  "category": "Portatil",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab98a"
+  },
+  "title": "Computador Portátil ASUS Vivobook Go 156 Pulgadas E1504FA - AMD Ryzen 5",
+  "description": "AMD Ryzen 5 - RAM 16GB - Disco SSD 1TB - Pantalla 15.6 - Color Negro - Gran rendimiento para tareas diarias y productividad",
+  "price": 2099035,
+  "image": " https://www.ktronix.com/medias/4711387480731-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wyMTU4OHxpbWFnZS93ZWJwfGFEbGpMMmhrTlM4eE5UQTBOVFkzT0RjNU1qY3pOQzgwTnpFeE16ZzNORGd3TnpNeFh6QXdNVjgzTlRCWGVEYzFNRWd8MDRlNDlkNTA3MDY1NmYwOGNjYTYxMzEwNGFiNDU0NWRiOTNhNDZiNDA1ZmFiOGUzMzkyYzdkNmM1OWY3MTI4OQ",
+  "category": "Portatil",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab98b"
+  },
+  "title": "Computador Portátil Lenovo IdeaPad Slim 3 15.3 Pulgadas Táctil - Intel Core i5",
+  "description": "Intel Core i5 - RAM 16GB - Disco SSD 512GB - Pantalla táctil de 15.3 - Dolby Audio - Cámara con privacidad TrueBlock - Conectividad Wi-Fi 6 - Prueba militar MIL-STD-810H aprobada - Color Azul",
+  "price": 2299035,
+  "image": " https://www.ktronix.com/medias/198158432276-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wxOTAzNnxpbWFnZS93ZWJwfGFEa3hMMmcwWkM4eE5URTNPVGN6TkRrM05EUTVOQzh4T1RneE5UZzBNekl5TnpaZk1EQXhYemMxTUZkNE56VXdTQXwwOTQ0OTZhMjc3ODMxOWY5YTUyNmRjNjY3NWIxMmJlYjcxNzNjNDA1OTcyZTFjNDkwY2M4ZmRmNTI1NjVlOGMx",
+  "category": "Portatil",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab98c"
+  },
+  "title": "Computador Portátil Gamer ASUS TUF F 16 Pulgadas FX607VJ - Intel Core i5",
+  "description": "Intel Core i5 - RAM 16GB - Disco SSD 512GB - Tarjeta Gráfica GeForce RTX 3050 - Pantalla 16 con tasa de refresco de 144Hz - Sistema de refrigeración optimizado con 4 salidas de aire - Certificación militar MIL-STD-810H - Carga rápida al 50% en 30 minutos - Teclado retroiluminado - Color Gris",
+  "price": 3499035,
+  "image": " https://www.ktronix.com/medias/4711387807033-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wyODc3NHxpbWFnZS93ZWJwfGFHVmlMMmc0TXk4eE5USTFPRFUxT1Rnd056VXhPQzgwTnpFeE16ZzNPREEzTURNelh6QXdNVjgzTlRCWGVEYzFNRWd8OWJhNDlkMWI1ODM4OTQ1MzRiMmQzMzYxNmZlZWJhN2Y2OTJiYWUwMjgzMTM3N2Y0Y2JmM2Y1MDJkYTc0NzNkMA",
+  "category": "Portatil Gamer",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab98d"
+  },
+  "title": "Computador Portátil Gamer HP Victus 15 Pulgadas fa2016la - Intel Core i7",
+  "description": "Intel Core i7 - RAM 16GB - Disco SSD 1TB - Tarjeta Gráfica NVIDIA GeForce RTX 5060 - Pantalla 15.6 - Color Plateado - Alto rendimiento para gaming y tareas exigentes",
+  "price": 5899035,
+  "image": " https://www.ktronix.com/medias/199251376559-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wyNDg2NHxpbWFnZS93ZWJwfGFHUmhMMmczTWk4eE5URTFPVFF5TmpRME9UUXpPQzh4T1RreU5URXpOelkxTlRsZk1EQXhYemMxTUZkNE56VXdTQXwxMjdjMmJlZTcyY2IzZmE4OGU4ZDBkM2E5MWFjODQ1M2M4MDI0M2ZjMmJiZTNkNmI0MTBkYzgwMzFlMWViODNm",
+  "category": "Portatil Gamer",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab98e"
+  },
+  "title": "Computador Portátil Gamer Acer Nitro 16 Pulgadas 56N2 - Intel Core i7",
+  "description": "Intel Core i7 - RAM 16GB - Disco SSD 1TB - Tarjeta Gráfica NVIDIA GeForce RTX 4050 - Pantalla 16 - Color Negro - Alto rendimiento para gaming, diseño y productividad intensiva",
+  "price": 5499035,
+  "image": " https://www.ktronix.com/medias/4711474162410-003-750Wx750H?context=bWFzdGVyfGltYWdlc3wyNjY2NnxpbWFnZS93ZWJwfGFHVXdMMmc0WlM4eE5URTFOelF6TmpReE5qQXpNQzgwTnpFeE5EYzBNVFl5TkRFd1h6QXdNMTgzTlRCWGVEYzFNRWd8NjM2ODcxN2ZlNTVmZmMzZTgzZGQ5MmJhZjdiMzNjZjljOGE5ZDgwMDdkMDVhODIwMzQyZGI0ZDQ2NjZkNmJkYg",
+  "category": "Portatil Gamer",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab98f"
+  },
+  "title": "Computador Portátil Gamer Lenovo Legion Pro 7 16 Pulgadas - Intel Core Ultra 9",
+  "description": "Intel Core Ultra 9 - RAM 32GB - Disco SSD 1TB - Tarjeta Gráfica NVIDIA GeForce RTX 5080 - Pantalla 16 - Color Negro - Máximo rendimiento para gaming extremo, creación de contenido y tareas intensivas",
+  "price": 15999035,
+  "image": " https://www.ktronix.com/medias/198156241924-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzMTMyOHxpbWFnZS93ZWJwfGFEQm1MMmhsT1M4eE5URXhNRE13T1RVeE1URTVPQzh4T1RneE5UWXlOREU1TWpSZk1EQXhYemMxTUZkNE56VXdTQXxhMDE0NjFlNzQzYTA2YmE0NzEwZDMzODg2NzhiMGQ5ZGZjZjYwOTc5NmQ3ZWVjNzljYTY5ZjUyYjIzZGZhNTI0",
+  "category": "Portatil Gamer",
+  "stock": 5
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab990"
+  },
+  "title": "Tablet XIAOMI Pad 7 Pro 11.2 Pulgadas - 256GB WiFi - Negro",
+  "description": "Pantalla de 11.2 pulgadas - Memoria interna 256GB - RAM 8GB - Cámara posterior de 50 Mpx - Cámara frontal de 32 Mpx - Conectividad WiFi - Color Negro",
+  "price": 2999905,
+  "image": " https://www.ktronix.com/medias/6932554426842-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wyOTcyNHxpbWFnZS93ZWJwfGFEWXhMMmczTlM4eE5UQXpNakkyTXprek16azRNaTgyT1RNeU5UVTBOREkyT0RReVh6QXdNVjgzTlRCWGVEYzFNRWd8MWFhNTY0OGJmYWI4ZDBlYjczODBhOGI1OGY4Y2UwN2RhN2JhNzZkZDU2NjkwYTA2ZDBmNTA3MDJhOTAwMmQ3OQ",
+  "category": "Tablet",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab991"
+  },
+  "title": "Tablet Lenovo Idea Tab Pro 12.7 Pulgadas - 256GB WiFi - Gris",
+  "description": "Pantalla de 12.7 pulgadas - Memoria interna 256GB - RAM 8GB - Cámara posterior de 13 Mpx - Cámara frontal de 8 Mpx - Conectividad WiFi - Color Gris",
+  "price": 1999035,
+  "image": " https://www.ktronix.com/medias/198155095313-006-1400Wx1400H?context=bWFzdGVyfGltYWdlc3w4NDQ0MHxpbWFnZS93ZWJwfGFEaGhMMmhtT0M4eE5UQTBOamc1TkRjNE1EUTBOaTh4T1RneE5UVXdPVFV6TVROZk1EQTJYekUwTURCWGVERTBNREJJfGI4YzUxMzQxMTQ5MjRlYTcyYjY0ODNjMTM2YTViNjA4YTc1MDVmOTVjN2E3OTdhZmI2NjhjZDVkMjI0YzYxNTc",
+  "category": "Tablet",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab992"
+  },
+  "title": "iPad 10.9 Pulgadas 10ma Generación - 64GB Wifi - Plata",
+  "description": "Pantalla de 10.9 pulgadas - Memoria interna 64GB - Cámara posterior de 12 Mpx - Cámara frontal de 12 Mpx - Conectividad Wifi - Color Plata",
+  "price": 1499015,
+  "image": " https://www.ktronix.com/medias/194253387459-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w5MDQwfGltYWdlL3dlYnB8YURnMUwyaGhZUzh4TkRNek9ERXdNVFkzTkRBeE5DOHhPVFF5TlRNek9EYzBOVGxmTURBeFh6YzFNRmQ0TnpVd1NBfDFhYTA1NmNjODg4YTE1NWQyNzhlNWVhZGZkNjhiYjM0MmUxMmNjN2ZmNjlhOTQ2MDE3MjFlN2EzYTg4NDQ5NzA",
+  "category": "Tablet",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab993"
+  },
+  "title": "Tablet Samsung A9 Plus 11 Pulgadas - 128GB WiFi - Gris",
+  "description": "Pantalla de 11 pulgadas - Memoria interna 128GB - RAM 8GB - Cámara posterior de 8 Mpx - Cámara frontal de 5 Mpx - Conectividad WiFi - Color Gris",
+  "price": 699935,
+  "image": " https://www.ktronix.com/medias/8806095277974-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w2NTQyfGltYWdlL3dlYnB8YURoakwyZ3pOUzh4TkRNMk1EVXlOekF4TVRnM01DODRPREEyTURrMU1qYzNPVGMwWHpBd01WODNOVEJYZURjMU1FZ3w3NDUyMDUxOTg4YTRkOTQyNjk0YmEwNGM5ODVhNTZlNzgxNjZmOWE3YzM3ZjQ3MjE3ODUzNGVhMTgzZjllMWVi",
+  "category": "Tablet",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab994"
+  },
+  "title": "Tablet Samsung S6 Lite 10.4 Pulgadas - 128GB WiFi - Gris",
+  "description": "Pantalla de 10.4 pulgadas - Memoria interna 128GB - RAM 4GB - Cámara posterior de 8 Mpx - Cámara frontal de 5 Mpx - Conectividad WiFi - Color Gris",
+  "price": 999935,
+  "image": " https://www.ktronix.com/medias/8806095574967-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w5Nzc2fGltYWdlL3dlYnB8YURKbEwyZzBaaTh4TkRReE1EY3pOemczTnpBeU1pODRPREEyTURrMU5UYzBPVFkzWHpBd01WODNOVEJYZURjMU1FZ3xmYTUwM2ZjZjkyYzcyNWQzMzJjNTc3MzJjYzQ4OGEyYmE0NGY0YTM3ODE3YjUyZmMzZWRkNWMyZTc5YTI2M2Qy",
+  "category": "Tablet",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab995"
+  },
+  "title": "Tablet Samsung S10 FE 10.9 Pulgadas - 128GB - Gris",
+  "description": "Pantalla de 10.9 pulgadas - Memoria interna 128GB - RAM 8GB - Cámara posterior de 13 Mpx - Cámara frontal de 12 Mpx - Color Gris",
+  "price": 2199995,
+  "image": " https://www.ktronix.com/medias/8806097213840-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w5Nzc4fGltYWdlL3dlYnB8YURRMUwyZzNOQzh4TlRBek16QTBOakF3Tnpnek9DODRPREEyTURrM01qRXpPRFF3WHpBd01WODNOVEJYZURjMU1FZ3xiODljOTAyMWMzOTMyZWI4MjVjZjQ5NGJjZDhiMTVmMjFhNTFmNTU0MWZjNGZlMWI4N2M4YWQ5MGY0ZWI0OGFl",
+  "category": "Tablet",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab996"
+  },
+  "title": "Tablet HONOR Pad 10 12.1Pulgadas - 256GB WiFi - Gris",
+  "description": "Pantalla 12.1 pulgadas 2.5K (2560x1600) - Memoria interna 256GB - RAM 8GB - Procesador Qualcomm Snapdragon 7 Gen 3 (8 núcleos) - Cámara posterior y frontal de 8 Mpx - Android 15 - Batería con duración aproximada de 15 horas - Color Gris",
+  "price": 1699935,
+  "image": "https://www.alkosto.com/medias/6936520839230-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wxNTc3NnxpbWFnZS93ZWJwfGFESmtMMmd5TlM4eE5EWTRNekl3TkRNMU5EQTNPQzgyT1RNMk5USXdPRE01TWpNd1h6QXdNVjgzTlRCWGVEYzFNRWd8NDQ4MWUzOTg2ZTEyNWY3YzQwYzM1YTk1NGVlZTI1NGIzNTJiNmE3ODEwZGM1ZDk2YTgzMGQ2Mjk5ZmRhZTZhMw",
+  "category": "Tablet",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab997"
+  },
+  "title": "TV TCL 50 Pulgadas 127 cm 50S5K FHD QLED Smart TV Google",
+  "description": "Pantalla QLED de 50 pulgadas con resolución Full HD (FHD). Incluye 2 puertos HDMI. Medidas sin base: 111.1 x 64.4 x 7 cm. Smart TV con sistema Google.",
+  "price": 1099035,
+  "image": "https://www.ktronix.com/medias/6937574810107-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w0MjYzMHxpbWFnZS93ZWJwfGFHVTVMMmhoTnk4eE5USTNPVEl5T0RReU1ERXlOaTgyT1RNM05UYzBPREV3TVRBM1h6QXdNVjgzTlRCWGVEYzFNRWd8NDNkZjlkOTc1YzBkZGMwMGUzZWUxMzFiOGI1NWM0ZTUyOGVmYTNjOTVlMjA3MTA2M2M5NDhjZDAwZWRjM2FkZQ",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab998"
+  },
+  "title": "TV TCL 55 Pulgadas 139 cm 55V6C 4K-UHD Smart TV Google",
+  "description": "Pantalla LED de 55 pulgadas con resolución 4K-UHD. Incluye 3 puertos HDMI (1 HDMI 2.1 + 2 HDMI estándar). Smart TV con sistema Google. Medidas sin base: 122.6 x 71.1 x 7.2 cm.",
+  "price": 1499035,
+  "image": "https://www.ktronix.com/medias/6921732899387-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzMjA4NnxpbWFnZS93ZWJwfGFHUXlMMmc0TVM4eE5URXpNemc1TURRM09ERXhNQzgyT1RJeE56TXlPRGs1TXpnM1h6QXdNVjgzTlRCWGVEYzFNRWd8NTU3N2M4YTdjMWM5Y2NkNDM5YjkwMTE3NDEyZGVlNjdmYmZkODliZDc3NThmNjgwYTg0Yjc3YmJlY2RiMDFiZQ",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab999"
+  },
+  "title": "TV TCL 65 Pulgadas 165 cm 65P7K 4K-UHD QLED Smart TV Google",
+  "description": "Pantalla QLED de 65 pulgadas con resolución 4K-UHD. Smart TV con sistema Google. Cuenta con 3 puertos HDMI (1 HDMI 2.1 + 2 HDMI estándar). Medidas sin base: 144.4 x 83.1 x 6.95 cm.",
+  "price": 2399035,
+  "image": " https://www.ktronix.com/medias/6921732899387-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzMjA4NnxpbWFnZS93ZWJwfGFHUXlMMmc0TVM4eE5URXpNemc1TURRM09ERXhNQzgyT1RJeE56TXlPRGs1TXpnM1h6QXdNVjgzTlRCWGVEYzFNRWd8NTU3N2M4YTdjMWM5Y2NkNDM5YjkwMTE3NDEyZGVlNjdmYmZkODliZDc3NThmNjgwYTg0Yjc3YmJlY2RiMDFiZQ",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab99a"
+  },
+  "title": "TV TCL 98 Pulgadas 248.9 cm 98P8K 4K-UHD QLED Smart TV Google",
+  "description": "Smart TV TCL de 98 pulgadas con pantalla QLED y resolución 4K-UHD. Sistema Google TV integrado. Cuenta con 4 puertos HDMI (1 HDMI 2.1 + 3 HDMI estándar). Medidas sin base: 217.7 x 124.7 x 6.7 cm.",
+  "price": 6989035,
+  "image": " https://www.ktronix.com/medias/6921732899479-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w0OTMwNHxpbWFnZS93ZWJwfGFEQm1MMmcyT1M4eE5URXpNemt5TmpBMk5ERTFPQzgyT1RJeE56TXlPRGs1TkRjNVh6QXdNVjgzTlRCWGVEYzFNRWd8ZGQyNTRjNGFjYWJjMDc5NmVkY2I1MDkzMDI3NGJlYWQyMGM2NjkyM2ZmZWQ1MGQ2MTgxZjk4ZjJjOGNhNjdmMg",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab99b"
+  },
+  "title": "TV TCL 50 Pulgadas 127 cm 50V6C 4K-UHD LED Smart TV Google",
+  "description": "Smart TV TCL de 50 pulgadas con pantalla LED y resolución 4K-UHD. Sistema operativo Google TV. Cuenta con 3 puertos HDMI (1 HDMI 2.1 + 2 HDMI estándar). Medidas sin base: 111.1 x 64.4 x 7 cm.",
+  "price": 1399035,
+  "image": "https://www.ktronix.com/medias/imagen-tcl-50v6c.jpg",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab99c"
+  },
+  "title": "TV TCL 32 Pulgadas 81 cm 32S5K FHD QLED Smart TV Google",
+  "description": "Smart TV TCL de 32 pulgadas con pantalla QLED y resolución FHD. Sistema operativo Google TV. Cuenta con 2 puertos HDMI. Medidas sin base: 71.5 x 42.2 x 7.5 cm.",
+  "price": 679905,
+  "image": " https://www.ktronix.com/medias/6921732899332-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w0MjgzMnxpbWFnZS93ZWJwfGFERXhMMmhtWmk4eE5URXpNemcyTnpjek56RXhPQzgyT1RJeE56TXlPRGs1TXpNeVh6QXdNVjgzTlRCWGVEYzFNRWd8YWQxNzRiMTg3MjQwOTM0NmY4NjRmYzdlNjdkNzFlYzlmMjJlZjAxNjQzNTNiNDAwZGFkYTQwMGUyYTQ1ZTcwNg",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab99d"
+  },
+  "title": "TV TCL 50 Pulgadas 127 cm 50P7K 4K-UHD QLED Smart TV Google",
+  "description": "Smart TV TCL de 50 pulgadas con pantalla QLED y resolución 4K-UHD. Integra sistema operativo Google TV. Cuenta con 3 puertos HDMI (1 HDMI 2.1 + 2 HDMI estándar). Medidas sin base: 111.1 x 64.6 x 6.87 cm.",
+  "price": 1599035,
+  "image": " https://www.ktronix.com/medias/6921732899370-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzMjI4NHxpbWFnZS93ZWJwfGFEVXlMMmhoTXk4eE5URXpNemc0TkRVM09UZzNNQzgyT1RJeE56TXlPRGs1TXpjd1h6QXdNVjgzTlRCWGVEYzFNRWd8ZjhjNmQ5ZjZiMTdhOTIwN2RiOWQzNWI5YmExYzZmZWE0M2Y4MDU2NDBmNjRlMDZlN2ViYzQ4N2RmMzFlYWQzNQ",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab99e"
+  },
+  "title": "TV TCL 55 Pulgadas 139 cm 55C6K 4K-UHD QD-MINI LED Smart TV Google",
+  "description": "Smart TV TCL de 55 pulgadas con pantalla Mini LED y resolución 4K-UHD. Sistema operativo Google TV. Cuenta con 4 puertos HDMI (1 HDMI 2.1 y 3 HDMI estándar). Medidas sin base: 122.9 x 71.3 x 5.59 cm.",
+  "price": 2599035,
+  "image": " https://www.ktronix.com/medias/6921732899448-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w0NTczNnxpbWFnZS93ZWJwfGFEazVMMmcwWmk4eE5URTVOVEl5TkRNME1qVTFPQzgyT1RJeE56TXlPRGs1TkRRNFh6QXdNVjgzTlRCWGVEYzFNRWd8ZTA1ZThjMGMyZmYwNjNkNjUyY2E1ODcxMTVlZThjNzBjMmI4YTcxMDdlNjM1NmVmYmNjMjIxYTM1NGRlMGNhMQ",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab99f"
+  },
+  "title": "TV TCL 32 Pulgadas 81 cm 32S5400AF FHD LED Smart TV Android",
+  "description": "Smart TV TCL de 32 pulgadas con pantalla LED y resolución FHD. Sistema operativo Android. Cuenta con 2 puertos HDMI. Medidas sin base: 71.5 x 42.1 x 8 cm.",
+  "price": 659035,
+  "image": " https://www.ktronix.com/medias/6973230611343-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wyMDc2NnxpbWFnZS93ZWJwfGFEWTFMMmhrWXk4eE5URXpNemswT0RBNE5ESTFOQzgyT1Rjek1qTXdOakV4TXpRelh6QXdNVjgzTlRCWGVEYzFNRWd8NjcwNWUwNjQ4ZDYwZWU0ZDFmODhlMjVkMTVmYzExZjg4ZTI2M2M2MjE4NWRhNjU5ZmI5NWY1OTgxYjIzMTc0Mw",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab9a0"
+  },
+  "title": "TV TCL 75 Pulgadas 190.5 cm 75V6C 4K-UHD Smart TV Google",
+  "description": "Smart TV TCL de 75 pulgadas con pantalla LED y resolución 4K-UHD. Sistema operativo Google TV. Cuenta con 3 puertos HDMI (1 HDMI 2.1 + 2 HDMI estándar). Medidas sin base: 166.7 x 95.9 x 7.4 cm.",
+  "price": 2999035,
+  "image": " https://www.ktronix.com/medias/6921732899400-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzMjUyMnxpbWFnZS93ZWJwfGFHSTNMMmhrTmk4eE5URXpNemt3TWpJM05EVTVNQzgyT1RJeE56TXlPRGs1TkRBd1h6QXdNVjgzTlRCWGVEYzFNRWd8MDE2ODkwZTY4ZjJhNTFlOTNiNjZiYzc1OGQ3NmU0Y2U5Nzc1MTU0NjdmZDgyMTI4M2U4MjUyOGE2ZjA3YWQ1Ng",
+  "category": "Televisor",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab9a1"
+  },
+  "title": "Mouse LOGITECH Inalámbrico Bluetooth Óptico MX Master 3s Negro",
+  "description": "Mouse inalámbrico Logitech MX Master 3s con conexión Bluetooth, sensor óptico de alta precisión, diseño ergonómico para diestros, y función Plug and Play.",
+  "price": 629905,
+  "image": " https://www.ktronix.com/medias/097855175359-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wxNDQ4NnxpbWFnZS93ZWJwfGFHSm1MMmczWmk4eE5EUTNOREV6TlRZek16azFNQzh3T1RjNE5UVXhOelV6TlRsZk1EQXhYemMxTUZkNE56VXdTQXwyNjVjYjk1OGIzNDNkMzI0YTY5NjdkNGNmOThhZjgwYTRhYTE0OGVmNjBmZWRmNzhiYjAyN2M5ZGY5MWJlMDNj",
+  "category": "Accesorios",
+  "stock": 25
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab9a2"
+  },
+  "title": "Mouse KLIP XTREME Inalámbrico Óptico Ergonómico Vertical Negro",
+  "description": "Mouse inalámbrico KLIP XTREME con diseño ergonómico vertical, sensor óptico, conexión inalámbrica y apto para mano diestra.",
+  "price": 89905,
+  "image": " https://www.ktronix.com/medias/798302078130-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w3NjM2fGltYWdlL3dlYnB8YURFNEwyZ3paUzh4TkRJNE9UVXpOVGt5TmpNd01pODNPVGd6TURJd056Z3hNekJmTURBeFh6YzFNRmQ0TnpVd1NBfGE0YTg1NDU4ODRlMzQ4ZWI0Y2ExMjRiMWE1NDM0MjBmODZlYTU3OWMzNjhkNGMzZjk3OWNjMjNhODk1MGYzZjI",
+  "category": "Accesorios",
+  "stock": 35
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab9a3"
+  },
+  "title": "Mouse HP Inalámbrico Óptico 150 Negro",
+  "description": "Mouse inalámbrico HP 150 con sensor óptico, diseño ambidiestro y función Plug and Play para fácil uso inmediato.",
+  "price": 39905,
+  "image": " https://www.ktronix.com/medias/195161814662-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w0MjkwfGltYWdlL3dlYnB8YUdSa0wyZzFPQzh4TkRNMU1USXlORGd6TWpBek1DOHhPVFV4TmpFNE1UUTJOakpmTURBeFh6YzFNRmQ0TnpVd1NBfDIzYjVjMmU2MGE3MmIxZmJjZWExZmY0NTU3NjI3NzE2YzY0ZTZhMjQ5ODY5MjUwMDEwNWIxOTYyOGIwMWFmMzg",
+  "category": "Accesorios",
+  "stock": 55
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab9a4"
+  },
+  "title": "Mouse LOGITECH Inalámbrico Bluetooth M720 Negro",
+  "description": "Mouse inalámbrico Logitech M720 con conexión Bluetooth, diseño ergonómico para diestros y función Plug and Play para uso inmediato.",
+  "price": 149905,
+  "image": " https://www.ktronix.com/medias/097855121899-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wxODQ2OHxpbWFnZS9qcGVnfGFXMWhaMlZ6TDJobVppOW9OR0l2T0RneE9Ea3lNekEwTkRnNU5DNXFjR2N8ZmFhYTk5OTFjYzgwNjUyMjA0ZTgzNzNjZmRiNjJkMDlhZGY1YjgzNmNmOGRiMWQwNjE0Y2UxMzM3M2ZhYzkyNw",
+  "category": "Accesorios",
+  "stock": 25
+},
+{
+  "_id": {
+    "$oid": "68d335199b5cad28d83ab9a5"
+  },
+  "title": "Mouse ESENSES Inalámbrico Óptico Ergonómico Vertical WVM-400 Negro",
+  "description": "Mouse inalámbrico Esenses WVM-400 con diseño ergonómico vertical para mano diestra, sensor óptico y función Plug and Play.",
+  "price": 79905,
+  "image": " https://www.ktronix.com/medias/7707278179584-001-750Wx750H?context=bWFzdGVyfGltYWdlc3w4MjgyfGltYWdlL3dlYnB8YURrd0wyaGhaaTh4TkRVd056ZzFOelV4TURRek1DODNOekEzTWpjNE1UYzVOVGcwWHpBd01WODNOVEJYZURjMU1FZ3w5YWU0ZjAzMDUyZmRjMTI4NzZmM2E1ODA4YWRlOGVhMmU3YWZiNDEwNTQxZTkwZjkyODhlNzE0ZmEwZDk1NTBj",
+  "category": "Accesorios",
+  "stock": 35
+}]
