@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import "./css/shoppingcart.css";
 
+
 function ShoppingCart() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
