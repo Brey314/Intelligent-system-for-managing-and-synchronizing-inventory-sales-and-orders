@@ -60,9 +60,9 @@ const Login = () => {
           />
         </div>
 
-        <button type="submit" className="submit-btn">
+        <a type="submit" className="submit-btn" href="/Admin">
           ENVIAR
-        </button>
+        </a>
       </form>
 
       <p className="register-link">

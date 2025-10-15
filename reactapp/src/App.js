@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Search from "./pages/Search";
 import ShoppingCart from "./pages/shoppingCart";
+import Admin from "./pages/admin";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/search" element={<Search />} />
       <Route path="/shoppingCart" element={<ShoppingCart />} />
+      <Route path="/admin" element={<Admin />} />
 
 
     </Routes>

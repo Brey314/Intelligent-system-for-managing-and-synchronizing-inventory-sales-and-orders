@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const productosRoutes = require('./routes/productos');
 
+
 const app = express();
 
 // Middlewares
@@ -22,3 +23,4 @@ mongoose.connect('mongodb://localhost:27017/tienda-electronicos', {
   app.listen(5000, () => console.log(' Servidor corriendo en http://localhost:5000'));
 })
 .catch(err => console.error(' Error en MongoDB:', err));
+
