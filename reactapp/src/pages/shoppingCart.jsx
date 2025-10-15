@@ -147,7 +147,6 @@ const cambiarCantidad = async (_id, cuantity, op) => {
               <ul>
                   <li><a href="/#inicio">Inicio</a></li>
                   <li><a href="/search">Productos</a></li>
-                  <li><a href="/#contacto">Contacto</a></li>
                   <li>
                   <a id="login-btn" href="/login">
                       <FaUser /> Iniciar Sesión
