@@ -1,10 +1,11 @@
- #Autors
+ # Intelligent System for Managing and Synchronizing Inventory, Sales, and Orders
+
+##Autors
 Santiago Benavides Rey 
 Juan David Forero Patarroyo 
 Lizeth Maryory Diaz Castro 
 
- 
- # Intelligent System for Managing and Synchronizing Inventory, Sales, and Orders
+---
 
 ## Descripción
 Este proyecto implementa un sistema inteligente para la **gestión y sincronización de inventario, ventas y pedidos**.  
