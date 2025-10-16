@@ -1,6 +1,6 @@
  # Intelligent System for Managing and Synchronizing Inventory, Sales, and Orders
 
-##Autors
+## Autors
 Santiago Benavides Rey 
 Juan David Forero Patarroyo 
 Lizeth Maryory Diaz Castro 
