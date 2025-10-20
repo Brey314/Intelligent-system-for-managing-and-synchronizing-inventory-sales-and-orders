@@ -4,7 +4,7 @@ const productoSchema = new mongoose.Schema({
   title: String,
   description: String,
   price: Number,
-  imagen: String,
+  image: String,
   category: String,
   stock: Number,
   creation_date: {
