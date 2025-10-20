@@ -1,6 +1,6 @@
  # Intelligent System for Managing and Synchronizing Inventory, Sales, and Orders
 
-## Autors
+## Autores
 Santiago Benavides Rey.
 Juan David Forero Patarroyo.
 Lizeth Maryory Diaz Castro.
@@ -30,6 +30,7 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 │               └── img/...
 │       ├── pages/...
 │           ├── css/...
+│           ├── Admin.jsx
 │           ├── Home.jsx
 │           ├── Login.jsx
 │           ├── Register.jsx
