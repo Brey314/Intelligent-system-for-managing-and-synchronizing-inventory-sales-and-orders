@@ -1,7 +1,22 @@
 import "./css/form.css"; // copia aquí tu CSS
 import { FaUser } from "react-icons/fa";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+export default function Login() {
+  const [usuario, setUsuario] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // evita que se recargue la página
+    if (usuario === "admin" && password === "admin") {
+      navigate("/admin");
+    } else {
+      alert("Usuario o contraseña incorrectos");
+    }
+  };
+
   return (
   <>
   {/* Header */}
@@ -36,7 +51,7 @@ const Login = () => {
     <div className="login-form">
       <h1 className="title">Inicio sesión</h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="usuario">Usuario:</label>
           <input
@@ -44,6 +59,8 @@ const Login = () => {
             id="usuario"
             name="usuario"
             placeholder="Tu Usuario"
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
             required
           />
         </div>
@@ -55,13 +72,15 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="Tu Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
-        <a type="submit" className="submit-btn" href="/Admin">
+        <button type="submit" className="submit-btn">
           ENVIAR
-        </a>
+        </button>
       </form>
 
       <p className="register-link">
@@ -74,6 +93,4 @@ const Login = () => {
   </div>
 </>
 );
-};
-
-export default Login;
+}
