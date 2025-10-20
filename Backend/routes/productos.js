@@ -3,10 +3,6 @@ const router = express.Router();
 const Producto = require('../models/Producto');
 
 // Obtener todos los productos
-
-
-
-
 // GET - obtener todos los productos o buscar por título
 router.get('/', async (req, res) => {
   try {
@@ -26,7 +22,7 @@ router.get('/', async (req, res) => {
 // PUT
 router.put('/:id', async (req, res) => {
   try {
-    console.log('📩 Datos recibidos en PUT:', req.body);
+    console.log(' Datos recibidos en PUT:', req.body);
     const { id } = req.params;
     const updatedData = req.body;
 
@@ -44,7 +40,7 @@ router.put('/:id', async (req, res) => {
 // POST
 router.post('/', async (req, res) => {
   try {
-    console.log('📩 Datos recibidos en POST:', req.body);
+    console.log(' Datos recibidos en POST:', req.body);
     const { title, description ,price,image, category, stock } = req.body;
     if (!title || !description||!price||!image || !category || !stock ) {
       return res.status(400).json({ error: 'Todos los campos son obligatorios' });

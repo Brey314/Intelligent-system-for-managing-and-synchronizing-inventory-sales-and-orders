@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FaUser } from "react-icons/fa";
 import "./css/search.css";
 
 const apiURL = "http://localhost:5000/api/productos";
