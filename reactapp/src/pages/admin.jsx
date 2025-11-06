@@ -272,7 +272,7 @@ function Search() {
                 placeholder="URL imagen"
               />
               <button className="btnP" onClick={saveNewProduct}>
-                ➕ Crear Producto
+                 Crear Producto
               </button>
             </div>
           </div>

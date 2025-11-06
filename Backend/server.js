@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const productosRoutes = require('./routes/productos');
+const usuariosRoutes = require('./routes/Users')
+const carritoRoutes= require('./routes/carrito');
 
 
 const app = express();
@@ -12,6 +14,8 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/productos', productosRoutes);
+app.use('/api/usuarios',usuariosRoutes)
+app.use('/api/carrito',usuariosRoutes)
 
 // Conexión MongoDB
 mongoose.connect('mongodb://localhost:27017/tienda-electronicos', {
@@ -23,4 +27,3 @@ mongoose.connect('mongodb://localhost:27017/tienda-electronicos', {
   app.listen(5000, () => console.log(' Servidor corriendo en http://localhost:5000'));
 })
 .catch(err => console.error(' Error en MongoDB:', err));
-
