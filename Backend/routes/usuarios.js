@@ -1,0 +1,56 @@
+const express = require('express');
+const router = express.Router();
+const jwt = require('jsonwebtoken');
+const Usuario = require('../models/usuarios');
+const bcrypt = require('bcryptjs');
+
+const JWT_SECRET = "clave_super_segura_que_deberias_guardar_en_.env";
+
+router.get('/', async (req, res) => {
+  try {
+    const { user,pass } = req.query;
+    if (!user || !pass) return res.status(400).json({ error: 'Faltan credenciales' });
+    const usuario = await Usuario.findOne({ user });
+    if (!usuario) return res.status(401).json({ error: 'Usuario no encontrado' });
+    const coincide = await usuario.compararPassword(pass);
+    if (!coincide) return res.status(401).json({ error: 'Contraseña incorrecta' });
+
+    const token = jwt.sign(
+      { id: usuario._id, user: usuario.user, rol: usuario.rol },
+      JWT_SECRET,
+      { expiresIn: '2h' }
+    );
+    res.json({
+      message: 'Login exitoso',
+      token,
+      usuario: { id: usuario._id, user: usuario.user, rol: usuario.rol }
+    });
+    res.json(usuarios);
+  } catch (err) {
+    console.error('Error en login:', err);
+    res.status(500).json({ error: 'Error en autenticación' });
+  }
+});
+
+router.post('/', async (req, res) => {
+  try {
+
+    const { name, email ,user,pass, rol } = req.body;
+
+    if (!name || !email||!user||!pass || !rol) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    }
+    const existente = await Usuario.findOne({ user });
+    if (existente) {
+      return res.status(400).json({ error: 'El usuario ya existe' });
+    }
+    const nuevoUsuario = new Usuario({ name, email ,user,pass, rol });
+    await nuevoUsuario.save();
+    res.status(201).json({ message: 'Usuario creado correctamente' });
+  } catch (err) {
+    console.error('Error al crear usuario:', err);
+    res.status(500).json({ error: 'Error al crear usuario' });
+  }
+});
+
+module.exports = router;

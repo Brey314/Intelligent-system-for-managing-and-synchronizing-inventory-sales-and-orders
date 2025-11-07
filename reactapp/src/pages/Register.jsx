@@ -35,12 +35,12 @@ function Register() {
 
   const saveNewUser = async () => {
     try {
-      const resp = await fetch(apiURL, {
+      const resp = await fetch(`${apiURL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),
       });
-      if (!resp.ok) throw new Error("Error al crear producto");
+      if (!resp.ok) throw new Error("Error al registrarse");
 
       const creado = await resp.json();
       setUsers((prev) => [...prev, creado]);

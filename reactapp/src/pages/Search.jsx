@@ -47,7 +47,7 @@ function Search() {
                 creation_date: prod.creation_date,
             };
 
-            const resp = await fetch("http://localhost:1000/api/cart");
+            const resp = await fetch("http://localhost:5000/api/carrito");
             const data = await resp.json();
             const exist = data.find((item) => item._id === producto._id);
 
@@ -56,14 +56,14 @@ function Search() {
                 // Si existe, aumentar la cantidad
                 const nuevaCantidad = exist.cuantity + 1;
 
-                await fetch(`http://localhost:1000/api/cart/${producto._id}`, {
+                await fetch(`http://localhost:5000/api/carrito/${producto._id}`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ cuantity: nuevaCantidad }),
                 });
             } else {
                 // Si no existe, agregarlo al carrito
-                await fetch("http://localhost:1000/api/cart", {
+                await fetch("http://localhost:5000/api/carrito/", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(producto),

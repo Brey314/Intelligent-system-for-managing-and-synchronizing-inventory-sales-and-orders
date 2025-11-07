@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import "./css/shoppingcart.css";
 
-
+const apiURL="http://localhost:5000/api/carrito";
 function ShoppingCart() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ function ShoppingCart() {
   useEffect(() => {
     const cargarCarrito = async () => {
       try {
-        const answ = await fetch("http://localhost:1000/api/cart");
+        const answ = await fetch(apiURL);
         const data = await answ.json();
         setCart(data);
       } catch (err) {
@@ -27,7 +27,7 @@ function ShoppingCart() {
   // Eliminar producto
   const eliminarDelCarrito = async (_id) => {
     try {
-      await fetch(`http://localhost:1000/api/cart/${_id}`, { method: "DELETE" });
+      await fetch(`${apiURL}/${_id}`, { method: "DELETE" });
       setCart(cart.filter((prod) => prod._id !== _id));
           setCart((prevCart) => {
       const nuevoCarrito = prevCart.map((prod) =>
@@ -66,7 +66,7 @@ const cambiarCantidad = async (_id, cuantity, op) => {
       }
     }
 
-    await fetch(`http://localhost:1000/api/cart/${_id}`, {
+    await fetch(`${apiURL}/${_id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ cuantity: newcuantity }),
@@ -99,7 +99,7 @@ const cambiarCantidad = async (_id, cuantity, op) => {
   const [subtotal, setSubtotal] = useState(0);
   const obtenerPrecio = async () => {
     try {
-      const answ = await fetch("http://localhost:1000/api/cart/");
+      const answ = await fetch(apiURL);
       const data = await answ.json();
       let suma = 0;
       data.forEach(produ => {
@@ -118,7 +118,7 @@ const cambiarCantidad = async (_id, cuantity, op) => {
   const [cuantity, setCantidad]=useState(0);
   const obtenerCantidad = async () => {
     try {
-      const answ = await fetch("http://localhost:1000/api/cart/");
+      const answ = await fetch(apiURL);
       const data = await answ.json();
       let suma = 0;
       data.forEach(produ => {
@@ -177,7 +177,7 @@ const cambiarCantidad = async (_id, cuantity, op) => {
               {/* Información */}
               <div className="cart-item-info">
                 <h3>{prod.title}</h3>
-                <p className="price">COP {prod.price.toLocaleString()} $</p>
+                <p className="price">COP {prod.price} $</p>
                 <p className="available">Disponible</p>
 
                 <div className="cart-item-actions">
@@ -209,7 +209,7 @@ const cambiarCantidad = async (_id, cuantity, op) => {
               Subtotal ({cuantity} productos):
             </h2>
             <h1>
-              COP {subtotal.toLocaleString()} $
+              COP {subtotal} $
             </h1>
           </div>
           <button className="pay">

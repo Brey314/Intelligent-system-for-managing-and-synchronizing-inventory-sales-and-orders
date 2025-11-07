@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const productosRoutes = require('./routes/productos');
-const usuariosRoutes = require('./routes/Users')
+const usuariosRoutes = require('./routes/usuarios');
 const carritoRoutes= require('./routes/carrito');
 
 
@@ -15,7 +15,7 @@ app.use(express.json());
 // Rutas
 app.use('/api/productos', productosRoutes);
 app.use('/api/usuarios',usuariosRoutes)
-app.use('/api/carrito',usuariosRoutes)
+app.use('/api/carrito',carritoRoutes)
 
 // Conexión MongoDB
 mongoose.connect('mongodb://localhost:27017/tienda-electronicos', {
