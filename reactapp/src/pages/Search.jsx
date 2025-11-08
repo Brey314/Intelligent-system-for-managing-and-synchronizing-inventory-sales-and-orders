@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import "./css/search.css"; // Importas tu CSS
+import { useAuth } from "../context/AuthContext";
+import { Link,useNavigate } from "react-router-dom";
 
 const apiURL = "http://localhost:5000/api/productos";
 
 function Search() {
+    const navigate = useNavigate();
+    const { usuario, logout} = useAuth();
     const [productos, setProductos] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(false);
@@ -34,9 +38,14 @@ function Search() {
     };
 
     const addToCart = async (prod) => {
+        if (!usuario) {
+            navigate("/Login");
+        } else {
         try {
+            console.log(usuario.id);
             const producto = {
                 _id: prod._id,
+                idUser:usuario.id,
                 title: prod.title,
                 description: prod.description,
                 price: prod.price,
@@ -74,6 +83,7 @@ function Search() {
         } catch (err) {
             console.error("Error al enviar producto:", err);
         }
+        }
     };
 
     return (
@@ -82,23 +92,30 @@ function Search() {
         <header className="header">
             <div className="container">
                 <div className="logo">
-                <a href="index.html">
+                    <Link to="/">
                     <img src="/assets/img/logo.svg.png" alt="Ktronix" />
-                </a>
+                    </Link>
                 </div>
                 <nav className="navbar">
                 <ul>
                     <li><a href="/#inicio">Inicio</a></li>
-                    <li><a href="/search">Productos</a></li>
+                    <li><Link to="/search">Productos</Link></li>
                     <li>
-                    <a id="login-btn" href="/login">
-                        <FaUser /> Iniciar Sesión
-                    </a>
+                        {usuario ? (
+                            <div>
+                                <p>Bienvenido, <strong>{usuario.user}</strong></p>
+                                <button onClick={logout}>Cerrar sesión</button>
+                            </div>
+                        ) : (
+                            <Link id="login-btn" to="/login">
+                                <FaUser /> Iniciar Sesión
+                            </Link>
+                        )}
                     </li>
                     <li>
-                    <a href="/shoppingcart">
-                        <img src="/assets/img/carrito.png" alt="Carrito de compras" />
-                    </a>
+                        <Link to="/shoppingcart">
+                            <img src="/assets/img/carrito.png" alt="Carrito de compras" />
+                        </Link>
                     </li>
                 </ul>
                 </nav>

@@ -1,31 +1,42 @@
 import "./css/home.css";
 import { FaUser } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext";
+import { Link,useNavigate } from "react-router-dom";
 
-function home() {
+function Home() {
+  const navigate = useNavigate();
+  const { usuario, logout} = useAuth();
   return (
   <>
     {/* Header */}
     <header className="header">
       <div className="container">
         <div className="logo">
-          <a href="index.html">
+          <Link to="/">
             <img src="/assets/img/logo.svg.png" alt="Ktronix" />
-          </a>
+          </Link>
         </div>
         <nav className="navbar">
           <ul>
             <li><a href="/#inicio">Inicio</a></li>
-            <li><a href="/search">Productos</a></li>
+            <li><Link to="/search">Productos</Link></li>
             <li><a href="/#contacto">Contacto</a></li>
             <li>
-              <a id="login-btn" href="/login">
-                <FaUser /> Iniciar Sesión
-              </a>
-            </li>
+                {usuario ? (
+                    <div>
+                        <p>Bienvenido, <strong>{usuario.user}</strong></p>
+                        <button onClick={logout}>Cerrar sesión</button>
+                    </div>
+                ) : (
+                    <Link id="login-btn" to="/login">
+                        <FaUser /> Iniciar Sesión
+                    </Link>
+                )}
+              </li>
             <li>
-              <a href="/shoppingcart">
+              <Link to="/shoppingCart">
                 <img src="/assets/img/carrito.png" alt="Carrito de compras" />
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -41,8 +52,9 @@ function home() {
           <button
             id="search"
             className="btn"
-            onClick={() => (window.location.href = "search.html")}
+            onClick={() => navigate("/search")}
           >
+            
           <h2>BUSCAR</h2>
           </button>
         </div>
@@ -78,4 +90,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;

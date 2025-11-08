@@ -5,8 +5,9 @@ const Carrito = require('../models/Carrito');
 // Obtener productos del carrito
 router.get("/", async(req, res) => {
   try {
+    const { idUser } = req.query;
     let carrito;
-    carrito = await Carrito.find();
+    carrito = await Carrito.find({ idUser: new RegExp(idUser, 'i') });
     res.json(carrito);
   } catch (err) {
     res.status(500).json({ error: 'Error al obtener usuarios' });
@@ -16,11 +17,8 @@ router.get("/", async(req, res) => {
 // Agregar producto al carrito
 router.post("/", async(req, res) => {
   try {
-    const { _id, title, description,price, image, category,stock,cuantity,creation_date } = req.body;
-    if (!_id || !title||!description||!price || !image||!category||!stock||!cuantity||!creation_date) {
-      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
-    }
-    const nuevoProducto = new Carrito({ _id, title, description,price, image, category,stock,cuantity,creation_date });
+    const { _id, idUser,title, description,price, image, category,stock,cuantity,creation_date } = req.body;
+    const nuevoProducto = new Carrito({ _id, idUser,title, description,price, image, category,stock,cuantity,creation_date });
     const CarritoGuardado = await nuevoProducto.save();
     res.status(201).json({ message: "Producto agregado", CarritoGuardado });
   } catch (err) {
@@ -33,7 +31,7 @@ router.post("/", async(req, res) => {
 router.delete("/:id", async(req, res) => {
   try{
     const { id } = req.params;
-    carrito = await Carrito.filter(p => p._id != id);
+    carrito = await Carrito.findByIdAndDelete(id);
     res.status(201).json({ message: `Producto con id ${id} eliminado` });
   }catch (err) {
     console.error('Error al actualizar carrito:', err);
@@ -55,7 +53,7 @@ router.put("/:id", async(req, res) => {
     }
 
     // Actualizar cantidad
-    producto.cuantity = cuantity;
+    producto.cuantity = updatedData;
 
     res.json({ message: "Cantidad actualizada", producto });
   }catch (err) {

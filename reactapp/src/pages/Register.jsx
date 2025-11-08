@@ -69,11 +69,6 @@ function Register() {
                 <FaUser /> Iniciar Sesión
               </a>
             </li>
-            <li>
-              <a href="/shoppingcart">
-                <img src="/assets/img/carrito.png" alt="Carrito de compras" />
-              </a>
-            </li>
           </ul>
         </nav>
       </div>
@@ -141,7 +136,7 @@ function Register() {
                           required />
                     </div>
 
-                    <button type="submit" className="submit-btn" onClick={saveNewUser}>ENVIAR</button>
+                    <Link type="submit" className="submit-btn" onClick={saveNewUser} to="/Login">ENVIAR</Link>
                 </form>
 
                 <p className="register-link">

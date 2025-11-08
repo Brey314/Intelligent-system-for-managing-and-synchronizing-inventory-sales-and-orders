@@ -1,12 +1,14 @@
-import "./css/form.css"; // copia aquí tu CSS
+import "./css/form.css";
 import { FaUser } from "react-icons/fa";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate ,Link} from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,14 +18,13 @@ export default function Login() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user: usuario, pass: password }),
+        credentials: "include",
       });
 
       const data = await resp.json();
       if (!resp.ok) throw new Error(data.error);
 
-      // Guarda token y datos en localStorage
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("usuario", JSON.stringify(data.usuario));
+      login(data.usuario, data.token);
 
       alert("Inicio de sesión exitoso");
 
@@ -31,7 +32,7 @@ export default function Login() {
       if (data.usuario.rol === "Admin") {
         navigate("/admin");
       } else {
-        navigate("/home");
+        navigate("/");
       }
     } catch (err) {
       alert(err.message || "Error en el inicio de sesión");
@@ -50,16 +51,11 @@ export default function Login() {
       </div>
       <nav className="navbar">
         <ul>
-          <li><a href="/#inicio">Inicio</a></li>
-          <li><a href="/search">Productos</a></li>
+          <li><Link to="/">Inicio</Link></li>
+          <li><Link to="/search">Productos</Link></li>
           <li>
-            <a id="login-btn" href="/login">
-              <FaUser /> Iniciar Sesión
-            </a>
-          </li>
-          <li>
-            <a href="/shoppingcart">
-              <img src="/assets/img/carrito.png" alt="Carrito de compras" />
+            <a id="login-btn" href="/Register">
+              <FaUser /> Registrarse
             </a>
           </li>
         </ul>

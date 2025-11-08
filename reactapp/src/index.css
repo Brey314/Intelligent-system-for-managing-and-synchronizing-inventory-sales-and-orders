@@ -70,6 +70,13 @@ header .container {
     transition: color 0.3s;
     
 }
+.navbar p {
+    text-decoration: none;
+    color: var(--light);
+    font-weight: 500;
+    transition: color 0.3s;
+    
+}
 .navbar img{
     max-height: 20px;  /* controla el tamaño del logo */
     width: auto;

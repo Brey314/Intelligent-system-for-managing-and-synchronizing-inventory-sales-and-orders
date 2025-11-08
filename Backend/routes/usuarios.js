@@ -21,6 +21,13 @@ router.post('/login', async (req, res) => {
       JWT_SECRET,
       { expiresIn: '2h' }
     );
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: false, //en caso de https
+      sameSite: 'Lax',
+      maxAge: 2 * 60 * 60 * 1000, // 2 horas
+    });
     res.json({
       message: 'Login exitoso',
       token,

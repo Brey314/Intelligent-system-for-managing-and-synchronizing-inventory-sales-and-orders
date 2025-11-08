@@ -1,9 +1,13 @@
 import { useState } from "react";
 import "./css/search.css";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate ,Link} from "react-router-dom";
 
 const apiURL = "http://localhost:5000/api/productos";
 
 function Search() {
+  const navigate = useNavigate();
+  const { usuario, logout} = useAuth();
   const [productos, setProductos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,6 +29,7 @@ function Search() {
     category: "",
     stock:"",
   });
+  
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -105,28 +110,39 @@ function Search() {
       alert(" No se pudo crear el producto");
     }
   };
+
+  const eliminar = async (_id) => {
+    try {
+      await fetch(`${apiURL}/${_id}`, { method: "DELETE" });
+      setProductos((prevCart) => prevCart.filter((prod) => prod._id !== _id));
+    } catch (err) {
+      console.error("Error eliminando producto:", err);
+    }
+  };
   return (
     <>
       <header className="header">
         <div className="container">
           <div className="logo">
-            <a href="/">
+            <Link to="/">
               <img src="/assets/img/logo.svg.png" alt="Ktronix" />
-            </a>
+            </Link>
           </div>
           <nav className="navbar">
             <ul>
-              <li><a href="/#inicio">Inicio</a></li>
+              <li><Link to="/">Inicio</Link></li>
               <li>
-                <a> ¡Bienvenido Admin!</a>
+                  <div>
+                    <p>Bienvenido {usuario?.user}</p>
+                  </div>
               </li>
               <li>
-                <a d="login-btn" href="/#inicio"> Cerrar sesión</a>
+                <Link onClick={logout} d="login-btn" to="/"> Cerrar sesión</Link>
               </li>
               <li>
-                <a href="/shoppingcart">
-                  <img src="/assets/img/carrito.png" alt="Carrito" />
-                </a>
+                <Link to="/shoppingcart">
+                  <img src="/assets/img/carrito.png" alt="Carrito de compras" />
+                </Link>
               </li>
             </ul>
           </nav>
@@ -212,6 +228,9 @@ function Search() {
                   <small>Categoría: {prod.category}</small>
                   <button className="btnP" onClick={() => edit(prod)}>
                     Editar Producto
+                  </button>
+                  <button className="btnP" onClick={() => eliminar(prod)}>
+                    Eliminar Producto
                   </button>
                 </>
               )}
