@@ -8,12 +8,33 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // evita que se recargue la página
-    if (usuario === "admin" && password === "admin") {
-      navigate("/admin");
-    } else {
-      alert("Usuario o contraseña incorrectos");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const resp = await fetch("http://localhost:5000/api/usuarios/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user: usuario, pass: password }),
+      });
+
+      const data = await resp.json();
+      if (!resp.ok) throw new Error(data.error);
+
+      // Guarda token y datos en localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("usuario", JSON.stringify(data.usuario));
+
+      alert("Inicio de sesión exitoso");
+
+      // Redirigir según rol
+      if (data.usuario.rol === "Admin") {
+        navigate("/admin");
+      } else {
+        navigate("/home");
+      }
+    } catch (err) {
+      alert(err.message || "Error en el inicio de sesión");
     }
   };
 

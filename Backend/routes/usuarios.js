@@ -3,12 +3,13 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const Usuario = require('../models/usuarios');
 const bcrypt = require('bcryptjs');
+const verificarToken = require('../middleware/auth');
 
 const JWT_SECRET = "clave_super_segura_que_deberias_guardar_en_.env";
 
-router.get('/', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
-    const { user,pass } = req.query;
+    const { user,pass } = req.body;
     if (!user || !pass) return res.status(400).json({ error: 'Faltan credenciales' });
     const usuario = await Usuario.findOne({ user });
     if (!usuario) return res.status(401).json({ error: 'Usuario no encontrado' });
@@ -25,14 +26,13 @@ router.get('/', async (req, res) => {
       token,
       usuario: { id: usuario._id, user: usuario.user, rol: usuario.rol }
     });
-    res.json(usuarios);
   } catch (err) {
     console.error('Error en login:', err);
     res.status(500).json({ error: 'Error en autenticación' });
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
 
     const { name, email ,user,pass, rol } = req.body;
@@ -51,6 +51,11 @@ router.post('/', async (req, res) => {
     console.error('Error al crear usuario:', err);
     res.status(500).json({ error: 'Error al crear usuario' });
   }
+});
+
+router.get('/perfil', verificarToken, async (req, res) => {
+  const usuario = await Usuario.findById(req.usuario.id).select('-pass');
+  res.json(usuario);
 });
 
 module.exports = router;

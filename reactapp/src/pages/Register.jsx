@@ -46,7 +46,7 @@ function Register() {
       setUsers((prev) => [...prev, creado]);
       setNewUser({ name: "",email:"", user: "", pass: "",rol: "Consumer" });
     } catch (err) {
-      console.error(err);
+      console.error("error",err);
       alert(" No se pudo crear el usuario");
     }
   };
