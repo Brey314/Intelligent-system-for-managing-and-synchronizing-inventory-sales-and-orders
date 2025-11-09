@@ -65,4 +65,8 @@ router.get('/perfil', verificarToken, async (req, res) => {
   res.json(usuario);
 });
 
+router.post('/logout', (req, res) => {
+  res.clearCookie('token');
+  res.json({ message: 'Sesión cerrada correctamente' });
+});
 module.exports = router;

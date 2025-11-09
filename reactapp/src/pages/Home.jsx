@@ -34,7 +34,7 @@ function Home() {
                 )}
               </li>
             <li>
-              <Link to="/shoppingCart">
+              <Link to="/shoppingcart">
                 <img src="/assets/img/carrito.png" alt="Carrito de compras" />
               </Link>
             </li>

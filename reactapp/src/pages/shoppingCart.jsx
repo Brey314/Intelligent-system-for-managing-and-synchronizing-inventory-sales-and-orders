@@ -24,7 +24,6 @@ function ShoppingCart() {
     const cargarCarrito = async () => {
       try {
         const answ = await fetch(getUserUrl());
-        console.log(getUserUrl());
         const data = await answ.json();
         setCart(data);
       } catch (err) {
@@ -40,7 +39,7 @@ function ShoppingCart() {
   // Eliminar producto
   const eliminarDelCarrito = async (_id) => {
     try {
-      await fetch(`${apiURL}/${_id}`, { method: "DELETE" });
+      await fetch(`${getUserUrl()}/${_id}`, { method: "DELETE" });
       setCart((prevCart) => prevCart.filter((prod) => prod._id !== _id));
       calcularTotales(cart.filter((prod) => prod._id !== _id));
     } catch (err) {
@@ -48,7 +47,7 @@ function ShoppingCart() {
     }
   };
 
-  // ➕➖ Cambiar cantidad
+  // Cambiar cantidad
   const cambiarCantidad = async (_id, cuantity, op) => {
     try {
       let newcuantity = cuantity;
@@ -77,7 +76,7 @@ function ShoppingCart() {
     }
   };
 
-  // 💰 Calcular totales
+  //  Calcular totales
   const calcularTotales = (productos) => {
     let sumaPrecio = 0;
     let sumaCantidad = 0;
@@ -89,7 +88,7 @@ function ShoppingCart() {
     setCantidad(sumaCantidad);
   };
 
-  // 🔄 Obtener totales desde el backend (por idUser)
+  //  Obtener totales desde el backend (por idUser)
   const obtenerPrecio = async () => {
     try {
       const answ = await fetch(getUserUrl());

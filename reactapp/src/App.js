@@ -5,26 +5,42 @@ import Register from "./pages/Register";
 import Search from "./pages/Search";
 import ShoppingCart from "./pages/shoppingCart";
 import Admin from "./pages/admin";
-
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
 
     <Router>
+      <AuthProvider>
+        <Routes>
+          {/* Rutas públicas */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/search" element={<Search />} />
 
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/shoppingCart" element={<ShoppingCart />} />
-      <Route path="/admin" element={<Admin />} />
+          {/* Rutas protegidas */}
+          <Route
+            path="/shoppingCart"
+            element={
+              <ProtectedRoute>
+                <ShoppingCart />
+              </ProtectedRoute>
+            }
+          />
 
-
-    </Routes>
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </AuthProvider>
     </Router>
-
-
   );
 }
 

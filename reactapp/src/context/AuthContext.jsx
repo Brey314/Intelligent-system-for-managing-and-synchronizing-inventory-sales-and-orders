@@ -4,9 +4,8 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
-  const [token, setToken] = useState(null);
-
-  // 🔄 Mantener sesión si hay datos guardados
+  const [token, setToken] = useState(true);
+  // Mantener sesión si hay datos guardados
   useEffect(() => {
     const storedUser = localStorage.getItem("usuario");
     const storedToken = localStorage.getItem("token");
@@ -31,6 +30,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("usuario");
     localStorage.removeItem("token");
   };
+
 
   return (
     <AuthContext.Provider value={{ usuario, token, login, logout }}>
