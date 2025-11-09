@@ -4,40 +4,46 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
-  const [token, setToken] = useState(true);
-  // Mantener sesión si hay datos guardados
+  const [loading, setLoading] = useState(true);
+
+  // Verificar sesión activa al cargar la app
   useEffect(() => {
-    const storedUser = localStorage.getItem("usuario");
-    const storedToken = localStorage.getItem("token");
-    console.log(storedUser)
-    if (storedUser && storedToken) {
-      setUsuario(JSON.parse(storedUser));
-      setToken(storedToken);
-    }
+    const checkSession = async () => {
+      try {
+        const resp = await fetch("http://localhost:5000/api/usuarios/check", {
+          credentials: "include",
+        });
+
+        if (!resp.ok) throw new Error("Sesión no válida");
+        const data = await resp.json();
+        setUsuario(data.usuario);
+      } catch (err) {
+        setUsuario(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkSession();
   }, []);
 
-  const login = (userData, userToken) => {
-    console.log(userData);
+  const login = (userData) => {
     setUsuario(userData);
-    setToken(userToken);
-    localStorage.setItem("usuario", JSON.stringify(userData));
-    localStorage.setItem("token", userToken);
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await fetch("http://localhost:5000/api/usuarios/logout", {
+      method: "POST",
+      credentials: "include",
+    });
     setUsuario(null);
-    setToken(null);
-    localStorage.removeItem("usuario");
-    localStorage.removeItem("token");
   };
-
 
   return (
-    <AuthContext.Provider value={{ usuario, token, login, logout }}>
+    <AuthContext.Provider value={{ usuario, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => useContext(AuthContext);
-

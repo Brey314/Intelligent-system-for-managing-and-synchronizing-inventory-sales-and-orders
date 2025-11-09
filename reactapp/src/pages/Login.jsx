@@ -24,16 +24,12 @@ export default function Login() {
       const data = await resp.json();
       if (!resp.ok) throw new Error(data.error);
 
-      login(data.usuario, data.token);
+      login(data.usuario);
 
       alert("Inicio de sesión exitoso");
 
       // Redirigir según rol
-      if (data.usuario.rol === "Admin") {
-        navigate("/admin");
-      } else {
-        navigate("/");
-      }
+      navigate(data.usuario.rol === "Admin" ? "/admin" : "/");
     } catch (err) {
       alert(err.message || "Error en el inicio de sesión");
     }

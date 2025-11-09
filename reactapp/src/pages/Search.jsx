@@ -98,7 +98,7 @@ function Search() {
                 </div>
                 <nav className="navbar">
                 <ul>
-                    <li><a href="/#inicio">Inicio</a></li>
+                    <li><Link to="/">Inicio</Link></li>
                     <li><Link to="/search">Productos</Link></li>
                     <li>
                         {usuario ? (

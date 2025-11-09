@@ -1,19 +1,20 @@
-import { Navigate } from "react-router-dom";
+import { Navigate,useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function ProtectedRoute({ children }) {
-  const { user } = useAuth();
+  const { usuario } = useAuth();
+  const location = useLocation();
 
-  if (user === null) {
+  if (usuario === null) {
     // Aún no sabemos si está autenticado (esperando verificación)
     return <div>Cargando...</div>;
   }
 
-  if (!user) {
+  if (!usuario) {
     // Si no hay usuario autenticado, redirige al inicio o login
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace state={{ from: location }}/>;
   }
-  if(user?.rol!=="Admin"){
+  if(location.pathname.startsWith("/admin") && usuario?.rol!=="Admin"){
     return <Navigate to="/profile" replace />;
   }
 

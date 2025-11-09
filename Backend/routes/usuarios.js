@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false, //en caso de https
+      secure: true, //en caso de https
       sameSite: 'Lax',
       maxAge: 2 * 60 * 60 * 1000, // 2 horas
     });
@@ -69,4 +69,10 @@ router.post('/logout', (req, res) => {
   res.clearCookie('token');
   res.json({ message: 'Sesión cerrada correctamente' });
 });
+
+router.get("/check", verificarToken, async (req, res) => {
+  const usuario = await Usuario.findById(req.usuario.id).select("user rol email");
+  res.json({ usuario });
+});
+
 module.exports = router;

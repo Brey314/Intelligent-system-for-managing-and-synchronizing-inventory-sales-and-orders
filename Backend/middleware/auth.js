@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = "clave_super_segura_que_deberias_guardar_en_.env";
 
 function verificarToken(req, res, next) {
-  const token = req.header('Authorization')?.split(' ')[1];
+  const token = req.cookies.token;
   if (!token) return res.status(401).json({ error: 'Acceso denegado, token faltante' });
 
   try {

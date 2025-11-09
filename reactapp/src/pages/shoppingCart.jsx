@@ -14,7 +14,7 @@ function ShoppingCart() {
   const [cuantity, setCantidad] = useState(0);
 
   const iduser = usuario?.id;
-
+  
   // función auxiliar para obtener URL con idUser
   const getUserUrl = () =>
     iduser ? `${apiURL}?idUser=${encodeURIComponent(iduser)}` : apiURL;
@@ -23,8 +23,10 @@ function ShoppingCart() {
   useEffect(() => {
     const cargarCarrito = async () => {
       try {
+        console.log(usuario);
         const answ = await fetch(getUserUrl());
         const data = await answ.json();
+        
         setCart(data);
       } catch (err) {
         console.error("Error cargando carrito:", err);
@@ -132,7 +134,7 @@ function ShoppingCart() {
           <nav className="navbar">
             <ul>
               <li>
-                <a href="/#inicio">Inicio</a>
+                <Link to="/">Inicio</Link>
               </li>
               <li>
                 <Link to="/search">Productos</Link>
