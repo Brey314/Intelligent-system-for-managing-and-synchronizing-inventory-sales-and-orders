@@ -16,14 +16,13 @@ function ShoppingCart() {
   const iduser = usuario?.id;
   
   // función auxiliar para obtener URL con idUser
-  const getUserUrl = () => apiURL;
 
   //  Cargar carrito
   useEffect(() => {
     const cargarCarrito = async () => {
       try {
         console.log(usuario);
-        const answ = await fetch(getUserUrl(), {
+        const answ = await fetch(apiURL, {
           credentials: "include"
         });
         const data = await answ.json();
@@ -43,7 +42,7 @@ function ShoppingCart() {
   // Eliminar producto
   const eliminarDelCarrito = async (_id) => {
     try {
-      await fetch(`${getUserUrl()}/${_id}`, {
+      await fetch(`${apiURL}/${_id}`, {
         method: "DELETE",
         credentials: "include"
       });
@@ -99,7 +98,7 @@ function ShoppingCart() {
   //  Obtener totales desde el backend (por idUser)
   const obtenerPrecio = async () => {
     try {
-      const answ = await fetch(getUserUrl(), {
+      const answ = await fetch(apiURL, {
         credentials: "include"
       });
       const data = await answ.json();
@@ -113,7 +112,7 @@ function ShoppingCart() {
 
   const obtenerCantidad = async () => {
     try {
-      const answ = await fetch(getUserUrl(), {
+      const answ = await fetch(apiURL, {
         credentials: "include"
       });
       const data = await answ.json();
