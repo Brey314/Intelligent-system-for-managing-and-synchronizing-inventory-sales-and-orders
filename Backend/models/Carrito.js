@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const productoSchema = new mongoose.Schema({
-  idUser:String,
+  idProd:String,
+  idUser: String,
   title: String,
   description: String,
   price: Number,
@@ -9,7 +10,7 @@ const productoSchema = new mongoose.Schema({
   category: String,
   stock: Number,
   cuantity: Number,
-  creation_date: {
+  update_date: {
     type: Date,
     default: Date.now
   }

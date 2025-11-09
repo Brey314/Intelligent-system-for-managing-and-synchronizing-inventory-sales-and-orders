@@ -16,17 +16,19 @@ function ShoppingCart() {
   const iduser = usuario?.id;
   
   // función auxiliar para obtener URL con idUser
-  const getUserUrl = () =>
-    iduser ? `${apiURL}?idUser=${encodeURIComponent(iduser)}` : apiURL;
+  const getUserUrl = () => apiURL;
 
   //  Cargar carrito
   useEffect(() => {
     const cargarCarrito = async () => {
       try {
         console.log(usuario);
-        const answ = await fetch(getUserUrl());
+        const answ = await fetch(getUserUrl(), {
+          credentials: "include"
+        });
         const data = await answ.json();
-        
+        console.log("Respuesta del backend (carrito):", data);
+
         setCart(data);
       } catch (err) {
         console.error("Error cargando carrito:", err);
@@ -35,13 +37,16 @@ function ShoppingCart() {
       }
     };
 
-    if (iduser) cargarCarrito();
-  }, [iduser]); // <-- vuelve a cargar si cambia el usuario
+    if (usuario) cargarCarrito();
+  }, [usuario]); // <-- vuelve a cargar si cambia el usuario
 
   // Eliminar producto
   const eliminarDelCarrito = async (_id) => {
     try {
-      await fetch(`${getUserUrl()}/${_id}`, { method: "DELETE" });
+      await fetch(`${getUserUrl()}/${_id}`, {
+        method: "DELETE",
+        credentials: "include"
+      });
       setCart((prevCart) => prevCart.filter((prod) => prod._id !== _id));
       calcularTotales(cart.filter((prod) => prod._id !== _id));
     } catch (err) {
@@ -64,6 +69,7 @@ function ShoppingCart() {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cuantity: newcuantity }),
+        credentials: "include"
       });
 
       setCart((prevCart) => {
@@ -93,7 +99,9 @@ function ShoppingCart() {
   //  Obtener totales desde el backend (por idUser)
   const obtenerPrecio = async () => {
     try {
-      const answ = await fetch(getUserUrl());
+      const answ = await fetch(getUserUrl(), {
+        credentials: "include"
+      });
       const data = await answ.json();
       let suma = 0;
       data.forEach((p) => (suma += p.price * p.cuantity));
@@ -105,7 +113,9 @@ function ShoppingCart() {
 
   const obtenerCantidad = async () => {
     try {
-      const answ = await fetch(getUserUrl());
+      const answ = await fetch(getUserUrl(), {
+        credentials: "include"
+      });
       const data = await answ.json();
       let suma = 0;
       data.forEach((p) => (suma += p.cuantity));
@@ -116,11 +126,11 @@ function ShoppingCart() {
   };
 
   useEffect(() => {
-    if (iduser) {
+    if (usuario) {
       obtenerPrecio();
       obtenerCantidad();
     }
-  }, [iduser, cart]);
+  }, [usuario, cart]);
 
   return (
     <>

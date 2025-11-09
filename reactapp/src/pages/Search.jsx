@@ -42,10 +42,8 @@ function Search() {
             navigate("/Login");
         } else {
         try {
-            console.log(usuario.id);
             const producto = {
-                _id: prod._id,
-                idUser:usuario.id,
+                idProd: prod._id,
                 title: prod.title,
                 description: prod.description,
                 price: prod.price,
@@ -53,11 +51,16 @@ function Search() {
                 category: prod.category,
                 stock: prod.stock,
                 cuantity: 1,
-                creation_date: prod.creation_date,
             };
 
-            const resp = await fetch("http://localhost:5000/api/carrito");
+            const resp = await fetch("http://localhost:5000/api/carrito", {
+                credentials: "include"
+            });
             const data = await resp.json();
+            if (!Array.isArray(data)) {
+                console.error("Respuesta inesperada del servidor:", data);
+                return;
+            }
             const exist = data.find((item) => item._id === producto._id);
 
             
@@ -69,6 +72,7 @@ function Search() {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ cuantity: nuevaCantidad }),
+                    credentials: "include"
                 });
             } else {
                 // Si no existe, agregarlo al carrito
@@ -76,6 +80,7 @@ function Search() {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(producto),
+                    credentials: "include"
                 });
             }
             alert(`${producto.title} agregado al carrito`);

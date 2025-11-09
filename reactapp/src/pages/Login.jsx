@@ -41,9 +41,9 @@ export default function Login() {
   <header className="header">
     <div className="container">
       <div className="logo">
-        <a href="index.html">
+        <Link to="index.html">
           <img src="/assets/img/logo.svg.png" alt="Ktronix" />
-        </a>
+        </Link>
       </div>
       <nav className="navbar">
         <ul>
