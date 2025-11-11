@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Carrito = require('../models/Carrito');
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "clave_super_segura_que_deberias_guardar_en_.env";
-
+require('dotenv').config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Obtener productos del carrito
 router.get("/", async(req, res) => {

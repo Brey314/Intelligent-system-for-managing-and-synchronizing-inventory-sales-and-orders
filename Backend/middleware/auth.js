@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = "clave_super_segura_que_deberias_guardar_en_.env";
+require('dotenv').config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 function verificarToken(req, res, next) {
   const token = req.cookies.token;

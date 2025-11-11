@@ -17,6 +17,9 @@ export default function ProtectedRoute({ children }) {
   if(location.pathname.startsWith("/admin") && usuario?.rol!=="Admin"){
     return <Navigate to="/profile" replace />;
   }
+  if(location.pathname.startsWith("/shoppingCart") && !usuario){
+    return <Navigate to="/login" replace />;
+  }
 
   // Si hay usuario autenticado, renderiza el contenido protegido
   return children;

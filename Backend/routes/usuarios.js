@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const Usuario = require('../models/usuarios');
 const bcrypt = require('bcryptjs');
 const verificarToken = require('../middleware/auth');
-
-const JWT_SECRET = "clave_super_segura_que_deberias_guardar_en_.env";
+require('dotenv').config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post('/login', async (req, res) => {
   try {

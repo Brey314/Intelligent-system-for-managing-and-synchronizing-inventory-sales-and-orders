@@ -5,9 +5,13 @@ const productosRoutes = require('./routes/productos');
 const usuariosRoutes = require('./routes/usuarios');
 const carritoRoutes= require('./routes/carrito');
 const cookieParser = require('cookie-parser');
+require('dotenv').config();
 
 const app = express();
 
+const PORT = process.env.PORT || 5000;
+const JWT_SECRET = process.env.JWT_SECRET; // 👈 ya viene del .env
+const MONGO_URI = process.env.MONGO_URI;
 // Middlewares
 app.use(cors({
   origin: 'http://localhost:3000',
@@ -23,12 +27,12 @@ app.use('/api/usuarios',usuariosRoutes)
 app.use('/api/carrito',carritoRoutes)
 
 // Conexión MongoDB
-mongoose.connect('mongodb://localhost:27017/tienda-electronicos', {
+mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => {
   console.log(' Conectado a MongoDB');
-  app.listen(5000, () => console.log(' Servidor corriendo en http://localhost:5000'));
+  app.listen(PORT, () => console.log(` Servidor corriendo en http://localhost:${PORT}`));
 })
 .catch(err => console.error(' Error en MongoDB:', err));
