@@ -59,7 +59,7 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ---
 
 ## Tecnologías utilizadas
-- **Backend:** Node.js, Express  
+- **Backend:** Node.js, Express, JWT
 - **Frontend:** React (con Vite/CRA según configuración)  
 - **Base de datos de prueba:** JSON (`DB.json`)  
 - **HTML/CSS:** Páginas estáticas  
