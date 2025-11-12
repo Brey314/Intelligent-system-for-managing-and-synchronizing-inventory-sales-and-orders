@@ -69,6 +69,7 @@ router.delete("/:_id", async(req, res) => {
     const { _id } = req.params;
     //console.log(_id);
     carrito = await Carrito.findByIdAndDelete((_id));
+    console.log("Producto eliminado con token=",token);
     res.status(201).json({ message: `Producto con id ${_id} eliminado` });
   }catch (err) {
     console.error('Error al actualizar carrito:', err);
@@ -95,12 +96,12 @@ router.put("/:_id", async(req, res) => {
     if (!producto) {
       return res.status(404).json({ message: `Producto con id ${_id} no encontrado en el carrito` });
     }
-    
-    
     // Actualizar cantidad
     producto.cuantity = updatedData;
 
     res.json({ message: "Cantidad actualizada", producto });
+    console.log("Producto actualizado con token=",token);
+    console.log("Cantidad del producto actualizada",producto);
   }catch (err) {
     console.error('Error al actualizar carrito:', err);
     res.status(500).json({ error: 'Error al actualizar producto' });
