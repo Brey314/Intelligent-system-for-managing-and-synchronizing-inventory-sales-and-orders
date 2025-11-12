@@ -54,5 +54,18 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.delete('/:_id', async (req,res)=>{
+  try{
+    const {_id}=req.params;
+
+    productos=await Producto.findByIdAndDelete((_id))
+    res.status(201).json({ message: `Producto con id ${_id} eliminado` });
+  }catch(err){
+    console.error('Error al eliminar producto:', err);
+    res.status(500).json({ error: 'Error al eliminar producto' });
+
+  }
+});
+
 
 module.exports = router;

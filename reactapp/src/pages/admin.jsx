@@ -114,7 +114,7 @@ function Search() {
   const eliminar = async (_id) => {
     try {
       await fetch(`${apiURL}/${_id}`, { method: "DELETE" });
-      setProductos((prevCart) => prevCart.filter((prod) => prod._id !== _id));
+      setProductos((prev) => prev.filter((prod) => prod._id !== _id));
     } catch (err) {
       console.error("Error eliminando producto:", err);
     }
@@ -229,7 +229,7 @@ function Search() {
                   <button className="btnP" onClick={() => edit(prod)}>
                     Editar Producto
                   </button>
-                  <button className="btnP" onClick={() => eliminar(prod)}>
+                  <button className="btnP" onClick={() => eliminar(prod._id)}>
                     Eliminar Producto
                   </button>
                 </>
