@@ -16,24 +16,28 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ## Estructura del proyecto
 ```
 ├── Backend/               # Servidor Node.js (API REST)
+│   ├──.env
 │   ├── server.js
 │   ├── models/...
-│       └── Usuarios.js
-│       └── Carrito.js
+│       ├── usuarios.js
+│       ├── Carrito.js
 │       └── Producto.js
 │   ├── routes/...
-│       └── carrito.js
-│       └── usuarios.js
+│       ├── carrito.js
+│       ├── usuarios.js
 │       └── productos.js
+│   ├── middleware/...
+│       └── auth.js
 ├── reactapp/              # Aplicación React (frontend principal)
 │   ├── puiblic/...
+│       ├── favicon.ico
 │       ├── assets/...
 │           └── img/...
 │   ├── src/...
 │       ├── components
-│           ├── ProtectedRoute.jsx
+│           └── ProtectedRoute.jsx
 │       ├── context
-│           ├── AuthContex.jsx
+│           └── AuthContex.jsx
 │       ├── pages/...
 │           ├── css/...
 │           ├── Admin.jsx
@@ -54,15 +58,15 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 │   └── User Stories.xlsx
 │
 └── README.md              # Este archivo
+└── .gitignore
 ```
 
 ---
 
 ## Tecnologías utilizadas
-- **Backend:** Node.js, Express, JWT
+- **Backend:** Node.js, Express, JWT, MongoDB, cookieParser, dotenv
 - **Frontend:** React (con Vite/CRA según configuración)  
 - **Base de datos de prueba:** JSON (`DB.json`)  
-- **HTML/CSS:** Páginas estáticas  
 
 ---
 
@@ -72,8 +76,33 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ```bash
 git clone https://github.com/Juancho-456/Intelligent-system-for-managing-and-synchronizing-inventory-sales-and-orders.git
 cd Intelligent-system-for-managing-and-synchronizing-inventory-sales-and-orders
+cd Backend
+npm install express mongoose cors bcryptjs cookie-parser jsonwebtoken dotenv
+```
+### 2. Instalar dependencias del backend
+```bash
+cd Backend
+npm install express mongoose cors bcryptjs cookie-parser jsonwebtoken dotenv
 ```
 
+### 3. Crear .env dentro de backend
+```ini
+MONGODB_URI=url_de_conexion_a_mongodb
+JWT_SECRET=clave_secreta_para_tokens
+PORT=5000
+```
+### 4. Instalar dependencias del frontend
+```bash
+cd reactapp
+npm install react react-dom react-router-dom
+```
+### 5. Ejecución
+```bash
+cd Backend
+node server.js
+cd reactapp
+npm start
+```
 ---
 
 ### 2. Backend (Node.js + Express)
@@ -105,6 +134,7 @@ El servidor se ejecutará en `http://localhost:3000` (según la configuración d
 ```bash
 cd Backend
 npm install
+cd reactapp
 npm start
 ```
 
@@ -121,22 +151,31 @@ El servidor expone una serie de endpoints REST para la gestión de inventario, v
 - `PUT /api/products/:id` → Actualiza un producto existente.  
 - `DELETE /api/products/:id` → Elimina un producto.  
 
-#### Carrito (`/api/cart`)
-- `GET /api/cart` → Obtiene el contenido actual del carrito.  
-- `POST /api/cart` → Agrega un producto al carrito.  
-- `PUT /api/cart/:id` → Actualiza la cantidad de un producto en el carrito.  
-- `DELETE /api/cart/:id` → Elimina un producto del carrito.  
+#### Carrito (`/api/carrito`)
+- `GET /api/carrito` → Obtiene el contenido actual del carrito.  
+- `POST /api/carrito` → Agrega un producto al carrito.  
+- `PUT /api/carrito/:_id` → Actualiza la cantidad de un producto en el carrito.  
+- `DELETE /api/carrito/:_id` → Elimina un producto del carrito.
+
+#### Carrito (`/api/usuarios`)
+- `POST /api/usuarios/login` → Obtiene token para inicio de sesión.  
+- `POST /api/usuarios/register` → Agrega un usuario a la base de datos.  
+- `GET /api/usuarios/perfil` → Verifica que el usuario esté iniciado por contraseña.
+- `POST /api/usuarios/logout` → Elimina el token generado para cerrar sesión.
+- `GET /api/usuarios/check` → Verifica que el usuario este iniciado por usuario, rol y email.
 
 ---
 
 ## Archivos principales del Backend
 
-- **server.js** → Configura y levanta el servidor Express, define middlewares globales (`cors`, `body-parser`) y conecta con MongoDB.  
-- **cart/server.js** → Contiene la lógica del carrito de compras, añade, elimina y edita productos.
+- **server.js** → Configura y levanta el servidor Express, define middlewares globales (`cors`, `body-parser`,`cookie-parser`,`dotenv`), manejo de cookies y conecta con MongoDB.  
 - **controllers/** → Incluye la lógica de negocio de cada módulo (productos, ventas, pedidos, carrito).  
-- **models/** → Define los esquemas de Mongoose para la persistencia en MongoDB.  
+- **models/** → Define los esquemas de Mongoose para la persistencia en MongoDB, productos, productos carrito y usuarios.  
 - **routes/** → Declara las rutas de la API que enlazan los controladores con Express.  
-
+- **routes/carrito.js** → Contiene la lógica del carrito de compras, añade, elimina y edita productos.
+- **routes/productos.js** → Contiene la lógica de ña base de datos de añade, elimina y edita productos.
+- **routes/usuarios.js** → Contiene la lógica de la gestion de token y registro de usuaios añade y edita usuarios.
+- **middleware/auth.js** → Función para la verificacion de tokens en las cookies
 ---
 
 ### 3. Frontend (React)
@@ -145,9 +184,11 @@ La aplicación React ubicada en la carpeta `reactapp/` es la **interfaz principa
 Está desarrollada con **React** y utiliza librerías adicionales para la navegación y los íconos.
 
 #### Archivos y carpetas principales:
-- `src/` → Contiene todo el código fuente de la aplicación.  
+- `src/` → Contiene todo el código fuente de la aplicación.
+- `components/` → ProtectedRoute.jsx Proteción a la carga de paginas como /admin o /shopping.
+  - `context/` → Uso de use Effect para llamar al backen para verificar la sesión iniciada y la salida de sesión.
   - `pages/` → Vistas principales de la aplicación (Login, Registro, Dashboard, etc.).  
-  - `App.js` → Punto de entrada de la aplicación React.  
+  - `.js` → Punto de entrada de la aplicación React.  
   - `index.js` → Renderiza la aplicación dentro del DOM.  
 
 #### Dependencias principales:
@@ -155,32 +196,13 @@ Está desarrollada con **React** y utiliza librerías adicionales para la navega
 - `react-router-dom` → Manejo de rutas y navegación entre páginas.  
 - `react-icons/fa` → Conjunto de íconos para enriquecer la interfaz.
 
-La aplicación se abrirá en el navegador en `http://localhost:5173` (o el puerto configurado por Vite/CRA).  
+La aplicación se abrirá en el navegador en `http://localhost:3000` (o el puerto configurado por Vite/CRA).  
 
 #### Funcionalidades principales:
 - **Login/Register:** autenticación de usuarios.  
 - **Gestión de productos:** visualización y administración del inventario.  
 - **Carrito de compras:** permite simular pedidos y sincronización con ventas.  
 - **Navegación dinámica:** cambio de vistas sin recargar la página gracias a `react-router-dom`.  
-
-#### Ejecución:
-```bash
-cd reactapp
-npm install
-npm start
-```
-
----
-
-### 4. HTML estático
-Las páginas dentro de `html/` pueden abrirse directamente en el navegador:  
-- `index.html` → Página principal.  
-- `login.html` → Inicio de sesión.  
-- `register.html` → Registro de usuarios.  
-- `search.html` → Búsqueda de productos.  
-- `shoppingcart.html` → Carrito de compras.  
-
-Estas vistas sirven como prototipos o interfaces alternas simples.
 
 ---
 
