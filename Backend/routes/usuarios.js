@@ -21,7 +21,6 @@ router.post('/login', async (req, res) => {
       JWT_SECRET,
       { expiresIn: '2h' }
     );
-
     res.cookie('token', token, {
       httpOnly: true,
       secure: true, //en caso de https

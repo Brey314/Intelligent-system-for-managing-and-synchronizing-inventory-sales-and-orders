@@ -12,6 +12,7 @@ router.get("/", async(req, res) => {
     if (!token) {
       return res.status(401).json({ error: "No autorizado. Falta token." });
     }
+
     const decoded = jwt.verify(token, JWT_SECRET);
     const idUser = decoded.id;
 
@@ -31,7 +32,7 @@ router.post("/", async(req, res) => {
     }
     const decoded = jwt.verify(token, JWT_SECRET);
     const idUser = decoded.id;
-    console.log(idUser);
+    //console.log(idUser);
     const { idProd,title, description,price, image, category,stock,cuantity } = req.body;
     const nuevoProducto = new Carrito({ 
       idProd,
@@ -62,7 +63,7 @@ router.delete("/:_id", async(req, res) => {
     const decoded = jwt.verify(token, JWT_SECRET);
     const idUser = decoded.id;
     const { _id } = req.params;
-    console.log(_id);
+    //console.log(_id);
     carrito = await Carrito.findByIdAndDelete((_id));
     res.status(201).json({ message: `Producto con id ${_id} eliminado` });
   }catch (err) {
@@ -80,7 +81,7 @@ router.put("/:_id", async(req, res) => {
     const decoded = jwt.verify(token, JWT_SECRET);
     const userid = decoded._id;
 
-    console.log(' Datos recibidos en PUT:', req.body);
+    //console.log(' Datos recibidos en PUT:', req.body);
     
     const {_id,idProd}=req.params;
     const updatedData = req.body;
