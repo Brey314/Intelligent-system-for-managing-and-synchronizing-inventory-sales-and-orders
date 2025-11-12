@@ -76,6 +76,7 @@ function Search() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(editedProduct),
+        credentials: "include"
       });
 
       if (!resp.ok) throw new Error("Error al actualizar");
@@ -99,6 +100,7 @@ function Search() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
+        credentials: "include"
       });
       if (!resp.ok) throw new Error("Error al crear producto");
 
@@ -113,7 +115,7 @@ function Search() {
 
   const eliminar = async (_id) => {
     try {
-      await fetch(`${apiURL}/${_id}`, { method: "DELETE" });
+      await fetch(`${apiURL}/${_id}`, { method: "DELETE" ,credentials: "include"});
       setProductos((prev) => prev.filter((prod) => prod._id !== _id));
     } catch (err) {
       console.error("Error eliminando producto:", err);
