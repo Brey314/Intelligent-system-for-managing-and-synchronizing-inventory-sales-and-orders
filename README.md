@@ -16,28 +16,28 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ## Estructura del proyecto
 ```
 ├── Backend/               # Servidor Node.js (API REST)
-│   └──.env
+│   ├──.env
 │   ├── server.js
 │   ├── models/...
-│       └── usuarios.js
-│       └── Carrito.js
+│       ├── usuarios.js
+│       ├── Carrito.js
 │       └── Producto.js
 │   ├── routes/...
-│       └── carrito.js
-│       └── usuarios.js
+│       ├── carrito.js
+│       ├── usuarios.js
 │       └── productos.js
 │   ├── middleware/...
 │       └── auth.js
 ├── reactapp/              # Aplicación React (frontend principal)
 │   ├── puiblic/...
-│       └── favicon.ico
+│       ├── favicon.ico
 │       ├── assets/...
 │           └── img/...
 │   ├── src/...
 │       ├── components
-│           ├── ProtectedRoute.jsx
+│           └── ProtectedRoute.jsx
 │       ├── context
-│           ├── AuthContex.jsx
+│           └── AuthContex.jsx
 │       ├── pages/...
 │           ├── css/...
 │           ├── Admin.jsx
