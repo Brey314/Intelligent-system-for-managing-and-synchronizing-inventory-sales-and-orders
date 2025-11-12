@@ -17,17 +17,23 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ```
 ├── Backend/               # Servidor Node.js (API REST)
 │   ├── server.js
-│   ├── cart/...
-│       └── server.js
 │   ├── models/...
+│       └── Usuarios.js
+│       └── Carrito.js
 │       └── Producto.js
 │   ├── routes/...
+│       └── carrito.js
+│       └── usuarios.js
 │       └── productos.js
 ├── reactapp/              # Aplicación React (frontend principal)
+│   ├── puiblic/...
+│       ├── assets/...
+│           └── img/...
 │   ├── src/...
-│       ├── puiblic/...
-│           ├── assets/...
-│               └── img/...
+│       ├── components
+│           ├── ProtectedRoute.jsx
+│       ├── context
+│           ├── AuthContex.jsx
 │       ├── pages/...
 │           ├── css/...
 │           ├── Admin.jsx
@@ -40,14 +46,6 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 │       ├── App.js
 │       ├── index.css
 │       └── index.js
-├── html/                  # Vistas HTML estáticas
-│   ├── css/...
-│   ├── js/...
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   ├── search.html
-│   └── shoppingcart.html
 │
 ├── Documentation/         # Documentos de apoyo
 │   ├── DB.json
@@ -61,7 +59,7 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ---
 
 ## Tecnologías utilizadas
-- **Backend:** Node.js, Express  
+- **Backend:** Node.js, Express, JWT
 - **Frontend:** React (con Vite/CRA según configuración)  
 - **Base de datos de prueba:** JSON (`DB.json`)  
 - **HTML/CSS:** Páginas estáticas  
