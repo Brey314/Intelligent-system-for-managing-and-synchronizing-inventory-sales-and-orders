@@ -21,12 +21,10 @@ function ShoppingCart() {
   useEffect(() => {
     const cargarCarrito = async () => {
       try {
-        console.log(usuario);
         const answ = await fetch(apiURL, {
           credentials: "include"
         });
         const data = await answ.json();
-        console.log("Respuesta del backend (carrito):", data);
 
         setCart(data);
       } catch (err) {

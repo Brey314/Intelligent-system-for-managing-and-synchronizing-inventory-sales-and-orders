@@ -61,14 +61,14 @@ function Search() {
                 console.error("Respuesta inesperada del servidor:", data);
                 return;
             }
-            const exist = data.find((item) => item._id === producto._id);
+            const exist = data.find((item) => item.idProd === producto.idProd);
 
             
             if (exist) {
                 // Si existe, aumentar la cantidad
                 const nuevaCantidad = exist.cuantity + 1;
 
-                await fetch(`http://localhost:5000/api/carrito/${producto._id}`, {
+                await fetch(`http://localhost:5000/api/carrito/${exist._id}`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ cuantity: nuevaCantidad }),

@@ -83,23 +83,15 @@ router.put("/:_id", async(req, res) => {
 
     //console.log(' Datos recibidos en PUT:', req.body);
     
-    const {_id,idProd}=req.params;
+    const {_id}=req.params;
     const updatedData = req.body;
     let producto=null;
-    if(_id==idProd){
-      const findproducto = await Carrito.find({idProd:prodid, idUser:userid})
-      const id=findproducto._id;
-      producto = await Carrito.findByIdAndUpdate(id, updatedData, { new: true });
-      if (!producto) {
-        return res.status(404).json({ message: `Producto con id ${_id} no encontrado en el carrito` });
-      }
-    }else{
     // Buscar el producto por _id
     producto = await Carrito.findByIdAndUpdate(_id, updatedData, { new: true });
     if (!producto) {
       return res.status(404).json({ message: `Producto con id ${_id} no encontrado en el carrito` });
     }
-    }
+    
     
     // Actualizar cantidad
     producto.cuantity = updatedData;
