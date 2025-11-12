@@ -32,6 +32,7 @@ router.post('/login', async (req, res) => {
       token,
       usuario: { id: usuario._id, user: usuario.user, rol: usuario.rol }
     });
+    console.log("Inicio de sesión exitoso",token);
   } catch (err) {
     console.error('Error en login:', err);
     res.status(500).json({ error: 'Error en autenticación' });
@@ -52,6 +53,7 @@ router.post('/register', async (req, res) => {
     }
     const nuevoUsuario = new Usuario({ name, email ,user,pass, rol });
     await nuevoUsuario.save();
+    console.log("nuevo usuario creado",nuevoUsuario);
     res.status(201).json({ message: 'Usuario creado correctamente' });
   } catch (err) {
     console.error('Error al crear usuario:', err);
@@ -61,16 +63,20 @@ router.post('/register', async (req, res) => {
 
 router.get('/perfil', verificarToken, async (req, res) => {
   const usuario = await Usuario.findById(req.usuario.id).select('-pass');
+  console.log("Verificacion de usuario",usuario);
+
   res.json(usuario);
 });
 
 router.post('/logout', (req, res) => {
   res.clearCookie('token');
+  console.log("Salida de sesión");
   res.json({ message: 'Sesión cerrada correctamente' });
 });
 
 router.get("/check", verificarToken, async (req, res) => {
   const usuario = await Usuario.findById(req.usuario.id).select("user rol email");
+  console.log("Verificacion de usuario",usuario);
   res.json({ usuario });
 });
 

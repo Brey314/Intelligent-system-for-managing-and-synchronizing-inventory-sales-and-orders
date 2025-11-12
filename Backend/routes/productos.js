@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Producto = require('../models/Producto');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Obtener todos los productos
 // GET - obtener todos los productos o buscar por título
@@ -22,6 +25,13 @@ router.get('/', async (req, res) => {
 // PUT
 router.put('/:id', async (req, res) => {
   try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ error: "No autorizado. Falta token." });
+    }
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const rolUser = decoded.rol;
+    if(rolUser!=="Admin") return res.status(401).json({error:"No autorizado"});
     //console.log(' Datos recibidos en PUT:', req.body);
     const { id } = req.params;
     const updatedData = req.body;
@@ -29,7 +39,7 @@ router.put('/:id', async (req, res) => {
     const updatedProduct = await Producto.findByIdAndUpdate(id, updatedData, { new: true });
 
     if (!updatedProduct) return res.status(404).json({ error: 'Producto no encontrado' });
-
+    console.log("Producto actualizado",updatedProduct);
     res.json(updatedProduct);
   } catch (err) {
     console.error('Error al actualizar producto:', err);
@@ -40,6 +50,13 @@ router.put('/:id', async (req, res) => {
 // POST
 router.post('/', async (req, res) => {
   try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ error: "No autorizado. Falta token." });
+    }
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const rolUser = decoded.rol;
+    if(rolUser!=="Admin") return res.status(401).json({error:"No autorizado"});
     //console.log(' Datos recibidos en POST:', req.body);
     const { title, description ,price,image, category, stock } = req.body;
     if (!title || !description||!price||!image || !category || !stock ) {
@@ -47,6 +64,7 @@ router.post('/', async (req, res) => {
     }
     const nuevoProducto = new Producto({ title, description ,price,image, category, stock });
     const productoGuardado = await nuevoProducto.save();
+    console.log("Producto agregado",productoGuardado);
     res.status(201).json(productoGuardado);
   } catch (err) {
     console.error('Error al crear producto:', err);
@@ -56,8 +74,16 @@ router.post('/', async (req, res) => {
 
 router.delete('/:_id', async (req,res)=>{
   try{
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ error: "No autorizado. Falta token." });
+    }
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const rolUser = decoded.rol;
+    if(rolUser!=="Admin") return res.status(401).json({error:"No autorizado"});
+    
     const {_id}=req.params;
-
+    console.log("Producto eliminado con ide ",_id);
     productos=await Producto.findByIdAndDelete((_id))
     res.status(201).json({ message: `Producto con id ${_id} eliminado` });
   }catch(err){

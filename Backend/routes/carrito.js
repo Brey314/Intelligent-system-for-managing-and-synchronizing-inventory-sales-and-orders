@@ -17,6 +17,8 @@ router.get("/", async(req, res) => {
     const idUser = decoded.id;
 
     const carrito = await Carrito.find({ idUser });
+    console.log("Accede usuario al carrito con token",token);
+
     res.json(carrito);
   } catch (err) {
     res.status(500).json({ error: 'Error al obtener usuarios' });
@@ -46,6 +48,8 @@ router.post("/", async(req, res) => {
       cuantity
     });
     const CarritoGuardado = await nuevoProducto.save();
+    console.log("Producto agregado con token=",token);
+    console.log(nuevoProducto);
     res.status(201).json({ message: "Producto agregado", CarritoGuardado });
   } catch (err) {
     console.error('Error al crear usuario:', err);
