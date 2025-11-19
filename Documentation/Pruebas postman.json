@@ -1,0 +1,223 @@
+{
+  "v": 10,
+  "name": "Pruebas",
+  "folders": [],
+  "requests": [
+    {
+      "v": "16",
+      "name": "Registro",
+      "method": "POST",
+      "endpoint": "http://localhost:5000/api/usuarios/register",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"name\":\"Santiago\",\n  \"email\":\"santiago@correo.com\",\n  \"user\":\"Santiago\",\n  \"pass\":\"123\",\n  \"rol\":\"Consumer\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "_ref_id": "req_mhvf7g80_828de2e8-3f6f-46a8-a563-383af46b8868"
+    },
+    {
+      "v": "16",
+      "name": "Login",
+      "method": "POST",
+      "endpoint": "http://localhost:5000/api/usuarios/login",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"name\":\"Santiago\",\n  \"email\":\"santiago@correo.com\",\n  \"user\":\"Santiago\",\n  \"pass\":\"123\",\n  \"rol\":\"Consumer\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "16",
+      "name": "Obtener productos",
+      "method": "GET",
+      "endpoint": "http://localhost:5000/api/productos",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "16",
+      "name": "publicar producto",
+      "method": "POST",
+      "endpoint": "http://localhost:5000/api/productos",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"title\":\"test\",\n  \"description\":\"test\",\n  \"price\":\"1\",\n  \"image\":\"test\",\n  \"category\":\"test\",\n  \"stock\":\"1\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "16",
+      "name": "Actualizar Prodcuto",
+      "method": "PUT",
+      "endpoint": "http://localhost:5000/api/productos/6913fb124fa85d1650be6146",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"title\":\"test\",\n  \"description\":\"test\",\n  \"price\":\"1\",\n  \"image\":\"test\",\n  \"category\":\"test\",\n  \"stock\":\"1\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "16",
+      "name": "agregar carrito",
+      "method": "POST",
+      "endpoint": "http://localhost:5000/api/carrito/",
+      "params": [],
+      "headers": [
+        {
+          "key": "Cookie",
+          "value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MTNmYTQ4NGZhODVkMTY1MGJlNjE0MiIsInVzZXIiOiJTYW50aWFnbyIsInJvbCI6IkNvbnN1bWVyIiwiaWF0IjoxNzYyOTE3NTkyLCJleHAiOjE3NjI5MjQ3OTJ9.2fX0ZLpgTWFbS5IwonGDaV8xGEqLx_z1f-3FOT_CwIg",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "none",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"_id\":\"6913fb124fa85d1650be6146\",\n  \"title\":\"test\",\n  \"description\":\"test\",\n  \"price\":\"1\",\n  \"image\":\"test\",\n  \"category\":\"test\",\n  \"stock\":\"1\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "16",
+      "name": "eliminar producto",
+      "method": "DELETE",
+      "endpoint": "http://localhost:5000/api/carrito/6913fe154fa85d1650be614d",
+      "params": [],
+      "headers": [
+        {
+          "key": "Cookie",
+          "value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MTNmYTQ4NGZhODVkMTY1MGJlNjE0MiIsInVzZXIiOiJTYW50aWFnbyIsInJvbCI6IkNvbnN1bWVyIiwiaWF0IjoxNzYyOTE3NTkyLCJleHAiOjE3NjI5MjQ3OTJ9.2fX0ZLpgTWFbS5IwonGDaV8xGEqLx_z1f-3FOT_CwIg",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "none",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "16",
+      "name": "actualizar carrito",
+      "method": "PUT",
+      "endpoint": "http://localhost:5000/api/carrito/6913fef94fa85d1650be6153",
+      "params": [],
+      "headers": [
+        {
+          "key": "Cookie",
+          "value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MTNmYTQ4NGZhODVkMTY1MGJlNjE0MiIsInVzZXIiOiJTYW50aWFnbyIsInJvbCI6IkNvbnN1bWVyIiwiaWF0IjoxNzYyOTE3NTkyLCJleHAiOjE3NjI5MjQ3OTJ9.2fX0ZLpgTWFbS5IwonGDaV8xGEqLx_z1f-3FOT_CwIg",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "none",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "  {\n    \"_id\": \"6913fef94fa85d1650be6153\",\n    \"idUser\": \"6913fa484fa85d1650be6142\",\n    \"title\": \"test\",\n    \"description\": \"test\",\n    \"price\": 1,\n    \"image\": \"test\",\n    \"category\": \"test\",\n    \"stock\": 1,\n    \"update_date\": \"2025-11-12T03:28:57.879Z\"\n  }"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "16",
+      "name": "buscar carrito",
+      "method": "GET",
+      "endpoint": "http://localhost:5000/api/carrito/",
+      "params": [],
+      "headers": [
+        {
+          "key": "Cookie",
+          "value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MTNmYTQ4NGZhODVkMTY1MGJlNjE0MiIsInVzZXIiOiJTYW50aWFnbyIsInJvbCI6IkNvbnN1bWVyIiwiaWF0IjoxNzYyOTE3NTkyLCJleHAiOjE3NjI5MjQ3OTJ9.2fX0ZLpgTWFbS5IwonGDaV8xGEqLx_z1f-3FOT_CwIg",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "none",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"_id\":\"6913fb124fa85d1650be6146\",\n  \"title\":\"test\",\n  \"description\":\"test\",\n  \"price\":\"1\",\n  \"image\":\"test\",\n  \"category\":\"test\",\n  \"stock\":\"1\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {}
+    }
+  ],
+  "auth": {
+    "authType": "none",
+    "authActive": true
+  },
+  "headers": [],
+  "variables": [],
+  "_ref_id": "coll_mhvduxvv_f9b4c988-6aa6-42c4-a13e-035a9e3f22d0"
+}
