@@ -2,8 +2,10 @@ import "./css/home.css";
 import { FaUser } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
 import { Link,useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Home() {
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { usuario, logout} = useAuth();
   return (
@@ -18,21 +20,31 @@ function Home() {
         </div>
         <nav className="navbar">
           <ul>
-            <li><a href="/#inicio">Inicio</a></li>
-            <li><Link to="/search">Productos</Link></li>
-            <li><a href="/#contacto">Contacto</a></li>
-            <li>
-                {usuario ? (
-                    <div>
-                        <p>Bienvenido, <strong>{usuario.user}</strong></p>
-                        <button onClick={logout}>Cerrar sesión</button>
-                    </div>
-                ) : (
-                    <Link id="login-btn" to="/login">
-                        <FaUser /> Iniciar Sesión
-                    </Link>
-                )}
-              </li>
+            <li><a className="btnH" href="/#inicio">Inicio</a></li>
+            <li><Link className="btnH" to="/search">Productos</Link></li>
+            <li><a className="btnH" href="/#contacto">Contacto</a></li>
+            <li 
+              className="usuario-menu-container"
+              onMouseEnter={() => setOpen(true)}
+              onMouseLeave={() => setOpen(false)}
+            >
+              {usuario ? (
+                <a className="btnH">
+                  Bienvenido, <strong>{usuario.user}</strong>
+                </a>
+              ) : (
+                <Link className="btnH" id="login-btn" to="/login">
+                  <FaUser /> Iniciar Sesión
+                </Link>
+              )}
+
+              {usuario && open && (
+                <div className="usuario-dropdown">
+                  <Link to="/profile" className="dropdown-item">Perfil</Link>
+                  <button onClick={logout} className="dropdown-item">Cerrar sesión</button>
+                </div>
+              )}
+            </li>
             <li>
               <Link to="/shoppingcart">
                 <img src="/assets/img/carrito.png" alt="Carrito de compras" />

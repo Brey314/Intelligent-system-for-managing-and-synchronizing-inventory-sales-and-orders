@@ -4,13 +4,14 @@ const cors = require('cors');
 const productosRoutes = require('./routes/productos');
 const usuariosRoutes = require('./routes/usuarios');
 const carritoRoutes= require('./routes/carrito');
+const addressRoutes = require('./routes/address');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
-const JWT_SECRET = process.env.JWT_SECRET; // 👈 ya viene del .env
+const PORT = process.env.PORT;
+const JWT_SECRET = process.env.JWT_SECRET; 
 const MONGO_URI = process.env.MONGO_URI;
 // Middlewares
 app.use(cors({
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use('/api/productos', productosRoutes);
 app.use('/api/usuarios',usuariosRoutes)
 app.use('/api/carrito',carritoRoutes)
+app.use("/api", addressRoutes);
 
 // Conexión MongoDB
 mongoose.connect(MONGO_URI, {

@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 const apiURL = "http://localhost:5000/api/carrito";
 
 function ShoppingCart() {
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { usuario, logout } = useAuth();
   const [cart, setCart] = useState([]);
@@ -141,18 +142,23 @@ function ShoppingCart() {
           <nav className="navbar">
             <ul>
               <li>
-                <Link to="/">Inicio</Link>
+                <Link className="btnH"  to="/">Inicio</Link>
               </li>
               <li>
-                <Link to="/search">Productos</Link>
+                <Link className="btnH" to="/search">Productos</Link>
               </li>
-              <li>
-                <p>Bienvenido {usuario?.user}</p>
-              </li>
-              <li>
-                <Link onClick={logout} to="/">
-                  Cerrar sesión
-                </Link>
+              <li 
+                className="usuario-menu-container"
+                onMouseEnter={() => setOpen(true)}
+                onMouseLeave={() => setOpen(false)}
+              >
+                <p className="btnH">Bienvenido {usuario?.user}</p>
+                {open && (
+                <div className="usuario-dropdown">
+                  <Link to="/profile" className="dropdown-item">Perfil</Link>
+                  <button onClick={logout} className="dropdown-item">Cerrar sesión</button>
+                </div>
+              )}
               </li>
               <li>
                 <Link to="/shoppingcart">
@@ -179,7 +185,7 @@ function ShoppingCart() {
 
                 <div className="cart-item-info">
                   <h3>{prod.title}</h3>
-                  <p className="price">COP {prod.price} $</p>
+                  <p className="price">COP {prod.price.toLocaleString()} $</p>
                   <p className="available">Disponible</p>
 
                   <div className="cart-item-actions">
@@ -214,7 +220,7 @@ function ShoppingCart() {
               <h2>
                 Subtotal ({cuantity} productos):
               </h2>
-              <h1>COP {subtotal} $</h1>
+              <h1>COP {subtotal.toLocaleString()} $</h1>
             </div>
             <button className="pay">Proceder al pago</button>
           </div>

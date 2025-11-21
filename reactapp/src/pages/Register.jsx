@@ -56,16 +56,16 @@ function Register() {
     <header className="header">
       <div className="container">
         <div className="logo">
-          <Link to="index.html">
+          <Link to="/">
             <img src="/assets/img/logo.svg.png" alt="Ktronix" />
           </Link>
         </div>
         <nav className="navbar">
           <ul>
-            <li><a href="/#inicio">Inicio</a></li>
-            <li><a href="/search">Productos</a></li>
+            <li><a className="btnH" href="/#inicio">Inicio</a></li>
+            <li><a className="btnH" href="/search">Productos</a></li>
             <li>
-              <a id="login-btn" href="/login">
+              <a className="btnH" id="login-btn" href="/login">
                 <FaUser /> Iniciar Sesión
               </a>
             </li>

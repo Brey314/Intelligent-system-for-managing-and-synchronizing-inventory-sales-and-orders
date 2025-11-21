@@ -40,7 +40,6 @@ header .container {
     align-items: center;
     width: 90%;
     max-width: 1200px;
-    
 }
 
 .logo img {
@@ -63,14 +62,14 @@ header .container {
     white-space: nowrap;
 }
 
-.navbar a {
+.btnH {
     text-decoration: none;
     color: var(--light);
     font-weight: 500;
     transition: color 0.3s;
     
 }
-.navbar p {
+.btnH {
     text-decoration: none;
     color: var(--light);
     font-weight: 500;
@@ -82,11 +81,11 @@ header .container {
     width: auto;
 }
 
-.navbar a.active {
+.btnH.active {
     color: var(--primary);
 }
 
-.navbar a.active::after {
+.btnH.active::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -96,9 +95,66 @@ header .container {
     background-color: var(--primary);
 }
 
-.navbar a:hover {
+.btnH:hover {
     color: var(--primary);
 }
+
+/* Contenedor del elemento que activa el menú */
+.usuario-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+
+    /* Menú superpuesto */
+.usuario-dropdown {
+    position: absolute;
+    top: 60%;        /* Aparece debajo del trigger */
+    right: 0;         /* Alineado a la derecha */
+    margin-top: 8px; 
+    width: 160px;
+
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+
+    z-index: 9999;    /* Encima de todo */
+}
+
+    /* Items del menú */
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+
+    background: none;
+    border: none;
+
+    text-align: left;
+    text-decoration: none;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+
+}
+.dropdown-item .link{
+    color: #000;
+}
+
+    /* Efecto hover */
+.dropdown-item:hover {
+    background: #f2f2f2;
+}
+
+    /* Estilos login opcionales */
+.login-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+} 
+
 
 #login-btn {
     display: inline-flex;

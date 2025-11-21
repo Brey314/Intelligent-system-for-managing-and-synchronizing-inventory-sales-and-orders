@@ -68,6 +68,27 @@ router.get('/perfil', verificarToken, async (req, res) => {
   res.json(usuario);
 });
 
+router.put('/perfil', verificarToken, async (req, res) => {
+  try {
+    const token=req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ error: "No autorizado. Falta token." });
+    }
+    const { name, email, user } = req.body;
+
+    const usuario = await Usuario.findByIdAndUpdate(
+      req.usuario.id,
+      { name, email, user },
+      { new: true }
+    ).select("-pass");
+
+    res.json({ message: "Perfil actualizado", usuario });
+  } catch (err) {
+    console.error("Error actualizando perfil:", err);
+    res.status(500).json({ error: "Error actualizando" });
+  }
+});
+
 router.post('/logout', (req, res) => {
   res.clearCookie('token');
   console.log("Salida de sesión");
@@ -75,7 +96,7 @@ router.post('/logout', (req, res) => {
 });
 
 router.get("/check", verificarToken, async (req, res) => {
-  const usuario = await Usuario.findById(req.usuario.id).select("user rol email");
+  const usuario = await Usuario.findById(req.usuario.id).select("name email user rol ");
   console.log("Verificacion de usuario",usuario);
   res.json({ usuario });
 });

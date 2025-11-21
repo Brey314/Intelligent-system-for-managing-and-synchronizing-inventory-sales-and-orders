@@ -7,6 +7,7 @@ import { Link,useNavigate } from "react-router-dom";
 const apiURL = "http://localhost:5000/api/productos";
 
 function Search() {
+    const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const { usuario, logout} = useAuth();
     const [productos, setProductos] = useState([]);
@@ -94,38 +95,49 @@ function Search() {
     return (
         <>
         {/* Header */}
-        <header className="header">
-            <div className="container">
-                <div className="logo">
-                    <Link to="/">
-                    <img src="/assets/img/logo.svg.png" alt="Ktronix" />
-                    </Link>
+    <header className="header">
+      <div className="container">
+        <div className="logo">
+          <Link to="/">
+            <img src="/assets/img/logo.svg.png" alt="Ktronix" />
+          </Link>
+        </div>
+        <nav className="navbar">
+          <ul>
+            <li><a className="btnH" href="/#inicio">Inicio</a></li>
+            <li><Link className="btnH" to="/search">Productos</Link></li>
+            <li><a className="btnH" href="/#contacto">Contacto</a></li>
+            <li 
+              className="usuario-menu-container"
+              onMouseEnter={() => setOpen(true)}
+              onMouseLeave={() => setOpen(false)}
+            >
+              {usuario ? (
+                <a className="btnH">
+                  Bienvenido, <strong>{usuario.user}</strong>
+                </a>
+              ) : (
+                <Link id="login-btn" to="/login" className="login-link">
+                  <FaUser /> Iniciar Sesión
+                </Link>
+              )}
+
+              {usuario && open && (
+                <div className="usuario-dropdown">
+                  <Link to="/profile" className="dropdown-item">Perfil</Link>
+                  <button onClick={logout} className="dropdown-item">Cerrar sesión</button>
                 </div>
-                <nav className="navbar">
-                <ul>
-                    <li><Link to="/">Inicio</Link></li>
-                    <li><Link to="/search">Productos</Link></li>
-                    <li>
-                        {usuario ? (
-                            <div>
-                                <p>Bienvenido, <strong>{usuario.user}</strong></p>
-                                <button onClick={logout}>Cerrar sesión</button>
-                            </div>
-                        ) : (
-                            <Link id="login-btn" to="/login">
-                                <FaUser /> Iniciar Sesión
-                            </Link>
-                        )}
-                    </li>
-                    <li>
-                        <Link to="/shoppingcart">
-                            <img src="/assets/img/carrito.png" alt="Carrito de compras" />
-                        </Link>
-                    </li>
-                </ul>
-                </nav>
-            </div>
-        </header>
+              )}
+            </li>
+            <li>
+              <Link to="/shoppingcart">
+                <img src="/assets/img/carrito.png" alt="Carrito de compras" />
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
         <main className="product">
             

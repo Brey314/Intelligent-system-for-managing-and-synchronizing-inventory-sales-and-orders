@@ -41,16 +41,16 @@ export default function Login() {
   <header className="header">
     <div className="container">
       <div className="logo">
-        <Link to="index.html">
+        <Link to="/">
           <img src="/assets/img/logo.svg.png" alt="Ktronix" />
         </Link>
       </div>
       <nav className="navbar">
         <ul>
-          <li><Link to="/">Inicio</Link></li>
-          <li><Link to="/search">Productos</Link></li>
+          <li><Link className="btnH" to="/">Inicio</Link></li>
+          <li><Link className="btnH" to="/search">Productos</Link></li>
           <li>
-            <a id="login-btn" href="/Register">
+            <a className="btnH" id="login-btn" href="/Register">
               <FaUser /> Registrarse
             </a>
           </li>

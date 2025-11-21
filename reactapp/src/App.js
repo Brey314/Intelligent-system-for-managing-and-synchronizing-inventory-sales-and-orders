@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Search from "./pages/Search";
 import ShoppingCart from "./pages/shoppingCart";
 import Admin from "./pages/admin";
+import Porfile from "./pages/profile";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -16,9 +17,11 @@ function App() {
         <Routes>
           {/* Rutas públicas */}
           <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/search" element={<Search />} />
+          
 
           {/* Rutas protegidas */}
           <Route
@@ -26,6 +29,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <ShoppingCart />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Porfile />
               </ProtectedRoute>
             }
           />
