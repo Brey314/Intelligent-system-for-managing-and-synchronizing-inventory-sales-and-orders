@@ -101,4 +101,82 @@ router.get("/check", verificarToken, async (req, res) => {
   res.json({ usuario });
 });
 
+// Obtener usuarios (buscar por email)
+router.get("/", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ error: "No autorizado. Falta token." });
+    }
+
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const roll = decoded.rol;
+    if(roll!=="Admin"){
+      return res.status(401).json({ error: "No autorizado." });
+    }
+    const { email } = req.query;
+
+    if (email) {
+      const users = await Usuario.find({ email: { $regex: email, $options: "i" } })
+        .select("-pass");
+      return res.json(users);
+    }
+
+    const users = await Usuario.find().select("-pass");
+    res.json(users);
+
+  } catch (err) {
+    console.error("Error listando usuarios:", err);
+    res.status(500).json({ error: "Error al obtener usuarios" });
+  }
+});
+
+// Editar usuario por ID
+router.put("/:id", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ error: "No autorizado. Falta token." });
+    }
+
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const roll = decoded.rol;
+    if(roll!=="Admin"){
+      return res.status(401).json({ error: "No autorizado." });
+    }
+    const { name, email, user, rol } = req.body;
+
+    const editado = await Usuario.findByIdAndUpdate(
+      req.params.id,
+      { name, email, user, rol },
+      { new: true }
+    ).select("-pass");
+
+    res.json({ message: "Usuario actualizado", editado });
+  } catch (err) {
+    res.status(500).json({ error: "Error al editar usuario" });
+  }
+});
+
+// Eliminar usuario
+router.delete("/:id", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ error: "No autorizado. Falta token." });
+    }
+
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const roll = decoded.rol;
+    if(roll!=="Admin"){
+      return res.status(401).json({ error: "No autorizado." });
+    }
+    await Usuario.findByIdAndDelete(req.params.id);
+    res.json({ message: "Usuario eliminado" });
+  } catch (err) {
+    res.status(500).json({ error: "Error al eliminar usuario" });
+  }
+});
+
+
 module.exports = router;
