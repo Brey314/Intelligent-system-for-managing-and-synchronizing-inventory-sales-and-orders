@@ -130,6 +130,33 @@ function ShoppingCart() {
     }
   }, [usuario, cart]);
 
+  const checkout = async () => {
+    const items = cart.map(prod => ({
+      name: prod.title,
+      unit_amount: (prod.price+"00"),
+      quantity: prod.cuantity,
+      currency: "cop"
+    }));
+
+  const res = await fetch("http://localhost:5000/api/create-checkout-session", {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      items,
+      success_url: "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "http://localhost:3000/cancel"
+    })
+  });
+
+  const data = await res.json();
+  if (data.url) {
+    window.location.href = data.url; // redirige a Stripe Checkout
+  } else {
+    console.error("No session url returned", data);
+  }
+};
+
   return (
     <>
       <header className="header">
@@ -222,7 +249,7 @@ function ShoppingCart() {
               </h2>
               <h1>COP {subtotal.toLocaleString()} $</h1>
             </div>
-            <button className="pay">Proceder al pago</button>
+            <button className="pay" onClick={checkout}>Proceder al pago</button>
           </div>
         </div>
       </main>

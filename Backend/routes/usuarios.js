@@ -114,8 +114,17 @@ router.get("/", async (req, res) => {
     if(roll!=="Admin"){
       return res.status(401).json({ error: "No autorizado." });
     }
-    const { email } = req.query;
+    const { email, _id} = req.query;
 
+    if (_id) {
+      try {
+        const user = await Usuario.findById(_id).select("-pass");
+        if (!user) return res.json([]);
+        return res.json([user]); // para que coincida con la respuesta tipo array
+      } catch (e) {
+        return res.status(400).json({ error: "ID inválido" });
+      }
+    }
     if (email) {
       const users = await Usuario.find({ email: { $regex: email, $options: "i" } })
         .select("-pass");

@@ -62,9 +62,12 @@ function Search() {
     }
     if (!searchEmail) return;
 
-    const res = await fetch(`${apiURLU}/?email=${searchEmail}`,{credentials: "include"});
-    const data = await res.json();
-
+    let res = await fetch(`${apiURLU}/?email=${searchEmail}`,{credentials: "include"});
+    let data = await res.json();
+    if(data.length===0){
+      res = await fetch(`${apiURLU}/?_id=${searchEmail}`,{credentials: "include"});
+      data=await res.json();
+    }
     if (Array.isArray(data)) {
       setUsers(data);
     } else {
@@ -219,15 +222,15 @@ function Search() {
       </header>
 
       <main className="product">
-        <div className="top-menu flex gap-4 mb-6">
+        <div className="menu-toggle">
           <button
-            className={`btnP ${section === "products" ? "active" : ""}`}
+            className={`btnP toggle ${section === "products" ? "active" : ""}`}
             onClick={() => setSection("products")}
             >
             Productos
           </button>
           <button
-            className={`btnP ${section === "users" ? "active" : ""}`}
+            className={`btnP toggle ${section === "users" ? "active" : ""}`}
             onClick={() => setSection("users")}
             >
             Usuarios
@@ -385,18 +388,17 @@ function Search() {
         {section === "users" &&(
           <div className="user-section">
 
-            <h2>Gestión de Usuarios</h2>
 
             {/* BUSCADOR */}
             <form onSubmit={handleSearch} className="search">
               <input
                 type="text"
-                placeholder="Buscar por email"
+                placeholder="Buscar por email o id"
                 value={searchEmail}
                 onChange={(e) => setSearchEmail(e.target.value)}
                 className="searchbar"
               />
-              <button className="btnP">Buscar</button>
+              <button type="submit" className="btn">Buscar Usuario</button>
             </form>
 
             <div className="grid">
@@ -431,13 +433,15 @@ function Search() {
                       />
 
                       <h3>Rol</h3>
-                      <input
+                      <select
                         value={editedUser.rol}
                         onChange={(e) =>
                           setEditedUser({ ...editedUser, rol: e.target.value })
                         }
-                      />
-
+                      >
+                        <option value="Admin">Administrador</option>
+                        <option value="Consumner" selected>Cliente</option>
+                      </select>
                       <button className="btnP" onClick={saveEditU}>Guardar</button>
                       <button className="btnP cancel" onClick={() => setEditing(null)}>
                         Cancelar

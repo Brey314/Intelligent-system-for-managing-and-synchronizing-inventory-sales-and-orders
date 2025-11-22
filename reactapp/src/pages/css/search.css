@@ -43,7 +43,7 @@
 .product .btnP{
     background-color: var(--light-gray);
     color: var(--primary-dark);
-    border: none;
+    border: 2px solid var(--primary-dark);
     padding: 12px 20px;
     font-size: 10px;
     font-weight: bold;
@@ -69,4 +69,34 @@
     align-items: center;
     width: 90%;
     
+}
+
+/* Contenedor de los botones */
+.menu-toggle {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 20px;
+    margin: 20px auto;
+}
+
+/* Botones base */
+.menu-toggle .toggle {
+    padding: 10px 22px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid var(--primary-dark);
+    background-color: var(--light-gray);
+    color: var(--primary-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.06);
+    letter-spacing: 1px;
+}
+
+/* Cuando está activo (similar a tu ejemplo) */
+.menu-toggle .toggle.active {
+    background: linear-gradient(135deg, var(--primary-dark));
+    color: var(--light-gray);
+    border-color: transparent;
+    box-shadow: 0px 4px 10px rgba(255, 0, 140, 0.25);
 }
