@@ -2,11 +2,11 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function ProtectedRoute({ children }) {
-  const { usuario } = useAuth();
+  const { usuario, loading} = useAuth();
   const location = useLocation();
 
   // 1. Usuario aún no cargado (null)
-  if (usuario === null) {
+  if (loading) {
     return <div>Cargando...</div>;
   }
 

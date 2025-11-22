@@ -53,11 +53,12 @@ function ShoppingCart() {
   };
 
   // Cambiar cantidad
-  const cambiarCantidad = async (_id, cuantity, op) => {
+  const cambiarCantidad = async (_id, cuantity,stock, op) => {
     try {
       let newcuantity = cuantity;
       if (op === "+") newcuantity++;
       else if (cuantity > 1) newcuantity--;
+      else if (cuantity===stock) return;
       else {
         eliminarDelCarrito(_id);
         return;
@@ -132,30 +133,32 @@ function ShoppingCart() {
 
   const checkout = async () => {
     const items = cart.map(prod => ({
+      _id: prod._id,
+      productId: prod.idProd,
       name: prod.title,
-      unit_amount: (prod.price+"00"),
+      unit_amount: (prod.price),
       quantity: prod.cuantity,
       currency: "cop"
     }));
 
-  const res = await fetch("http://localhost:5000/api/create-checkout-session", {
-    method: "POST",
-    credentials: "include",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      items,
-      success_url: "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:3000/cancel"
-    })
-  });
+    const res = await fetch("http://localhost:5000/api/create-checkout-session", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items,
+        success_url: "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url: "http://localhost:3000/cancel"
+      })
+    });
 
-  const data = await res.json();
-  if (data.url) {
-    window.location.href = data.url; // redirige a Stripe Checkout
-  } else {
-    console.error("No session url returned", data);
-  }
-};
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url; // redirige a Stripe Checkout
+    } else {
+      console.error("No session url returned", data);
+    }
+  };
 
   return (
     <>
@@ -179,11 +182,14 @@ function ShoppingCart() {
                 onMouseEnter={() => setOpen(true)}
                 onMouseLeave={() => setOpen(false)}
               >
-                <p className="btnH">Bienvenido {usuario?.user}</p>
+                <p className="btnH">Bienvenido, <strong>{usuario?.user}</strong></p>
                 {open && (
                 <div className="usuario-dropdown">
+                  {usuario.rol === "Admin" ? (
+                    <Link to="/admin" className="dropdown-item">Administrar</Link>
+                  ) : null}
                   <Link to="/profile" className="dropdown-item">Perfil</Link>
-                  <button onClick={logout} className="dropdown-item">Cerrar sesión</button>
+                  <button onClick={async () => { await logout(); navigate("/login"); }} className="dropdown-item">Cerrar sesión</button>
                 </div>
               )}
               </li>
@@ -218,13 +224,13 @@ function ShoppingCart() {
                   <div className="cart-item-actions">
                     <div className="quantity">
                       <button
-                        onClick={() => cambiarCantidad(prod._id, prod.cuantity, "-")}
+                        onClick={() => cambiarCantidad(prod._id, prod.cuantity,prod.stock, "-")}
                       >
                         -
                       </button>
                       <span>{prod.cuantity}</span>
                       <button
-                        onClick={() => cambiarCantidad(prod._id, prod.cuantity, "+")}
+                        onClick={() => cambiarCantidad(prod._id, prod.cuantity,prod.stock, "+")}
                       >
                         +
                       </button>

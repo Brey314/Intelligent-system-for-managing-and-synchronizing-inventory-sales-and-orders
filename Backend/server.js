@@ -20,15 +20,9 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(express.json());
 app.use(cookieParser());
-
-// Para todas las rutas normales usar JSON
-app.use((req, res, next) => {
-  // Si la ruta es /api/webhook, saltar el json parser
-  if (req.originalUrl === '/api/webhook') return next();
-  express.json()(req, res, next);
-});
+app.use('/api/webhook', express.raw({ type: 'application/json' }));
+app.use(express.json());
 
 // Rutas
 app.use('/api/productos', productosRoutes);

@@ -104,9 +104,8 @@ function Search() {
         </div>
         <nav className="navbar">
           <ul>
-            <li><a className="btnH" href="/#inicio">Inicio</a></li>
+            <li><Link className="btnH" to="/">Inicio</Link></li>
             <li><Link className="btnH" to="/search">Productos</Link></li>
-            <li><a className="btnH" href="/#contacto">Contacto</a></li>
             <li 
               className="usuario-menu-container"
               onMouseEnter={() => setOpen(true)}
@@ -124,6 +123,9 @@ function Search() {
 
               {usuario && open && (
                 <div className="usuario-dropdown">
+                  {usuario.rol === "Admin" ? (
+                    <Link to="/admin" className="dropdown-item">Administrar</Link>
+                  ) : null}
                   <Link to="/profile" className="dropdown-item">Perfil</Link>
                   <button onClick={logout} className="dropdown-item">Cerrar sesión</button>
                 </div>

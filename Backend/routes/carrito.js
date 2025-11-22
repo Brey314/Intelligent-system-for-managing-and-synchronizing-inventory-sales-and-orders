@@ -77,6 +77,20 @@ router.delete("/:_id", async(req, res) => {
   }
 });
 
+// Eliminar producto por id al comprar
+router.delete("/payed/:_id", async(req, res) => {
+  try{
+    const { _id } = req.params;
+    //console.log(_id);
+    carrito = await Carrito.findByIdAndDelete((_id));
+    console.log("Producto comprado del carrito y eliminado");
+    res.status(201).json({ message: `Producto con id ${_id} eliminado` });
+  }catch (err) {
+    console.error('Error al actualizar carrito:', err);
+    res.status(500).json({ error: 'Error al actualizar producto' });
+  }
+});
+
 router.put("/:_id", async(req, res) => {
   try{
     const token = req.cookies.token;
@@ -84,10 +98,10 @@ router.put("/:_id", async(req, res) => {
       return res.status(401).json({ error: "No autorizado. Falta token." });
     }
     const decoded = jwt.verify(token, JWT_SECRET);
-    const userid = decoded._id;
+    const userId = decoded._id;
 
     //console.log(' Datos recibidos en PUT:', req.body);
-    
+
     const {_id}=req.params;
     const updatedData = req.body;
     let producto=null;
@@ -96,8 +110,6 @@ router.put("/:_id", async(req, res) => {
     if (!producto) {
       return res.status(404).json({ message: `Producto con id ${_id} no encontrado en el carrito` });
     }
-    // Actualizar cantidad
-    producto.cuantity = updatedData;
 
     res.json({ message: "Cantidad actualizada", producto });
     console.log("Producto actualizado con token=",token);

@@ -96,7 +96,7 @@ function Search() {
 
   const saveEdit = async () => {
     try {
-      const resp = await fetch(`${apiURL}/${editingId}`, {
+      const resp = await fetch(`${apiURL}/admin/${editingId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -198,16 +198,20 @@ function Search() {
           <nav className="navbar">
             <ul>
               <li><Link className="btnH" to="/">Inicio</Link></li>
+              <li><Link className="btnH" to="/search">Productos</Link></li>
               <li 
                 className="usuario-menu-container"
                 onMouseEnter={() => setOpen(true)}
                 onMouseLeave={() => setOpen(false)}
                 >
-                <p className="btnH">Bienvenido {usuario?.user}</p>
+                <p className="btnH">Bienvenido, <strong>{usuario?.user}</strong></p>
                 {open && (
                   <div className="usuario-dropdown">
+                    {usuario.rol === "Admin" ? (
+                      <Link to="/admin" className="dropdown-item">Administrar</Link>
+                    ) : null}
                     <Link to="/profile" className="dropdown-item">Perfil</Link>
-                    <button onClick={logout} className="dropdown-item">Cerrar sesión</button>
+                    <button onClick={async () => { await logout(); navigate("/login"); }} className="dropdown-item" >Cerrar sesión</button>
                   </div>
                 )}
               </li>

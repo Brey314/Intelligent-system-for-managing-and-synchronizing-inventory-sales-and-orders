@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 });
 
 // PUT
-router.put('/:id', async (req, res) => {
+router.put('/admin/:id', async (req, res) => {
   try {
     const token = req.cookies.token;
     if (!token) {
@@ -47,7 +47,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// POST
+// Actualizar admin
 router.post('/', async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -93,5 +93,20 @@ router.delete('/:_id', async (req,res)=>{
   }
 });
 
+//Actualizar por pagos
+router.put('/:id/stock', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { quantity } = req.body;
+    const product = await Producto.findById(id);
+    if (!product) return res.status(404).json({ error: 'Producto no encontrado' });
+    if (product.stock < quantity) return res.status(400).json({ error: 'Stock insuficiente' });
+    product.stock -= quantity;
+    await product.save();
+    res.json({ message: 'Stock actualizado', stock: product.stock });
+  } catch (err) {
+    res.status(500).json({ error: 'Error al actualizar stock' });
+  }
+});
 
 module.exports = router;

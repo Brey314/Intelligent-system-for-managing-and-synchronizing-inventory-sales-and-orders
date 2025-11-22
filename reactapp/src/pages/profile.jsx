@@ -4,9 +4,11 @@ import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 function Profile() {
+  const navigate = useNavigate();
+  const { logout} = useAuth();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [usuario, setUsuario, logout] = useState(null);
+  const [usuario, setUsuario] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [direcciones, setDirecciones] = useState([]);
 
@@ -220,11 +222,14 @@ function Profile() {
                 onMouseEnter={() => setOpen(true)}
                 onMouseLeave={() => setOpen(false)}
                 >
-                <p className="btnH">Bienvenido {usuario?.user}</p>
+                <p className="btnH">Bienvenido, <strong>{usuario?.user}</strong></p>
                 {open && (
                   <div className="usuario-dropdown">
+                    {usuario.rol === "Admin" ? (
+                      <Link to="/admin" className="dropdown-item">Administrar</Link>
+                    ) : null}
                     <Link to="/profile" className="dropdown-item">Perfil</Link>
-                    <button onClick={logout} className="dropdown-item">Cerrar sesión</button>
+                    <button onClick={async () => { await logout(); navigate("/login"); }} className="dropdown-item">Cerrar sesión</button>
                   </div>
                 )}
               </li>
