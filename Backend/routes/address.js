@@ -7,7 +7,7 @@ require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // Obtener todas las direcciones del usuario
-router.get("/addresses/:userId", verificarToken, async (req, res) => {
+router.get("/:userId", verificarToken, async (req, res) => {
   try {
     const { userId } = req.params;
 
@@ -24,7 +24,7 @@ router.get("/addresses/:userId", verificarToken, async (req, res) => {
 });
 
 // Obtener una dirección específica
-router.get("/addresses/:addressId", verificarToken, async (req, res) => {
+router.get("/:addressId", verificarToken, async (req, res) => {
   try {
     const { addressId } = req.params;
     const address = await Address.findById(addressId);
@@ -43,7 +43,7 @@ router.get("/addresses/:addressId", verificarToken, async (req, res) => {
 });
 
 // Crear una nueva dirección
-router.post("/addresses", verificarToken, async (req, res) => {
+router.post("/", verificarToken, async (req, res) => {
   try {
     const token = req.cookies.token;
     const decoded = jwt.verify(token, JWT_SECRET);
@@ -66,7 +66,7 @@ router.post("/addresses", verificarToken, async (req, res) => {
 });
 
 // Actualizar una dirección
-router.put("/addresses/:_id", verificarToken, async (req, res) => {
+router.put("/:_id", verificarToken, async (req, res) => {
   try {
     const { _id } = req.params;
     console.log("PUT request for address ID:", _id);
@@ -96,10 +96,8 @@ router.put("/addresses/:_id", verificarToken, async (req, res) => {
   }
 });
 
-// ===============================
 // Eliminar dirección
-// ===============================
-router.delete("/addresses/:_id", verificarToken, async (req, res) => {
+router.delete("/:_id", verificarToken, async (req, res) => {
   try {
     const { _id } = req.params;  // Change from addressId to _id
     const address = await Address.findById(_id);  // Use _id instead of addressId

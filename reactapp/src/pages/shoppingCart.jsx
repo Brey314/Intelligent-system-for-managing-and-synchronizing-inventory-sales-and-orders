@@ -11,9 +11,16 @@ function ShoppingCart() {
   const { usuario, logout } = useAuth();
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const [subtotal, setSubtotal] = useState(0);
   const [cuantity, setCantidad] = useState(0);
 
+  const [Address, setAddress] = useState(null);
+  const [addressLoading, setAddressLoading] = useState(true);
+  const [selectAddress, choseAddress]= useState(0);
+
+  const [showAddressModal, setShowAddressModal] = useState(false); // Controla la visibilidad del modal
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState(0); // Índice de la dirección seleccionada
   const iduser = usuario?.id;
   
   // función auxiliar para obtener URL con idUser
@@ -126,8 +133,10 @@ function ShoppingCart() {
 
   useEffect(() => {
     if (usuario) {
+      getAddress(usuario._id);
       obtenerPrecio();
       obtenerCantidad();
+      setLoading(false);
     }
   }, [usuario, cart]);
 
@@ -160,6 +169,113 @@ function ShoppingCart() {
     }
   };
 
+  const getAddress = async (id) => {
+    if (!id) return;
+    setAddressLoading(true);
+    try {
+      const response = await fetch(`http://localhost:5000/api/addresses/${id}`,{
+        credentials: "include",
+      });
+      if (!response.ok) {
+        throw new Error('Error al obtener las direcciones');
+      }
+      const data = await response.json();
+
+      setAddress(Array.isArray(data) ? data : (data ? [data] : []));
+    } catch (error) {
+      console.error("Error al cargar la dirección de envío:", error);
+      setAddress([]);
+    } finally {
+      setAddressLoading(false);
+    }
+  };
+
+  const handleAddressSelection = (index) => {
+    setSelectedAddressIndex(index);
+    setShowAddressModal(false); // Cierra el modal al seleccionar
+  };
+
+  const renderAddressCard = () => {
+    if (addressLoading) {
+      return <div className="shipping-card-container"><p>Cargando dirección...</p></div>;
+    }
+
+    if (!Address || Address.length === 0) {
+      return (
+        <div className="shipping-card-container no-address">
+          <p className="no-address-text">No hay dirección de envío registrada.</p>
+          <button className="btn-add-address" onClick={() => {navigate("/profile");}}>
+            + Agregar Dirección
+          </button>
+        </div>
+      );
+    }
+    const selected = Address[selectedAddressIndex] || Address[0];
+    return (
+        <div className="shipping-card-container">
+          <div className="shipping-card-header">
+            <h3>Dirección de Envío</h3>
+            <span className="change-link" onClick={() => setShowAddressModal(true)}>
+              Cambiar
+            </span>
+          </div>
+          <p className="address-info-name">
+            {selected.name}
+          </p>
+          <p className="address-info-line">
+            {selected.address}
+          </p>
+          <p className="address-info-line">
+            {selected.city}, {selected.country} {selected.postalCode}
+          </p>
+          <p className="address-info-line">
+            Teléfono: {selected.phone}
+          </p>
+        </div>
+    );
+  };
+
+  const renderAddressModal = () => {
+    if (!showAddressModal) return null;
+
+    return (
+      <div className="modal-overlay" onClick={() => setShowAddressModal(false)}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <h2>Selecciona una Dirección</h2>
+          <div className="address-grid">
+            {Address.map((dir, index) => (
+              <div 
+                key={dir._id} 
+                className={`modal-address-item ${index === selectedAddressIndex ? 'selected' : ''}`}
+                onClick={() => handleAddressSelection(index)} // Haz clic en la tarjeta para seleccionar
+              >
+                <div className="radio-button-container">
+                  <input
+                    type="radio"
+                    name="addressSelection"
+                    checked={index === selectedAddressIndex}
+                    onChange={() => handleAddressSelection(index)} // Actualiza al cambiar el radio
+                  />
+                  <span className="radio-custom"></span>
+                  <div className="address-details">
+                    <p className="address-name-modal">
+                      {dir.name} 
+                      {index === selectedAddressIndex && <span className="current-indicator">(Actual)</span>}
+                    </p>
+                    <p>{dir.address}</p>
+                    <p>{dir.city}, {dir.country}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button className="btn-close-modal" onClick={() => setShowAddressModal(false)}>Cerrar</button>
+        </div>
+      </div>
+    );
+  };
+
+  const dir = Address;
   return (
     <>
       <header className="header">
@@ -248,6 +364,9 @@ function ShoppingCart() {
             ))}
           </div>
 
+        <div className="summary-sidebar">
+          {renderAddressCard()} {/* <-- Renderiza la tarjeta de dirección aquí */}
+          <br></br>
           <div className="subtotal">
             <div className="text">
               <h2>
@@ -256,8 +375,10 @@ function ShoppingCart() {
               <h1>COP {subtotal.toLocaleString()} $</h1>
             </div>
             <button className="pay" onClick={checkout}>Proceder al pago</button>
+            </div>
           </div>
         </div>
+        {renderAddressModal()}
       </main>
     </>
   );

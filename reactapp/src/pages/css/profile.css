@@ -163,3 +163,179 @@
 .btn-cancelar-dir:hover {
   background: #9e9e9e;
 }
+
+
+.add-address-placeholder {
+  border: 2px dashed #bdbdbd; /* Borde punteado */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fdfdfd;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px; /* Altura fija para que se parezca al de Amazon */
+}
+
+.add-address-placeholder:hover {
+  border-color: #004a8f;
+  color: #004a8f;
+  background-color: #eaf3fd;
+}
+
+.add-icon {
+  font-size: 48px;
+  line-height: 1; /* Para centrar el + */
+  color: #bdbdbd;
+  margin-bottom: 10px;
+}
+.add-address-placeholder:hover .add-icon {
+    color: #004a8f;
+}
+
+.add-address-placeholder p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+  margin: 0;
+}
+.add-address-placeholder:hover p {
+    color: #004a8f;
+}
+
+.direccion-item-display {
+  border: 1px solid #e0e0e0; /* Borde más suave */
+  border-radius: 8px;
+  padding: 20px;
+  text-align: left;
+  background: #ffffff; /* Fondo blanco */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sutil sombra */
+  position: relative;
+}
+
+.default-indicator {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.default-indicator img {
+  height: 18px;
+  margin-left: 5px;
+}
+
+.address-name {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 17px;
+}
+
+.address-line {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.4;
+  margin-bottom: 4px; /* Espacio entre líneas */
+}
+
+.address-line:last-of-type {
+    margin-bottom: 15px; /* Más espacio antes de los enlaces */
+}
+
+.direccion-links {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.link-button {
+  color: #007185; /* Color de enlace similar a Amazon */
+  cursor: pointer;
+  text-decoration: none; /* No subrayado por defecto */
+}
+
+.link-button:hover {
+  text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+.link-separator {
+  margin: 0 8px;
+  color: #bbb;
+}
+
+/* Estilos para el modo edición (pueden ser similares a los actuales pero dentro del nuevo contenedor) */
+.direccion-item-edit {
+  display: flex;
+  flex-direction: column;
+}
+
+.direccion-item-edit input,
+.direccion-nueva input {
+  width: calc(100% - 20px); /* Ajustar el ancho por el padding */
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #bdbdbd;
+  font-size: 15px;
+}
+
+.direccion-actions {
+  display: flex;
+  gap: 10px; /* Espacio entre botones */
+  margin-top: 15px;
+}
+
+.direccion-actions .btn-guardar,
+.direccion-actions .btn-cancelar {
+    flex: 1; /* Para que los botones tomen el mismo ancho */
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-guardar {
+  background: #004a8f;
+  color: white;
+}
+
+.btn-guardar:hover {
+  background: #00386b;
+}
+
+.btn-cancelar {
+  background: #e6e6e6;
+  color: #333;
+}
+
+.btn-cancelar:hover {
+  background: #d4d4d4;
+}
+
+/* Estilos para la nueva dirección cuando se está creando */
+.direccion-nueva {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.direccion-nueva h3 {
+    font-size: 18px;
+    color: #003b6f;
+    margin-bottom: 15px;
+}
