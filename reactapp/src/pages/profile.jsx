@@ -287,83 +287,81 @@ function Profile() {
         )}
 
       </div>
-<div className="profile-container"> {/* Agregamos un contenedor general para el ejemplo */}
-      <div className="direcciones-card">
-        <h2 className="perfil-titulo">Tus Direcciones</h2> {/* Cambiado el título */}
+      <div className="profile-container"> {/* Agregamos un contenedor general para el ejemplo */}
+            <div className="direcciones-card">
+              <h2 className="perfil-titulo">Mis Direcciones</h2> {/* Cambiado el título */}
 
-        {direcciones.length === 0 && !newAddress && <p>No has registrado direcciones.</p>}
+              {direcciones.length === 0 && !newAddress && <p>No has registrado direcciones.</p>}
 
-        {/* Agregamos el "Agregar dirección" al principio si no hay ninguna */}
-        {direcciones.length === 0 && !newAddress && (
-          <div className="add-address-placeholder" onClick={() => setNewAddress(true)}>
-            <div className="add-icon">+</div>
-            <p>Agregar dirección</p>
-          </div>
-        )}
-
-        {direcciones.map((dir) => (
-          <div key={dir._id} className="direccion-item-display"> {/* Nuevo estilo para mostrar */}
-            {editingAddress === dir._id ? (
-              <div className="direccion-item-edit">
-                <input name="name" value={addressData.name} onChange={handleChange} placeholder="Nombre Completo" />
-                <input name="country" value={addressData.country} onChange={handleChange} placeholder="País" />
-                <input name="city" value={addressData.city} onChange={handleChange} placeholder="Ciudad" />
-                <input name="address" value={addressData.address} onChange={handleChange} placeholder="Dirección" />
-                <input name="postalCode" value={addressData.postalCode} onChange={handleChange} placeholder="Código Postal" />
-                <input name="phone" value={addressData.phone} onChange={handleChange} placeholder="Teléfono" />
-
-                <div className="direccion-actions">
-                  <button className="btn-guardar" onClick={() => guardarDireccion(dir._id)}>Guardar</button>
-                  <button className="btn-cancelar" onClick={() => setEditingAddress(null)}>Cancelar</button>
+              {/* Agregamos el "Agregar dirección" al principio si no hay ninguna */}
+              {direcciones.length === 0 && !newAddress && (
+                <div className="add-address-placeholder" onClick={() => setNewAddress(true)}>
+                  <div className="add-icon">+</div>
+                  <p>Agregar dirección</p>
                 </div>
-              </div>
-            ) : (
-              <>
-                {/* Puedes añadir un logo de "Predeterminado: Amazon" aquí si es necesario */}
-                {/* <div className="default-indicator">Predeterminado: <img src="amazon_logo.png" alt="Amazon" /></div> */}
-                
-                <p className="address-name">{dir.name}</p>
-                <p className="address-line">{dir.address}</p>
-                <p className="address-line">{dir.city}, {dir.country}</p>
-                {dir.postalCode && <p className="address-line">{dir.postalCode}</p>}
-                <p className="address-line">Número de teléfono: {dir.phone}</p>
+              )}
 
-                <div className="direccion-links">
-                  <span className="link-button" onClick={() => { setEditingAddress(dir._id); setAddressData(dir); }}>Editar</span>
-                  <span className="link-separator">|</span>
-                  <span className="link-button" onClick={() => eliminarDireccion(dir._id)}>Descartar</span> {/* Cambiado a Descartar */}
+              {direcciones.map((dir) => (
+                <div key={dir._id} className="direccion-item-display"> {/* Nuevo estilo para mostrar */}
+                  {editingAddress === dir._id ? (
+                    <div className="direccion-item-edit">
+                      <input name="name" value={addressData.name} onChange={handleChange} placeholder="Nombre Completo" />
+                      <input name="country" value={addressData.country} onChange={handleChange} placeholder="País" />
+                      <input name="city" value={addressData.city} onChange={handleChange} placeholder="Ciudad" />
+                      <input name="address" value={addressData.address} onChange={handleChange} placeholder="Dirección" />
+                      <input name="postalCode" value={addressData.postalCode} onChange={handleChange} placeholder="Código Postal" />
+                      <input name="phone" value={addressData.phone} onChange={handleChange} placeholder="Teléfono" />
+
+                      <div className="direccion-actions">
+                        <button className="btn-guardar" onClick={() => guardarDireccion(dir._id)}>Guardar</button>
+                        <button className="btn-cancelar" onClick={() => setEditingAddress(null)}>Cancelar</button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      
+                      <p className="address-name">{dir.name}</p>
+                      <p className="address-line">{dir.address}</p>
+                      <p className="address-line">{dir.city}, {dir.country}</p>
+                      {dir.postalCode && <p className="address-line">{dir.postalCode}</p>}
+                      <p className="address-line">Número de teléfono: {dir.phone}</p>
+
+                      <div className="direccion-links">
+                        <span className="link-button" onClick={() => { setEditingAddress(dir._id); setAddressData(dir); }}>Editar</span>
+                        <span className="link-separator">|</span>
+                        <span className="link-button" onClick={() => eliminarDireccion(dir._id)}>Descartar</span> 
+                      </div>
+                    </>
+                  )}
                 </div>
-              </>
-            )}
-          </div>
-        ))}
+              ))}
 
-        {/* NUEVA DIRECCIÓN */}
-        {newAddress ? (
-          <div className="direccion-nueva">
-            <h3>Añadir Nueva Dirección</h3>
-            <input name="name" value={addressData.name} onChange={handleChange} placeholder="Nombre Completo" />
-            <input name="country" value={addressData.country} onChange={handleChange} placeholder="País" />
-            <input name="city" value={addressData.city} onChange={handleChange} placeholder="Ciudad" />
-            <input name="address" value={addressData.address} onChange={handleChange} placeholder="Dirección" />
-            <input name="postalCode" value={addressData.postalCode} onChange={handleChange} placeholder="Código Postal" />
-            <input name="phone" value={addressData.phone} onChange={handleChange} placeholder="Teléfono" />
+              {/* NUEVA DIRECCIÓN */}
+              {newAddress ? (
+                <div className="direccion-nueva">
+                  <h3>Añadir Nueva Dirección</h3>
+                  <input name="name" value={addressData.name} onChange={handleChange} placeholder="Nombre Completo" />
+                  <input name="country" value={addressData.country} onChange={handleChange} placeholder="País" />
+                  <input name="city" value={addressData.city} onChange={handleChange} placeholder="Ciudad" />
+                  <input name="address" value={addressData.address} onChange={handleChange} placeholder="Dirección" />
+                  <input name="postalCode" value={addressData.postalCode} onChange={handleChange} placeholder="Código Postal" />
+                  <input name="phone" value={addressData.phone} onChange={handleChange} placeholder="Teléfono" />
 
-            <div className="direccion-actions">
-              <button className="btn-guardar" onClick={crearDireccion}>Guardar</button>
-              <button className="btn-cancelar" onClick={() => setNewAddress(false)}>Cancelar</button>
+                  <div className="direccion-actions">
+                    <button className="btn-guardar" onClick={crearDireccion}>Guardar</button>
+                    <button className="btn-cancelar" onClick={() => setNewAddress(false)}>Cancelar</button>
+                  </div>
+                </div>
+              ) : (
+                direcciones.length > 0 && ( // Mostrar el botón "Añadir Dirección" si ya hay al menos una
+                  <div className="add-address-placeholder" onClick={() => setNewAddress(true)}>
+                    <div className="add-icon">+</div>
+                    <p>Agregar dirección</p>
+                  </div>
+                )
+              )}
             </div>
           </div>
-        ) : (
-          direcciones.length > 0 && ( // Mostrar el botón "Añadir Dirección" si ya hay al menos una
-            <div className="add-address-placeholder" onClick={() => setNewAddress(true)}>
-              <div className="add-icon">+</div>
-              <p>Agregar dirección</p>
-            </div>
-          )
-        )}
-      </div>
-    </div>
 
     </>
   );

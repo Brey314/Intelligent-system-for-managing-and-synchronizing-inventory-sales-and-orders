@@ -17,33 +17,14 @@ function ShoppingCart() {
 
   const [Address, setAddress] = useState(null);
   const [addressLoading, setAddressLoading] = useState(true);
-  const [selectAddress, choseAddress]= useState(0);
 
   const [showAddressModal, setShowAddressModal] = useState(false); // Controla la visibilidad del modal
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0); // Índice de la dirección seleccionada
-  const iduser = usuario?.id;
   
   // función auxiliar para obtener URL con idUser
 
   //  Cargar carrito
-  useEffect(() => {
-    const cargarCarrito = async () => {
-      try {
-        const answ = await fetch(apiURL, {
-          credentials: "include"
-        });
-        const data = await answ.json();
 
-        setCart(data);
-      } catch (err) {
-        console.error("Error cargando carrito:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (usuario) cargarCarrito();
-  }, [usuario]); // <-- vuelve a cargar si cambia el usuario
 
   // Eliminar producto
   const eliminarDelCarrito = async (_id) => {
@@ -131,14 +112,6 @@ function ShoppingCart() {
     }
   };
 
-  useEffect(() => {
-    if (usuario) {
-      getAddress(usuario._id);
-      obtenerPrecio();
-      obtenerCantidad();
-      setLoading(false);
-    }
-  }, [usuario, cart]);
 
   const checkout = async () => {
     const selected = Address[selectedAddressIndex]
@@ -146,7 +119,6 @@ function ShoppingCart() {
       alert("No hay productos en el carrito"); 
       return;
     }
-    console.log(selected);
     if(!selected){
       alert("Agrega una dirección de envío"); 
       return;
@@ -181,26 +153,7 @@ function ShoppingCart() {
     }
   };
 
-  const getAddress = async (id) => {
-    if (!id) return;
-    setAddressLoading(true);
-    try {
-      const response = await fetch(`http://localhost:5000/api/addresses/${id}`,{
-        credentials: "include",
-      });
-      if (!response.ok) {
-        throw new Error('Error al obtener las direcciones');
-      }
-      const data = await response.json();
 
-      setAddress(Array.isArray(data) ? data : (data ? [data] : []));
-    } catch (error) {
-      console.error("Error al cargar la dirección de envío:", error);
-      setAddress([]);
-    } finally {
-      setAddressLoading(false);
-    }
-  };
 
   const handleAddressSelection = (index) => {
     setSelectedAddressIndex(index);
@@ -208,6 +161,7 @@ function ShoppingCart() {
   };
 
   const renderAddressCard = () => {
+    console.log("ShoppingCart: renderAddressCard called, Address:", Address, "addressLoading:", addressLoading);
     if (addressLoading) {
       return <div className="shipping-card-container"><p>Cargando dirección...</p></div>;
     }
@@ -288,7 +242,87 @@ function ShoppingCart() {
     );
   };
 
-  const dir = Address;
+  useEffect(() => {
+    console.log("ShoppingCart: useEffect triggered, usuario:", usuario);
+    const cargarCarrito = async () => {
+      try {
+        const answ = await fetch(apiURL, {
+          credentials: "include"
+        });
+        const data = await answ.json();
+        console.log("ShoppingCart: Cart data fetched:", data);
+
+        setCart(data);
+      } catch (err) {
+        console.error("Error cargando carrito:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const getAddress = async (_id) => {
+      if (!_id) return;
+      setAddressLoading(true);
+      console.log("ShoppingCart: Fetching addresses for user ID:", _id);
+      try {
+        const response = await fetch(`http://localhost:5000/api/addresses/${_id}`,{
+          credentials: "include",
+          cache: 'no-cache'
+        });
+
+        if (!response.ok) {
+          throw new Error('Error al obtener las direcciones');
+        }
+        const data = await response.json();
+        console.log("ShoppingCart: Addresses fetched:", data);
+
+        setAddress(data);
+      } catch (error) {
+        console.error("Error al cargar la dirección de envío:", error);
+        setAddress([]);
+      } finally {
+        setAddressLoading(false);
+      }
+    };
+
+    if (usuario) {
+      cargarCarrito();
+      getAddress(usuario.id);
+      obtenerPrecio();
+      obtenerCantidad();
+      setLoading(false);
+
+    }
+  }, [usuario]); // <-- vuelve a cargar si cambia el usuario
+
+  // Refetch addresses when window gains focus
+  useEffect(() => {
+    const handleFocus = () => {
+      if (usuario) {
+        console.log("ShoppingCart: Window focused, refetching addresses");
+        const refetchAddress = async () => {
+          try {
+            const response = await fetch(`http://localhost:5000/api/addresses/${usuario.id}`,{
+              credentials: "include",
+              cache: 'no-cache'
+            });
+            if (response.ok) {
+              const data = await response.json();
+              console.log("ShoppingCart: Addresses refetched on focus:", data);
+              setAddress(data);
+            }
+          } catch (error) {
+            console.error("Error refetching addresses on focus:", error);
+          }
+        };
+        refetchAddress();
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
+  }, [usuario]);
+
   return (
     <>
       <header className="header">
