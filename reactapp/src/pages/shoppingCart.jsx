@@ -141,14 +141,26 @@ function ShoppingCart() {
   }, [usuario, cart]);
 
   const checkout = async () => {
+    const selected = Address[selectedAddressIndex]
+    if(cart.length===0){
+      alert("No hay productos en el carrito"); 
+      return;
+    }
+    console.log(selected);
+    if(!selected){
+      alert("Agrega una dirección de envío"); 
+      return;
+    }
     const items = cart.map(prod => ({
       _id: prod._id,
       productId: prod.idProd,
+      addressId: selected._id, 
       name: prod.title,
-      unit_amount: (prod.price),
+      unit_amount: (prod.price+"00"),
       quantity: prod.cuantity,
       currency: "cop"
     }));
+    if (!window.confirm("Asegurate de que tus datos en la dirección de envío esten bien")) return;
 
     const res = await fetch("http://localhost:5000/api/create-checkout-session", {
       method: "POST",
@@ -269,6 +281,7 @@ function ShoppingCart() {
               </div>
             ))}
           </div>
+          <button className="btn-close-modal" onClick={() => {navigate("/profile")}}>Agregar Mas</button>
           <button className="btn-close-modal" onClick={() => setShowAddressModal(false)}>Cerrar</button>
         </div>
       </div>
