@@ -70,7 +70,7 @@ function Profile() {
     };
     const cargarDirecciones = async (id) => {
       try {
-        const res = await fetch(`${api}/addresses/${id}`, {
+        const res = await fetch(`${api}/api/addresses/${id}`, {
           credentials: "include",
         });
 
@@ -87,7 +87,7 @@ function Profile() {
     const fetchPedidos = async()=>{
       try{
         setIsLoading(true);
-        const res = await fetch(`${api}/pedidos`, {
+        const res = await fetch(`${api}/api/pedidos`, {
           method: "GET",
           credentials: "include",
         });
@@ -98,7 +98,7 @@ function Profile() {
         for (const item of data) {
           try {
             const id=item.idProd;
-            const resp=await fetch(`${api}/productos/${id}`,{
+            const resp=await fetch(`${api}/api/productos/${id}`,{
               method: "GET",
               credentials: "include",
             })
@@ -165,7 +165,7 @@ function Profile() {
   const crearDireccion = async () => {
     try {
       console.log(addressData);
-      const res = await fetch(`${api}/addresses`, {
+      const res = await fetch(`${api}/api/addresses`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -195,7 +195,7 @@ function Profile() {
   const guardarDireccion = async (id) => {
     try {
       console.log(id);
-      const res = await fetch(`${api}/addresses/${id}`, {
+      const res = await fetch(`${api}/api/addresses/${id}`, {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -231,7 +231,7 @@ function Profile() {
   //   ELIMINAR DIRECCIÓN
   const eliminarDireccion = async (id) => {
     try {
-      await fetch(`${api}/addresses/${id}`, {
+      await fetch(`${api}/api/addresses/${id}`, {
         method: "DELETE",
         credentials: "include",
       });

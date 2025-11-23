@@ -19,7 +19,7 @@ export default function SuccessPage() {
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const res = await fetch(`${api}/payment/session/${id}`);
+        const res = await fetch(`${api}/api/payment/session/${id}`);
         const data = await res.json();
         setSession(data);
       } catch (error) {

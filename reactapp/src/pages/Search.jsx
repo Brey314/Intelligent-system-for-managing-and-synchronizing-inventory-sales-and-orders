@@ -70,7 +70,7 @@ function Search() {
                 // Si existe, aumentar la cantidad
                 const nuevaCantidad = exist.cuantity + 1;
 
-                await fetch(`${api}/carrito/${exist._id}`, {
+                await fetch(`${api}/api/carrito/${exist._id}`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ cuantity: nuevaCantidad }),

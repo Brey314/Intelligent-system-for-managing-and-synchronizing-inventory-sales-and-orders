@@ -267,7 +267,7 @@ function ShoppingCart() {
       setAddressLoading(true);
       console.log("ShoppingCart: Fetching addresses for user ID:", _id);
       try {
-        const response = await fetch(`${api}/addresses/${_id}`,{
+        const response = await fetch(`${api}/api/addresses/${_id}`,{
           credentials: "include",
           cache: 'no-cache'
         });
@@ -305,7 +305,7 @@ function ShoppingCart() {
         console.log("ShoppingCart: Window focused, refetching addresses");
         const refetchAddress = async () => {
           try {
-            const response = await fetch(`${api}/addresses/${usuario.id}`,{
+            const response = await fetch(`${api}/api/addresses/${usuario.id}`,{
               credentials: "include",
               cache: 'no-cache'
             });
