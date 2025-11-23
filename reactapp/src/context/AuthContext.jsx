@@ -11,12 +11,15 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const resp = await fetch(`${api}/usuarios/check`, {
+        console.log("AuthContext: Checking session...");
+        const resp = await fetch(`${api}/api/usuarios/check`, {
           credentials: "include",
         });
+        console.log("AuthContext: Check response status:", resp.status);
 
         if (!resp.ok) throw new Error("Sesión no válida");
         const data = await resp.json();
+        console.log("AuthContext: Session valid, user:", data.usuario);
         setUsuario(data.usuario);
       } catch (err) {
         console.error("AuthContext: Session check failed:", err);
@@ -34,7 +37,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await fetch(`${api}/usuarios/logout`, {
+    await fetch(`${api}/api/usuarios/logout`, {
       method: "POST",
       credentials: "include",
     });
