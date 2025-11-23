@@ -17,9 +17,11 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const MONGO_URI = process.env.MONGO_URI;
 // Middlewares
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000',"https://tu-frontend.vercel.app"],
   credentials: true,
 }));
+
+app.set('trust proxy', 1);
 
 app.use(cookieParser());
 app.use('/api/webhook', express.raw({ type: 'application/json' }));
