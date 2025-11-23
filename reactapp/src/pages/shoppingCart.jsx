@@ -126,10 +126,11 @@ function ShoppingCart() {
     const items = cart.map(prod => ({
       _id: prod._id,
       productId: prod.idProd,
-      addressId: selected._id, 
+      addressId: selected._id,
       name: prod.title,
-      unit_amount: (prod.price+"00"),
+      unit_amount: prod.price,
       quantity: prod.cuantity,
+      total: subtotal,
       currency: "cop"
     }));
     if (!window.confirm("Asegurate de que tus datos en la dirección de envío esten bien")) return;

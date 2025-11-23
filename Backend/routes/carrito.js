@@ -68,7 +68,7 @@ router.delete("/:_id", async(req, res) => {
     const idUser = decoded.id;
     const { _id } = req.params;
     //console.log(_id);
-    carrito = await Carrito.findByIdAndDelete((_id));
+    await Carrito.findByIdAndDelete((_id));
     console.log("Producto eliminado con token=",token);
     res.status(201).json({ message: `Producto con id ${_id} eliminado` });
   }catch (err) {
@@ -82,7 +82,7 @@ router.delete("/payed/:_id", async(req, res) => {
   try{
     const { _id } = req.params;
     //console.log(_id);
-    carrito = await Carrito.findByIdAndDelete((_id));
+    await Carrito.findByIdAndDelete((_id));
     console.log("Producto comprado del carrito y eliminado");
     res.status(201).json({ message: `Producto con id ${_id} eliminado` });
   }catch (err) {
@@ -98,7 +98,6 @@ router.put("/:_id", async(req, res) => {
       return res.status(401).json({ error: "No autorizado. Falta token." });
     }
     const decoded = jwt.verify(token, JWT_SECRET);
-    const userId = decoded._id;
 
     //console.log(' Datos recibidos en PUT:', req.body);
 

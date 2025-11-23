@@ -6,6 +6,7 @@ const usuariosRoutes = require('./routes/usuarios');
 const carritoRoutes= require('./routes/carrito');
 const addressRoutes = require('./routes/address');
 const paymentsRouter = require('./routes/pagos');
+const pedidosRoutes = require('./routes/pedidos')
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
@@ -30,6 +31,7 @@ app.use('/api/usuarios',usuariosRoutes)
 app.use('/api/carrito',carritoRoutes)
 app.use("/api/addresses", addressRoutes);
 app.use('/api', paymentsRouter);
+app.use('/api/pedidos',pedidosRoutes);
 
 // Conexión MongoDB
 mongoose.connect(MONGO_URI, {

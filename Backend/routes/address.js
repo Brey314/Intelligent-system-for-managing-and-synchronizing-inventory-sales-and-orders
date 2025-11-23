@@ -24,16 +24,20 @@ router.get("/:userId", verificarToken, async (req, res) => {
 });
 
 // Obtener una dirección específica
-router.get("/:addressId", verificarToken, async (req, res) => {
+router.get("/:addressId", async (req, res) => {
   try {
     const { addressId } = req.params;
     const address = await Address.findById(addressId);
 
     if (!address) return res.status(404).json({ error: "Dirección no encontrada" });
 
-    // Asegurar que solo el dueño pueda ver sus direcciones
-    if (address.userId.toString() !== req.usuario.id)
-      return res.status(403).json({ error: "Acceso no autorizado" });
+    // For internal calls (like webhooks), skip ownership check if no token
+    const token = req.cookies.token;
+    if (token) {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      if (address.userId.toString() !== decoded.id)
+        return res.status(403).json({ error: "Acceso no autorizado" });
+    }
 
     res.json(address);
   } catch (err) {
