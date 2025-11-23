@@ -17,7 +17,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const MONGO_URI = process.env.MONGO_URI;
 // Middlewares
 app.use(cors({
-  origin: ['http://localhost:3000',"https://tu-frontend.vercel.app"],
+  origin: ['http://localhost:3000',"https://ktronix-app.vercel.app"],
   credentials: true,
 }));
 
