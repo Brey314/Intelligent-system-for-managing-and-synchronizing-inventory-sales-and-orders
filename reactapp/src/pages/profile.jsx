@@ -102,7 +102,6 @@ function Profile() {
               credentials: "include",
             })
             const dataP = await resp.json();
-            console.log(dataP);
             prods.push(dataP);
           } catch (err) {
             console.error("Error al cargar pedidos (Productos):", err);
@@ -494,7 +493,12 @@ function Profile() {
                           <p className="pedido-nombre-producto">{prod?.title}</p>
                       </div>
                       <div className="pedido-info">
-                          <p><strong>Fecha:</strong> {pedido.creation_date}</p>
+                          <p><strong>Fecha:</strong> {
+                            pedido.creation_date ? new Date(pedido.creation_date).toLocaleString('es-CO', {
+                                year: 'numeric', month: 'long', day: 'numeric',
+                                hour: '2-digit', minute: '2-digit'
+                            }) : 'Fecha no disponible'
+                          }</p>
                           <p><strong>Estado:</strong> <span className="status">{pedido.status}</span></p>
                           <p><strong>Total:</strong> ${pedido.total ? pedido.total.toLocaleString() : '0'}</p>
                       </div>

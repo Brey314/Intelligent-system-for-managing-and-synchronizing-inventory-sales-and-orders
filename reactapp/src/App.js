@@ -6,6 +6,9 @@ import Search from "./pages/Search";
 import ShoppingCart from "./pages/shoppingCart";
 import Admin from "./pages/admin";
 import Porfile from "./pages/profile";
+import SuccessPage from "./pages/SuccessPage";
+import CancelPage from "./pages/CancelPage";
+
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -21,7 +24,8 @@ function App() {
           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
+          <Route path="/success/:id" element={<SuccessPage />} />
+          <Route path="/cancel" element={<CancelPage />} /> 
 
           {/* Rutas protegidas */}
           <Route

@@ -141,7 +141,7 @@ function ShoppingCart() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         items,
-        success_url: "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
+        success_url: "http://localhost:3000/success/{CHECKOUT_SESSION_ID}",
         cancel_url: "http://localhost:3000/cancel"
       })
     });

@@ -50,7 +50,7 @@ router.post("/create-checkout-session", async (req, res) => {
         items: JSON.stringify(metadataItems),
         userId: userId
       },
-      success_url: success_url || "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
+      success_url: success_url || "http://localhost:3000/success/{CHECKOUT_SESSION_ID}",
       cancel_url: cancel_url || "http://localhost:3000/cancel",
     });
 
@@ -58,6 +58,17 @@ router.post("/create-checkout-session", async (req, res) => {
     res.json({ url: session.url, id: session.id });
   } catch (err) {
     console.error("Error creating checkout session:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Retrieve session details
+router.get("/payment/session/:id", async (req, res) => {
+  try {
+    const session = await stripe.checkout.sessions.retrieve(req.params.id);
+    res.json(session);
+  } catch (err) {
+    console.error("Error retrieving session:", err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -81,6 +92,7 @@ router.post("/webhook", async (req, res) => {
   // Manejar evento de pago completado
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
+    console.log(session);
     // session contiene: id, amount_total, currency, customer_details, metadata, etc.
     console.log("Checkout session completed:", session.id);
     const items = JSON.parse(session.metadata.items).map(i => ({
