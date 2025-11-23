@@ -27,8 +27,8 @@ router.post("/create-checkout-session", async (req, res) => {
       price_data: {
         currency: item.currency || "cop", // o "cop" si usas COP
         product_data: { name: item.name },
-        // unit_amount en la mínima unidad (cents para USD). Para COP usar pesos (sin decimales).
-        unit_amount: item.unit_amount,
+        // unit_amount en la mínima unidad (centavos para COP).
+        unit_amount: Math.round(item.unit_amount * 100), // Convertir a centavos
       },
       quantity: item.quantity,
     }));

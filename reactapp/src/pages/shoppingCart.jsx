@@ -270,9 +270,10 @@ function ShoppingCart() {
           credentials: "include",
           cache: 'no-cache'
         });
+        console.log("ShoppingCart: Address fetch response status:", response.status);
 
         if (!response.ok) {
-          throw new Error('Error al obtener las direcciones');
+          throw new Error(`Error al obtener las direcciones: ${response.status} ${response.statusText}`);
         }
         const data = await response.json();
         console.log("ShoppingCart: Addresses fetched:", data);
@@ -307,10 +308,13 @@ function ShoppingCart() {
               credentials: "include",
               cache: 'no-cache'
             });
+            console.log("ShoppingCart: Refetch address response status:", response.status);
             if (response.ok) {
               const data = await response.json();
               console.log("ShoppingCart: Addresses refetched on focus:", data);
               setAddress(data);
+            } else {
+              console.error("ShoppingCart: Refetch failed with status:", response.status, response.statusText);
             }
           } catch (error) {
             console.error("Error refetching addresses on focus:", error);

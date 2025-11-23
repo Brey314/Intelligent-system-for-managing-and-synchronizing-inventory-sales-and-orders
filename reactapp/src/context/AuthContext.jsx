@@ -13,11 +13,14 @@ export const AuthProvider = ({ children }) => {
         const resp = await fetch("http://localhost:5000/api/usuarios/check", {
           credentials: "include",
         });
+        console.log("AuthContext: Check session response status:", resp.status);
 
         if (!resp.ok) throw new Error("Sesión no válida");
         const data = await resp.json();
+        console.log("AuthContext: Session check data:", data);
         setUsuario(data.usuario);
       } catch (err) {
+        console.error("AuthContext: Session check failed:", err);
         setUsuario(null);
       } finally {
         setLoading(false);

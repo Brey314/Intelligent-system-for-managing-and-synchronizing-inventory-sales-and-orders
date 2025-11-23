@@ -98,7 +98,7 @@ router.post('/logout', (req, res) => {
 router.get("/check", verificarToken, async (req, res) => {
   const usuario = await Usuario.findById(req.usuario.id).select("name email user rol ");
   console.log("Verificacion de usuario",usuario);
-  res.json({ usuario });
+  res.json({ usuario: { id: usuario._id, user: usuario.user, rol: usuario.rol, name: usuario.name, email: usuario.email } });
 });
 
 // Obtener usuarios (buscar por email)
