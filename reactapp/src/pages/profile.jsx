@@ -3,6 +3,7 @@ import "./css/profile.css";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
+const api=process.env.REACT_APP_API_URL;
 function Profile() {
   const navigate = useNavigate();
   const { logout} = useAuth();
@@ -42,7 +43,7 @@ function Profile() {
   useEffect(() => {
     const fetchPerfil = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/usuarios/perfil", {
+        const res = await fetch(`${api}/api/usuarios/perfil`, {
           method: "GET",
           credentials: "include",
         });
@@ -142,7 +143,7 @@ function Profile() {
   //   GUARDAR PERFIL
   const guardarCambios = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/usuarios/perfil", {
+      const res = await fetch(`${api}/api/usuarios/perfil`, {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

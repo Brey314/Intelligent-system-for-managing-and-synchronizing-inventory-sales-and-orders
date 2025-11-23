@@ -3,7 +3,8 @@ import "./css/shoppingcart.css";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
-const apiURL = "http://localhost:5000/api/carrito";
+const api=process.env.REACT_APP_API_URL;
+const apiURL = `${api}/api/carrito`;
 
 function ShoppingCart() {
   const [open, setOpen] = useState(false);
@@ -135,7 +136,7 @@ function ShoppingCart() {
     }));
     if (!window.confirm("Asegurate de que tus datos en la dirección de envío esten bien")) return;
 
-    const res = await fetch("http://localhost:5000/api/create-checkout-session", {
+    const res = await fetch(`${api}/api/create-checkout-session`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -266,7 +267,7 @@ function ShoppingCart() {
       setAddressLoading(true);
       console.log("ShoppingCart: Fetching addresses for user ID:", _id);
       try {
-        const response = await fetch(`http://localhost:5000/api/addresses/${_id}`,{
+        const response = await fetch(`${api}/addresses/${_id}`,{
           credentials: "include",
           cache: 'no-cache'
         });
@@ -304,7 +305,7 @@ function ShoppingCart() {
         console.log("ShoppingCart: Window focused, refetching addresses");
         const refetchAddress = async () => {
           try {
-            const response = await fetch(`http://localhost:5000/api/addresses/${usuario.id}`,{
+            const response = await fetch(`${api}/addresses/${usuario.id}`,{
               credentials: "include",
               cache: 'no-cache'
             });

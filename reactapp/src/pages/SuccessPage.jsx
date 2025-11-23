@@ -5,6 +5,7 @@ import "./css/payInfo.css";
 import { useAuth } from "../context/AuthContext";
 import { FaUser } from "react-icons/fa";
 
+const api=process.env.REACT_APP_API_URL;
 export default function SuccessPage() {
   const { id } = useParams();
   const [session, setSession] = useState(null);
@@ -18,7 +19,7 @@ export default function SuccessPage() {
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/payment/session/${id}`);
+        const res = await fetch(`${api}/payment/session/${id}`);
         const data = await res.json();
         setSession(data);
       } catch (error) {

@@ -3,7 +3,8 @@ import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import "./css/form.css"; // Importas tu CSS original
 
-const apiURL = "http://localhost:5000/api/usuarios";
+const api=process.env.REACT_APP_API_URL;
+const apiURL = `${api}/api/usuarios`;
 
 function Register() {
   const [users, setUsers] = useState([]);

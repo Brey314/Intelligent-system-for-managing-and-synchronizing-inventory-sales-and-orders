@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
+const api=process.env.REACT_APP_API_URL;
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const resp = await fetch("http://localhost:5000/api/usuarios/check", {
+        const resp = await fetch(`${api}/usuarios/check`, {
           credentials: "include",
         });
 
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await fetch("http://localhost:5000/api/usuarios/logout", {
+    await fetch(`${api}/usuarios/logout`, {
       method: "POST",
       credentials: "include",
     });

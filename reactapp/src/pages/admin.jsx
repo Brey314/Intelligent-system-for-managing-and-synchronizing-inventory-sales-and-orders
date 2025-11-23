@@ -3,9 +3,9 @@ import "./css/search.css";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate ,Link} from "react-router-dom";
 
-
-const apiURL = "http://localhost:5000/api/productos";
-const apiURLU = "http://localhost:5000/api/usuarios";
+const api=process.env.REACT_APP_API_URL;
+const apiURL = `${api}/api/productos`;
+const apiURLU = `${api}/api/usuarios`;
 
 function Search() {
   const [section, setSection] = useState("products");

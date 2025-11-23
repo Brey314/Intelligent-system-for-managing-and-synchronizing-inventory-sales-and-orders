@@ -4,7 +4,8 @@ import "./css/search.css"; // Importas tu CSS
 import { useAuth } from "../context/AuthContext";
 import { Link,useNavigate } from "react-router-dom";
 
-const apiURL = "http://localhost:5000/api/productos";
+const api=process.env.REACT_APP_API_URL;
+const apiURL = `${api}/api/productos`;
 
 function Search() {
     const [open, setOpen] = useState(false);
@@ -54,7 +55,7 @@ function Search() {
                 cuantity: 1,
             };
 
-            const resp = await fetch("http://localhost:5000/api/carrito", {
+            const resp = await fetch(`${api}/api/carrito`, {
                 credentials: "include"
             });
             const data = await resp.json();
@@ -69,7 +70,7 @@ function Search() {
                 // Si existe, aumentar la cantidad
                 const nuevaCantidad = exist.cuantity + 1;
 
-                await fetch(`http://localhost:5000/api/carrito/${exist._id}`, {
+                await fetch(`${api}/carrito/${exist._id}`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ cuantity: nuevaCantidad }),
@@ -77,7 +78,7 @@ function Search() {
                 });
             } else {
                 // Si no existe, agregarlo al carrito
-                await fetch("http://localhost:5000/api/carrito/", {
+                await fetch(`${api}/api/carrito/`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(producto),
