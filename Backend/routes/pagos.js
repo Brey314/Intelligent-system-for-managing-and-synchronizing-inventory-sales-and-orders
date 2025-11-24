@@ -50,8 +50,8 @@ router.post("/create-checkout-session", async (req, res) => {
         items: JSON.stringify(metadataItems),
         userId: userId
       },
-      success_url: success_url || api+"/success/{CHECKOUT_SESSION_ID}",
-      cancel_url: cancel_url || `${api}/cancel`,
+      success_url: success_url || "https://ktronix-app.vercel.app/success/{CHECKOUT_SESSION_ID}",
+      cancel_url: cancel_url || "https://ktronix-app.vercel.app/cancel",
     });
 
     // Devuelvo la url para redirigir
