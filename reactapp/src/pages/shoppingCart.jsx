@@ -142,8 +142,8 @@ function ShoppingCart() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         items,
-        success_url: "http://localhost:3000/success/{CHECKOUT_SESSION_ID}",
-        cancel_url: "http://localhost:3000/cancel"
+        success_url: "https://ktronix-app.vercel.app/success/{CHECKOUT_SESSION_ID}",
+        cancel_url: "https://ktronix-app.vercel.app/cancel"
       })
     });
 
@@ -163,7 +163,6 @@ function ShoppingCart() {
   };
 
   const renderAddressCard = () => {
-    console.log("ShoppingCart: renderAddressCard called, Address:", Address, "addressLoading:", addressLoading);
     if (addressLoading) {
       return <div className="shipping-card-container"><p>Cargando dirección...</p></div>;
     }
@@ -302,18 +301,15 @@ function ShoppingCart() {
   useEffect(() => {
     const handleFocus = () => {
       if (usuario) {
-        console.log("ShoppingCart: Window focused, refetching addresses");
         const refetchAddress = async () => {
           try {
             const response = await fetch(`${api}/api/addresses/${usuario.id}`,{
               credentials: "include",
               cache: 'no-cache'
             });
-            console.log("ShoppingCart: Refetch address response status:", response.status);
             if (response.ok) {
               const data = await response.json();
               console.log("ShoppingCart: Addresses refetched on focus:", data);
-              setAddress(data);
             } else {
               console.error("ShoppingCart: Refetch failed with status:", response.status, response.statusText);
             }

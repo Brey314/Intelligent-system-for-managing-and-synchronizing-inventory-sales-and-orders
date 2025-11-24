@@ -164,7 +164,6 @@ function Profile() {
   //   CREAR DIRECCIÓN
   const crearDireccion = async () => {
     try {
-      console.log(addressData);
       const res = await fetch(`${api}/api/addresses`, {
         method: "POST",
         credentials: "include",

@@ -7,7 +7,7 @@ const Address = require("../models/address");
 require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
+const api=process.env.REACT_APP_API_URL;
 // Crea una sesión de Checkout
 // Espera recibir en el body { items: [{ name, unit_amount, quantity, currency }], success_url, cancel_url }
 router.post("/create-checkout-session", async (req, res) => {
@@ -50,8 +50,8 @@ router.post("/create-checkout-session", async (req, res) => {
         items: JSON.stringify(metadataItems),
         userId: userId
       },
-      success_url: success_url || "http://localhost:3000/success/{CHECKOUT_SESSION_ID}",
-      cancel_url: cancel_url || "http://localhost:3000/cancel",
+      success_url: success_url || api+"/success/{CHECKOUT_SESSION_ID}",
+      cancel_url: cancel_url || `${api}/cancel`,
     });
 
     // Devuelvo la url para redirigir
@@ -109,7 +109,7 @@ router.post("/webhook", async (req, res) => {
     for (const item of items) {
         try {
           await axios.put(
-            `http://localhost:5000/api/productos/${item.productId}/stock`,
+            `${api}/api/productos/${item.productId}/stock`,
             {
               quantity: item.quantity
             }
@@ -121,7 +121,7 @@ router.post("/webhook", async (req, res) => {
 
         try{
           await axios.delete(
-            `http://localhost:5000/api/carrito/payed/${item._id}`,
+            `${api}/api/carrito/payed/${item._id}`,
           );
           console.log(` Comprado producto en carrito con id ${item._id}`);
         }catch(err){
@@ -142,7 +142,7 @@ router.post("/webhook", async (req, res) => {
           };
           const token = jwt.sign({ id: userId }, JWT_SECRET);
           await axios.post(
-            `http://localhost:5000/api/pedidos/`, orderData,
+            `${api}/api/pedidos/`, orderData,
             {
               headers: {
                 Cookie: `token=${token}`
