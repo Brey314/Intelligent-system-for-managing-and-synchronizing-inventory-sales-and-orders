@@ -37,10 +37,19 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await fetch(`${api}/api/usuarios/logout`, {
-      method: "POST",
-      credentials: "include",
-    });
+    console.log("Frontend logout: Calling backend logout");
+    try {
+      const resp = await fetch(`${api}/api/usuarios/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
+      console.log("Frontend logout: Backend response status:", resp.status);
+      const data = await resp.json();
+      console.log("Frontend logout: Response data:", data);
+    } catch (err) {
+      console.error("Frontend logout: Error calling logout:", err);
+    }
+    console.log("Frontend logout: Setting usuario to null");
     setUsuario(null);
   };
 

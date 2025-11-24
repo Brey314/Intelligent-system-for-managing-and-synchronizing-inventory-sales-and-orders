@@ -90,14 +90,16 @@ router.put('/perfil', verificarToken, async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
+  console.log("Logout: Clearing cookie, token before:", req.cookies.token);
   res.clearCookie('token');
-  console.log("Salida de sesión");
+  console.log("Logout: Cookie cleared, sending response");
   res.json({ message: 'Sesión cerrada correctamente' });
 });
 
 router.get("/check", verificarToken, async (req, res) => {
+  console.log("Check: Token verified, user ID:", req.usuario.id);
   const usuario = await Usuario.findById(req.usuario.id).select("name email user rol ");
-  console.log("Verificacion de usuario",usuario);
+  console.log("Check: Usuario found:", usuario ? usuario.user : "null");
   res.json({ usuario: { id: usuario._id, user: usuario.user, rol: usuario.rol, name: usuario.name, email: usuario.email } });
 });
 
