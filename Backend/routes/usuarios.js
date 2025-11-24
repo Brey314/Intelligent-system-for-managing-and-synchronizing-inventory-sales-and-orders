@@ -91,7 +91,7 @@ router.put('/perfil', verificarToken, async (req, res) => {
 
 router.post('/logout', (req, res) => {
   console.log("Logout: Clearing cookie, token before:", req.cookies.token);
-  res.clearCookie('token');
+  res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'None' });
   console.log("Logout: Cookie cleared, sending response");
   res.json({ message: 'Sesión cerrada correctamente' });
 });
