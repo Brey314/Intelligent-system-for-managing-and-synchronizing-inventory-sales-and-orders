@@ -19,10 +19,15 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 │   ├──.env
 │   ├── server.js
 │   ├── models/...
+│       ├── address.js
+│       ├── pedidos.js
 │       ├── usuarios.js
 │       ├── Carrito.js
 │       └── Producto.js
 │   ├── routes/...
+│       ├── address.js
+│       ├── pagos.js
+│       ├── pedidos.js
 │       ├── carrito.js
 │       ├── usuarios.js
 │       └── productos.js
@@ -40,6 +45,9 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 │           └── AuthContex.jsx
 │       ├── pages/...
 │           ├── css/...
+│           ├── CancelPage.jsx
+│           ├── profile.jsx
+│           ├── SuccesPage.jsx
 │           ├── Admin.jsx
 │           ├── Home.jsx
 │           ├── Login.jsx
@@ -76,32 +84,37 @@ La solución combina un **backend en Node.js/Express**, un **frontend en React**
 ```bash
 git clone https://github.com/Juancho-456/Intelligent-system-for-managing-and-synchronizing-inventory-sales-and-orders.git
 cd Intelligent-system-for-managing-and-synchronizing-inventory-sales-and-orders
-cd Backend
-npm install express mongoose cors bcryptjs cookie-parser jsonwebtoken dotenv
 ```
 ### 2. Instalar dependencias del backend
 ```bash
 cd Backend
-npm install express mongoose cors bcryptjs cookie-parser jsonwebtoken dotenv
+npm install express mongoose cors bcryptjs cookie-parser jsonwebtoken dotenv stripe axios
 ```
 
 ### 3. Crear .env dentro de backend
 ```ini
 MONGODB_URI=url_de_conexion_a_mongodb
 JWT_SECRET=clave_secreta_para_tokens
+STRIPE_SECRET_KEY=clave_secreta_para_enviar_datos_pasarela_pago
+STRIPE_WEBHOOK_SECRET=clave_secreta_para_recivir_datos_pasarela_pago
+REACT_APP_API_URL=url_del_backend(por defecto http://localhost:5000)
 PORT=5000
 ```
 ### 4. Instalar dependencias del frontend
 ```bash
 cd reactapp
-npm install react react-dom react-router-dom
+npm install react react-dom react-router-dom framer-motion
 ```
-### 5. Ejecución
+### 5. Crear .env dentro de frontend
+```ini
+REACT_APP_API_URL=url_del_backend(por defecto http://localhost:5000)
+```
+### 6. Ejecución
 ```bash
 cd Backend
 node server.js
 cd reactapp
-npm start
+npm build run
 ```
 ---
 
@@ -121,13 +134,20 @@ También utiliza **Mongoose** para la comunicación con la base de datos.
 - `mongoose` → Modelado y conexión con la base de datos MongoDB.  
 - `body-parser` → Procesa las solicitudes entrantes en formato JSON.  
 - `cors` → Permite solicitudes desde otros orígenes (frontend en React).
+- `bcryptjs` → Encripta contraseñas mediante hashing seguro.
+- `jsonwebtoken` → Crea y valida tokens JWT para autenticación.
+- `dotenv` → Carga variables de entorno desde un archivo .env.
+- `stripe` → Permite integrar pagos y manejar cobros con la API de Stripe.
+- `axios` → Cliente HTTP para realizar solicitudes a APIs desde backend o
 
-El servidor se ejecutará en `http://localhost:3000` (según la configuración definida en `server.js`).  
+El servidor se ejecutará en `http://localhost:5000` (según la configuración definida en `server.js`).  
 
 #### Funcionalidades principales:
 - **Gestión de inventario:** creación, lectura, actualización y eliminación de productos.  
 - **CORS habilitado:** conexión segura con la aplicación React u otros clientes.  
-- **Middleware JSON:** permite enviar y recibir datos en formato JSON.  
+- **Middleware JSON:** permite enviar y recibir datos en formato JSON.
+- **Concexión a Stripe** permite una pasarela de pago brindada por Stripe, actualiza inventario, pagos, carrito.
+- **Gestión de carrito y direcciones de envío** creación, lectura, actualización y eliminación de datos.
 
 
 #### Ejecución:
@@ -147,34 +167,58 @@ El servidor expone una serie de endpoints REST para la gestión de inventario, v
 #### Inventario (`/api/products`)
 - `GET /api/products` → Obtiene todos los productos.  
 - `GET /api/products/:id` → Obtiene un producto por ID.  
-- `POST /api/products` → Crea un nuevo producto.  
-- `PUT /api/products/:id` → Actualiza un producto existente.  
-- `DELETE /api/products/:id` → Elimina un producto.  
+- `POST /api/products` → Crea un nuevo producto, desde rol administrador.  
+- `PUT /api/products/admin/:id` → Actualiza un producto existente, desde rol administrador.  
+- `DELETE /api/products/:id` → Elimina un producto, desde rol administrador.
+- `PUT /api/:id/stock` → Actualizar stock por pagos.
 
 #### Carrito (`/api/carrito`)
 - `GET /api/carrito` → Obtiene el contenido actual del carrito.  
 - `POST /api/carrito` → Agrega un producto al carrito.  
 - `PUT /api/carrito/:_id` → Actualiza la cantidad de un producto en el carrito.  
 - `DELETE /api/carrito/:_id` → Elimina un producto del carrito.
+- `DELETE /api/carrito/payed/:_id` → Elimina un producto del al comprar.
 
-#### Carrito (`/api/usuarios`)
-- `POST /api/usuarios/login` → Obtiene token para inicio de sesión.  
+#### Usuarios (`/api/pedidos`)
+- `POST /api/pedidos/` → Obtiene token para inicio de sesión.  
 - `POST /api/usuarios/register` → Agrega un usuario a la base de datos.  
 - `GET /api/usuarios/perfil` → Verifica que el usuario esté iniciado por contraseña.
+- `PUT /api/usuarios/perfil` → Actualiza perfil, para el mismo usuario.
 - `POST /api/usuarios/logout` → Elimina el token generado para cerrar sesión.
 - `GET /api/usuarios/check` → Verifica que el usuario este iniciado por usuario, rol y email.
+- `GET /api/usuarios/` → Buscar usuarios por id, para administrador.
+- `PUT /api/usuarios/:id` → Actualiza usuarios, para administrador.
+- `DELETE /api/usuarios/:id` → Elimina usuarios, para administrador.
 
+#### Pedidos (`/api/usuarios`)
+- `GET /api/pedidos/` → Obtiene todos los pedidos hechos por el usuario.  
+- `POST /api/usuarios/register` → Agrega el pedido hecho por el usuario.
+
+#### Direcciones (`/api/addresses`)
+- `GET /api/addresses/:userId` → Obtiene todas las direcciones hechas por el usuario.  
+- `GET /api/addresses/:addressId` → Obtiene una direccion especifica hecha por el usuario.
+- `POST /api/addresses/` → Crea una dirección.
+- `PUT /api/addresses/:_id` → Actualiza una dirección.
+- `DELETE /api/addresses/:_id` → Elimina una dirección.
+
+#### Pagos (`/api/`)
+- `POST /api/create-checkout-session` → Crea una dirección de pago en Stripe.
+- `GET /api/payment/session/:id` → Obtiene los todos los detalles enviados por Stripe al completar el pago.
+- `POST /api/webhook` → Obtiene los detalles de compra, y llama a las API's para actualizar inventario, pedidos, carrito.
 ---
 
 ## Archivos principales del Backend
 
 - **server.js** → Configura y levanta el servidor Express, define middlewares globales (`cors`, `body-parser`,`cookie-parser`,`dotenv`), manejo de cookies y conecta con MongoDB.  
 - **controllers/** → Incluye la lógica de negocio de cada módulo (productos, ventas, pedidos, carrito).  
-- **models/** → Define los esquemas de Mongoose para la persistencia en MongoDB, productos, productos carrito y usuarios.  
+- **models/** → Define los esquemas de Mongoose para la persistencia en MongoDB, productos, productos carrito y usuarios, pedidos y direcciones.  
 - **routes/** → Declara las rutas de la API que enlazan los controladores con Express.  
 - **routes/carrito.js** → Contiene la lógica del carrito de compras, añade, elimina y edita productos.
-- **routes/productos.js** → Contiene la lógica de ña base de datos de añade, elimina y edita productos.
+- **routes/productos.js** → Contiene la lógica de la base de datos de añade, elimina y edita productos.
 - **routes/usuarios.js** → Contiene la lógica de la gestion de token y registro de usuaios añade y edita usuarios.
+- **routes/address.js** → Contiene la lógica de las direcciones, obtiene, crea, edita, elimina.
+- **routes/pedidos.js** → Contiene la lógica de los pagos, obtiene, añade.
+- **routes/pagos.js** → Contiene la lógica los pagos, llama a Stripe, genera resultados de pago, y actualiza las bases de datos al pagar.
 - **middleware/auth.js** → Función para la verificacion de tokens en las cookies
 ---
 
@@ -184,9 +228,9 @@ La aplicación React ubicada en la carpeta `reactapp/` es la **interfaz principa
 Está desarrollada con **React** y utiliza librerías adicionales para la navegación y los íconos.
 
 #### Archivos y carpetas principales:
-- `src/` → Contiene todo el código fuente de la aplicación.
 - `components/` → ProtectedRoute.jsx Proteción a la carga de paginas como /admin o /shopping.
-  - `context/` → Uso de use Effect para llamar al backen para verificar la sesión iniciada y la salida de sesión.
+- `context/` → Uso de use Effect para llamar al backen para verificar la sesión iniciada y la salida de sesión.
+- `src/` → Contiene todo el código fuente de la aplicación.
   - `pages/` → Vistas principales de la aplicación (Login, Registro, Dashboard, etc.).  
   - `.js` → Punto de entrada de la aplicación React.  
   - `index.js` → Renderiza la aplicación dentro del DOM.  
@@ -195,12 +239,16 @@ Está desarrollada con **React** y utiliza librerías adicionales para la navega
 - `react` → Librería principal para construir interfaces de usuario.  
 - `react-router-dom` → Manejo de rutas y navegación entre páginas.  
 - `react-icons/fa` → Conjunto de íconos para enriquecer la interfaz.
+- `framer-motion` → Librería de animaciones para React que permite crear transiciones, gestos y efectos fluidos de forma sencilla.
 
 La aplicación se abrirá en el navegador en `http://localhost:3000` (o el puerto configurado por Vite/CRA).  
 
 #### Funcionalidades principales:
 - **Login/Register:** autenticación de usuarios.  
-- **Gestión de productos:** visualización y administración del inventario.  
+- **Gestión de productos:** visualización y administración del inventario.
+- **Gestión de pagos:** visualización y administración de pagos.
+- **Gestión de pedidos:** visualización y administración de los pedidos hechos previamente.
+- **Gestión de direcciones de envío:** visualización y administración de las direcciónes de envío.  
 - **Carrito de compras:** permite simular pedidos y sincronización con ventas.  
 - **Navegación dinámica:** cambio de vistas sin recargar la página gracias a `react-router-dom`.  
 
