@@ -274,8 +274,10 @@ Dentro de la carpeta `Documentation/` se incluye material de soporte:
 - **Backend deplegado** en Render.com
   - Modificar **linea 20 en server.js**:   origin: ['http://localhost:3000',"{'Colocar URL del frontend'}"],
   - Modificar variables de entorno **REACT_APP_API_URL** por la url suministrada por aplicación de despliege.
+  - https://intelligent-system-for-managing-and.onrender.com
 - **Frontend deplegado** en Vercel.com
   - Crear variable de entorno **REACT_APP_API_URL** por la url suministrada por aplicación de despliege.
+  - Https://Ktronix-app.vercel.app
 
 ## Licencia
 Este proyecto se distribuye bajo la licencia que defina el repositorio (MIT, GPL, etc.).  
