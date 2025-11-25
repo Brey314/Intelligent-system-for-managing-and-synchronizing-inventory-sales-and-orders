@@ -202,9 +202,14 @@ El servidor expone una serie de endpoints REST para la gestión de inventario, v
 - `DELETE /api/addresses/:_id` → Elimina una dirección.
 
 #### Pagos (`/api/`)
-- `POST /api/create-checkout-session` → Crea una dirección de pago en Stripe.
-- `GET /api/payment/session/:id` → Obtiene los todos los detalles enviados por Stripe al completar el pago.
-- `POST /api/webhook` → Obtiene los detalles de compra, y llama a las API's para actualizar inventario, pedidos, carrito.
+- `POST /create-checkout-session` → Crea una sesión de Stripe usando los productos del carrito, verifica el usuario con JWT y envía los datos a Stripe. Devuelve la URL para pagar.
+- `GET /payment/session/:id` → Recupera información de una sesión de pago de Stripe.
+- `POST /webhook` → Stripe llama aquí cuando un pago se completa.
+ - Verifica firma del webhook.
+ - Lee los productos pagados.
+ - Actualiza el stock de cada producto.
+ - Elimina los productos del carrito.
+ - Crea un pedido en la base de datos para el usuario.
 ---
 
 ## Archivos principales del Backend
