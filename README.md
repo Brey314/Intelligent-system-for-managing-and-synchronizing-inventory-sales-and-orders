@@ -263,6 +263,15 @@ Dentro de la carpeta `Documentation/` se incluye material de soporte:
 
 ---
 
+## Despliegue
+- **Base de datos:** desplegada en Mongo Atlas
+  - Modificar .env del backen **MONGODB_URI**, por la url administrada por Mongo Atlas. En seguridad de Mongo agregar 0.0.0.0/0 en direcciónes.
+- **Backend deplegado** en Render.com
+  - Modificar **linea 20 en server.js**:   origin: ['http://localhost:3000',"{'Colocar URL del frontend'}"],
+  - Modificar variables de entorno **REACT_APP_API_URL** por la url suministrada por aplicación de despliege.
+- **Frontend deplegado** en Vercel.com
+  - Crear variable de entorno **REACT_APP_API_URL** por la url suministrada por aplicación de despliege.
+
 ## Licencia
 Este proyecto se distribuye bajo la licencia que defina el repositorio (MIT, GPL, etc.).  
 Si no está definida aún, recomendamos usar **MIT** por su flexibilidad.
