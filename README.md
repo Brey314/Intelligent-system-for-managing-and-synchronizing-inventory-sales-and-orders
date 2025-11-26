@@ -268,6 +268,19 @@ Dentro de la carpeta `Documentation/` se incluye material de soporte:
 
 ---
 
+# Simulación de Pasarela de Pago por Consola
+
+Este módulo (`prueba1.py`) implementa una pasarela de pago desde consola que interactúa directamente con la API del proyecto principal.  
+Permite:
+
+- Consultar inventario real desde MongoDB usando la API REST.
+- Agregar productos al carrito.
+- Simular un proceso de pago.
+- Actualizar el stock en la base de datos mediante un `PUT`.
+- Confirmar la compra desde la consola.
+
+---
+
 ## Despliegue
 - **Base de datos:** desplegada en Mongo Atlas
   - Modificar .env del backen **MONGODB_URI**, por la url administrada por Mongo Atlas. En seguridad de Mongo agregar 0.0.0.0/0 en direcciónes.
