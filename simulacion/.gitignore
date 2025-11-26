@@ -1,0 +1,74 @@
+# ===============================
+#  IGNORAR ENTORNOS VIRTUALES
+# ===============================
+venv/
+env/
+.venv/
+.pyenv/
+pip-wheel-metadata/
+
+# ===============================
+#  IGNORAR LIBRERÍAS INSTALADAS
+# ===============================
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Directorio típico de dependencias externas
+site-packages/
+dist/
+build/
+*.egg-info/
+
+# ===============================
+#  CONFIGURACIONES Y SENSIBLES
+# ===============================
+*.env
+.env.*
+*.log
+*.sqlite3
+
+# ===============================
+#  ARCHIVOS DEL SISTEMA
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+#  EDITORES
+# ===============================
+.vscode/
+.idea/
+
+# ===============================
+#  ARCHIVOS TEMPORALES
+# ===============================
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# ===============================
+#  NODE (por si tu repo tiene frontend)
+# ===============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===============================
+#  PARA ASEGURAR QUE SOLO SE SUBA LO IMPORTANTE
+# ===============================
+# Mantener scripts
+!scripts/
+!scripts/**
+
+# Mantener requirements.txt
+!requirements.txt
+
+# Mantener README
+!README.md
+
+# Mantener archivos .py que no estén ignorados antes
+!*.py
