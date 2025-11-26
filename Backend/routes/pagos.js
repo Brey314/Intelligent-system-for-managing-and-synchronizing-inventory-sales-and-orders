@@ -138,7 +138,7 @@ router.post("/webhook", async (req, res) => {
             idAddress: item.addressId,
             cuantity: item.quantity,
             total: item.unit_amount * item.quantity,
-            status: "Payed"
+            status: "Paid"
           };
           const token = jwt.sign({ id: userId }, JWT_SECRET);
           await axios.post(
